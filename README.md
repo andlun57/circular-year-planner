@@ -193,5 +193,5 @@ Detta plugin är licensierat under GPL v2 eller senare.
 ## Support
 
 För frågor och support, besök GitHub-repository:
-https://github.com/andlun57/year-planning
+https://github.com/andlun57/circular-year-planner
 
