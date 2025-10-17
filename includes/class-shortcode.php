@@ -65,7 +65,7 @@ class CYP_Shortcode {
                 <button class="cyp-close-details" aria-label="<?php esc_attr_e('Close', 'circular-year-planner'); ?>">×</button>
                 <div class="cyp-event-content"></div>
             </div>
-            <div class="cyp-loading"><?php _e('Loading calendar...', 'circular-year-planner'); ?></div>
+            <div class="cyp-loading"><?php esc_html_e('Loading calendar...', 'circular-year-planner'); ?></div>
         </div>
         <?php
         return ob_get_clean();

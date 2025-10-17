@@ -96,21 +96,21 @@ class CYP_Event_Post_Type {
         ?>
         <div class="cyp-meta-box">
             <p>
-                <label for="cyp_start_date"><strong><?php _e('Start Date', 'circular-year-planner'); ?>:</strong></label><br>
+                <label for="cyp_start_date"><strong><?php esc_html_e('Start Date', 'circular-year-planner'); ?>:</strong></label><br>
                 <input type="date" id="cyp_start_date" name="cyp_start_date" value="<?php echo esc_attr($start_date); ?>" class="widefat" required placeholder="yyyy-mm-dd">
-                <span class="description"><?php _e('Format: YYYY-MM-DD', 'circular-year-planner'); ?></span>
+                <span class="description"><?php esc_html_e('Format: YYYY-MM-DD', 'circular-year-planner'); ?></span>
             </p>
             
             <p>
-                <label for="cyp_end_date"><strong><?php _e('End Date', 'circular-year-planner'); ?>:</strong></label><br>
+                <label for="cyp_end_date"><strong><?php esc_html_e('End Date', 'circular-year-planner'); ?>:</strong></label><br>
                 <input type="date" id="cyp_end_date" name="cyp_end_date" value="<?php echo esc_attr($end_date); ?>" class="widefat" required placeholder="yyyy-mm-dd">
-                <span class="description"><?php _e('Format: YYYY-MM-DD', 'circular-year-planner'); ?></span>
+                <span class="description"><?php esc_html_e('Format: YYYY-MM-DD', 'circular-year-planner'); ?></span>
             </p>
             
             <p>
-                <label for="cyp_event_type"><strong><?php _e('Event Type', 'circular-year-planner'); ?>:</strong></label><br>
+                <label for="cyp_event_type"><strong><?php esc_html_e('Event Type', 'circular-year-planner'); ?>:</strong></label><br>
                 <select id="cyp_event_type" name="cyp_event_type" class="widefat">
-                    <option value=""><?php _e('Select event type', 'circular-year-planner'); ?></option>
+                    <option value=""><?php esc_html_e('Select event type', 'circular-year-planner'); ?></option>
                     <?php foreach ($event_types as $index => $type) : ?>
                         <option value="<?php echo esc_attr($index); ?>" <?php selected($event_type, $index); ?>>
                             <?php echo esc_html($type['name']); ?>
@@ -121,9 +121,9 @@ class CYP_Event_Post_Type {
             
             <?php if ($fiscal_year) : ?>
             <p class="cyp-calculated-info">
-                <strong><?php _e('Fiscal Year', 'circular-year-planner'); ?>:</strong> <?php echo esc_html($fiscal_year); ?>
+                <strong><?php esc_html_e('Fiscal Year', 'circular-year-planner'); ?>:</strong> <?php echo esc_html($fiscal_year); ?>
                 <span class="description" style="display: block; margin-top: 5px;">
-                    <?php _e('(calculated automatically from start date)', 'circular-year-planner'); ?>
+                    <?php esc_html_e('(calculated automatically from start date)', 'circular-year-planner'); ?>
                 </span>
             </p>
             <?php endif; ?>
@@ -196,12 +196,22 @@ class CYP_Event_Post_Type {
                 
             case 'start_date':
                 $start_date = get_post_meta($post_id, '_cyp_start_date', true);
-                echo $start_date ? esc_html($start_date) : '—';
+                if ($start_date) {
+                    // Format according to WordPress date settings using mysql2date
+                    echo esc_html(mysql2date(get_option('date_format'), $start_date));
+                } else {
+                    echo '—';
+                }
                 break;
                 
             case 'end_date':
                 $end_date = get_post_meta($post_id, '_cyp_end_date', true);
-                echo $end_date ? esc_html($end_date) : '—';
+                if ($end_date) {
+                    // Format according to WordPress date settings using mysql2date
+                    echo esc_html(mysql2date(get_option('date_format'), $end_date));
+                } else {
+                    echo '—';
+                }
                 break;
         }
     }

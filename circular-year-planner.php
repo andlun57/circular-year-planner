@@ -79,8 +79,12 @@ class Circular_Year_Planner {
     
     /**
      * Ladda textdomän för översättningar
+     * 
+     * Note: While WordPress.org hosted plugins load translations automatically,
+     * this is still needed for local development and sites not using WordPress.org translations.
      */
     public function load_textdomain() {
+        // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
         load_plugin_textdomain(
             'circular-year-planner',
             false,
@@ -137,6 +141,31 @@ class Circular_Year_Planner {
                 __('Nov', 'circular-year-planner'),
                 __('Dec', 'circular-year-planner'),
             ),
+            'monthNamesFull' => array(
+                __('January', 'circular-year-planner'),
+                __('February', 'circular-year-planner'),
+                __('March', 'circular-year-planner'),
+                __('April', 'circular-year-planner'),
+                __('May', 'circular-year-planner'),
+                __('June', 'circular-year-planner'),
+                __('July', 'circular-year-planner'),
+                __('August', 'circular-year-planner'),
+                __('September', 'circular-year-planner'),
+                __('October', 'circular-year-planner'),
+                __('November', 'circular-year-planner'),
+                __('December', 'circular-year-planner'),
+            ),
+            'i18n' => array(
+                'date' => __('Date', 'circular-year-planner'),
+                'startDate' => __('Start Date', 'circular-year-planner'),
+                'endDate' => __('End Date', 'circular-year-planner'),
+                'type' => __('Type', 'circular-year-planner'),
+                'fiscalYear' => __('Fiscal Year', 'circular-year-planner'),
+                'display' => __('Display', 'circular-year-planner'),
+                'wholeWeek' => __('Whole week (for visibility)', 'circular-year-planner'),
+                'description' => __('Description', 'circular-year-planner'),
+            ),
+            'dateFormat' => get_option('date_format'),
         ));
     }
     

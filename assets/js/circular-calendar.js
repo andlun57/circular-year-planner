@@ -546,22 +546,25 @@
             const detailsPanel = this.container.find('.cyp-event-details');
             const content = detailsPanel.find('.cyp-event-content');
             
+            // Get translated strings
+            const i18n = cypData.i18n || {};
+            
             const isOneDay = event.start_date === event.end_date;
             const dateInfo = isOneDay 
                 ? `<div class="cyp-event-meta-item">
-                       <span class="cyp-event-meta-label">Datum:</span>
+                       <span class="cyp-event-meta-label">${i18n.date || 'Date'}:</span>
                        <span>${this.formatDate(event.start_date)}</span>
                    </div>
                    <div class="cyp-event-meta-item cyp-info-note">
-                       <span class="cyp-event-meta-label">Visning:</span>
-                       <span>Hela veckan (för synlighet)</span>
+                       <span class="cyp-event-meta-label">${i18n.display || 'Display'}:</span>
+                       <span>${i18n.wholeWeek || 'Whole week (for visibility)'}</span>
                    </div>`
                 : `<div class="cyp-event-meta-item">
-                       <span class="cyp-event-meta-label">Startdatum:</span>
+                       <span class="cyp-event-meta-label">${i18n.startDate || 'Start Date'}:</span>
                        <span>${this.formatDate(event.start_date)}</span>
                    </div>
                    <div class="cyp-event-meta-item">
-                       <span class="cyp-event-meta-label">Slutdatum:</span>
+                       <span class="cyp-event-meta-label">${i18n.endDate || 'End Date'}:</span>
                        <span>${this.formatDate(event.end_date)}</span>
                    </div>`;
             
@@ -569,18 +572,18 @@
                 <h3>${event.title}</h3>
                 <div class="cyp-event-meta">
                     <div class="cyp-event-meta-item">
-                        <span class="cyp-event-meta-label">Typ:</span>
+                        <span class="cyp-event-meta-label">${i18n.type || 'Type'}:</span>
                         <span class="cyp-event-type-badge" style="background-color: ${event.event_type_color}">
                             ${event.event_type_name}
                         </span>
                     </div>
                     ${dateInfo}
                     <div class="cyp-event-meta-item">
-                        <span class="cyp-event-meta-label">Verksamhetsår:</span>
+                        <span class="cyp-event-meta-label">${i18n.fiscalYear || 'Fiscal Year'}:</span>
                         <span>${event.fiscal_year}</span>
                     </div>
                 </div>
-                ${event.description ? `<div class="cyp-event-description">${event.description}</div>` : ''}
+                ${event.description ? `<div class="cyp-event-description"><strong>${i18n.description || 'Description'}:</strong><br>${event.description}</div>` : ''}
             `;
             
             content.html(html);
@@ -744,8 +747,37 @@
         }
         
         formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('sv-SE');
+            // Parse the date (expects YYYY-MM-DD format)
+            const parts = dateString.split('-');
+            if (parts.length !== 3) return dateString;
+            
+            const year = parts[0];
+            const month = parseInt(parts[1], 10);
+            const day = parseInt(parts[2], 10);
+            
+            // Get WordPress date format
+            const format = cypData.dateFormat || 'F j, Y';
+            
+            // Convert PHP date format to JavaScript formatted string
+            let formatted = format;
+            
+            // Month replacements - use translated names from PHP
+            const monthNames = cypData.monthNamesFull || ['January', 'February', 'March', 'April', 'May', 'June',
+                               'July', 'August', 'September', 'October', 'November', 'December'];
+            const monthNamesShort = cypData.monthNames || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                                                           'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            
+            // Replace PHP format tokens with actual values
+            formatted = formatted.replace(/F/g, monthNames[month - 1]); // Full month name
+            formatted = formatted.replace(/M/g, monthNamesShort[month - 1]); // Short month name
+            formatted = formatted.replace(/m/g, String(month).padStart(2, '0')); // Month with leading zero
+            formatted = formatted.replace(/n/g, month); // Month without leading zero
+            formatted = formatted.replace(/d/g, String(day).padStart(2, '0')); // Day with leading zero
+            formatted = formatted.replace(/j/g, day); // Day without leading zero
+            formatted = formatted.replace(/Y/g, year); // 4-digit year
+            formatted = formatted.replace(/y/g, year.slice(-2)); // 2-digit year
+            
+            return formatted;
         }
         
         degToRad(degrees) {
