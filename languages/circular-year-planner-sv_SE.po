@@ -1,0 +1,172 @@
+# Swedish translation for Circular Year Planner
+# Copyright (C) 2024 Circular Year Planner
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Circular Year Planner 1.0.15\n"
+"Report-Msgid-Bugs-To: https://github.com/andlun57/year-planning\n"
+"POT-Creation-Date: 2025-10-17 10:46+0000\n"
+"PO-Revision-Date: 2025-10-17 10:46+0000\n"
+"Last-Translator: Andreas Lundberg\n"
+"Language-Team: Swedish\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Circular Year Planner"
+msgstr "Cirkulär Årsplanerare"
+
+msgid "Events"
+msgstr "Händelser"
+
+msgid "Event"
+msgstr "Händelse"
+
+msgid "Add New Event"
+msgstr "Lägg till händelse"
+
+msgid "Edit Event"
+msgstr "Redigera händelse"
+
+msgid "All Events"
+msgstr "Alla händelser"
+
+msgid "View Event"
+msgstr "Visa händelse"
+
+msgid "Search Events"
+msgstr "Sök händelser"
+
+msgid "No events found"
+msgstr "Inga händelser hittades"
+
+msgid "Event Details"
+msgstr "Händelsedetaljer"
+
+msgid "Start Date"
+msgstr "Startdatum"
+
+msgid "End Date"
+msgstr "Slutdatum"
+
+msgid "Event Type"
+msgstr "Händelsetyp"
+
+msgid "Fiscal Year"
+msgstr "Verksamhetsår"
+
+msgid "Settings"
+msgstr "Inställningar"
+
+msgid "Year Planning Settings"
+msgstr "Inställningar för Årsplanering"
+
+msgid "Event Types"
+msgstr "Händelsetyper"
+
+msgid "Add Event Type"
+msgstr "Lägg till händelsetyp"
+
+msgid "Name"
+msgstr "Namn"
+
+msgid "Color"
+msgstr "Färg"
+
+msgid "Remove"
+msgstr "Ta bort"
+
+msgid "Fiscal Year Start"
+msgstr "Verksamhetsår börjar"
+
+msgid "Select when the fiscal year starts"
+msgstr "Välj när verksamhetsåret börjar"
+
+msgid "January"
+msgstr "Januari"
+
+msgid "February"
+msgstr "Februari"
+
+msgid "March"
+msgstr "Mars"
+
+msgid "April"
+msgstr "April"
+
+msgid "May"
+msgstr "Maj"
+
+msgid "June"
+msgstr "Juni"
+
+msgid "July"
+msgstr "Juli"
+
+msgid "August"
+msgstr "Augusti"
+
+msgid "September"
+msgstr "September"
+
+msgid "October"
+msgstr "Oktober"
+
+msgid "November"
+msgstr "November"
+
+msgid "December"
+msgstr "December"
+
+msgid "Color Scheme"
+msgstr "Färgschema"
+
+msgid "Standard"
+msgstr "Standard"
+
+msgid "Dark"
+msgstr "Mörk"
+
+msgid "Blue"
+msgstr "Blå"
+
+msgid "Green"
+msgstr "Grön"
+
+msgid "Save Settings"
+msgstr "Spara inställningar"
+
+msgid "Settings saved successfully"
+msgstr "Inställningar sparade"
+
+msgid "Loading calendar..."
+msgstr "Laddar kalender..."
+
+msgid "Close"
+msgstr "Stäng"
+
+msgid "Week"
+msgstr "Vecka"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Display"
+msgstr "Visning"
+
+msgid "Whole week (for visibility)"
+msgstr "Hela veckan (för synlighet)"
+
+msgid "Description"
+msgstr "Beskrivning"
+
+msgid "Previous Year"
+msgstr "Föregående år"
+
+msgid "Next Year"
+msgstr "Nästa år"

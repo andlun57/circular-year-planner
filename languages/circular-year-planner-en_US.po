@@ -1,0 +1,172 @@
+# English translation for Circular Year Planner
+# Copyright (C) 2024 Circular Year Planner
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Circular Year Planner 1.0.15\n"
+"Report-Msgid-Bugs-To: https://github.com/andlun57/year-planning\n"
+"POT-Creation-Date: 2025-10-17 10:46+0000\n"
+"PO-Revision-Date: 2025-10-17 10:46+0000\n"
+"Last-Translator: Andreas Lundberg\n"
+"Language-Team: English\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Circular Year Planner"
+msgstr "Circular Year Planner"
+
+msgid "Events"
+msgstr "Events"
+
+msgid "Event"
+msgstr "Event"
+
+msgid "Add New Event"
+msgstr "Add New Event"
+
+msgid "Edit Event"
+msgstr "Edit Event"
+
+msgid "All Events"
+msgstr "All Events"
+
+msgid "View Event"
+msgstr "View Event"
+
+msgid "Search Events"
+msgstr "Search Events"
+
+msgid "No events found"
+msgstr "No events found"
+
+msgid "Event Details"
+msgstr "Event Details"
+
+msgid "Start Date"
+msgstr "Start Date"
+
+msgid "End Date"
+msgstr "End Date"
+
+msgid "Event Type"
+msgstr "Event Type"
+
+msgid "Fiscal Year"
+msgstr "Fiscal Year"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "Year Planning Settings"
+msgstr "Year Planning Settings"
+
+msgid "Event Types"
+msgstr "Event Types"
+
+msgid "Add Event Type"
+msgstr "Add Event Type"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Color"
+msgstr "Color"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "Fiscal Year Start"
+msgstr "Fiscal Year Start"
+
+msgid "Select when the fiscal year starts"
+msgstr "Select when the fiscal year starts"
+
+msgid "January"
+msgstr "January"
+
+msgid "February"
+msgstr "February"
+
+msgid "March"
+msgstr "March"
+
+msgid "April"
+msgstr "April"
+
+msgid "May"
+msgstr "May"
+
+msgid "June"
+msgstr "June"
+
+msgid "July"
+msgstr "July"
+
+msgid "August"
+msgstr "August"
+
+msgid "September"
+msgstr "September"
+
+msgid "October"
+msgstr "October"
+
+msgid "November"
+msgstr "November"
+
+msgid "December"
+msgstr "December"
+
+msgid "Color Scheme"
+msgstr "Color Scheme"
+
+msgid "Standard"
+msgstr "Standard"
+
+msgid "Dark"
+msgstr "Dark"
+
+msgid "Blue"
+msgstr "Blue"
+
+msgid "Green"
+msgstr "Green"
+
+msgid "Save Settings"
+msgstr "Save Settings"
+
+msgid "Settings saved successfully"
+msgstr "Settings saved successfully"
+
+msgid "Loading calendar..."
+msgstr "Loading calendar..."
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Week"
+msgstr "Week"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Display"
+msgstr "Display"
+
+msgid "Whole week (for visibility)"
+msgstr "Whole week (for visibility)"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Previous Year"
+msgstr "Previous Year"
+
+msgid "Next Year"
+msgstr "Next Year"
