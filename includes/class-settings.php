@@ -30,8 +30,8 @@ class CYP_Settings {
     public function add_settings_page() {
         add_submenu_page(
             'edit.php?post_type=cyp_event',
-            'Inställningar för Årsplanering',
-            'Inställningar',
+            __('Year Planning Settings', 'circular-year-planner'),
+            __('Settings', 'circular-year-planner'),
             'manage_options',
             'cyp-settings',
             array($this, 'render_settings_page')
@@ -95,11 +95,11 @@ class CYP_Settings {
         
         ?>
         <div class="wrap">
-            <h1>Inställningar för Cirkulär Årsplanering</h1>
+            <h1><?php _e('Circular Year Planning Settings', 'circular-year-planner'); ?></h1>
             
             <?php if ($message === 'saved') : ?>
                 <div class="notice notice-success is-dismissible">
-                    <p>Inställningar sparade!</p>
+                    <p><?php _e('Settings saved successfully', 'circular-year-planner'); ?>!</p>
                 </div>
             <?php endif; ?>
             
@@ -110,85 +110,85 @@ class CYP_Settings {
                 <table class="form-table">
                     <tr>
                         <th scope="row">
-                            <label>Händelsetyper</label>
+                            <label><?php _e('Event Types', 'circular-year-planner'); ?></label>
                         </th>
                         <td>
                             <div id="cyp-event-types">
                                 <?php if (empty($event_types)) : ?>
                                     <div class="cyp-event-type-row">
-                                        <input type="text" name="cyp_event_types[0][name]" placeholder="Namn på händelsetyp" class="regular-text">
+                                        <input type="text" name="cyp_event_types[0][name]" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">
                                         <input type="text" name="cyp_event_types[0][color]" value="#4A90E2" class="cyp-color-picker">
-                                        <button type="button" class="button cyp-remove-type">Ta bort</button>
+                                        <button type="button" class="button cyp-remove-type"><?php _e('Remove', 'circular-year-planner'); ?></button>
                                     </div>
                                 <?php else : ?>
                                     <?php foreach ($event_types as $index => $type) : ?>
                                         <div class="cyp-event-type-row">
-                                            <input type="text" name="cyp_event_types[<?php echo esc_attr($index); ?>][name]" value="<?php echo esc_attr($type['name']); ?>" placeholder="Namn på händelsetyp" class="regular-text">
+                                            <input type="text" name="cyp_event_types[<?php echo esc_attr($index); ?>][name]" value="<?php echo esc_attr($type['name']); ?>" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">
                                             <input type="text" name="cyp_event_types[<?php echo esc_attr($index); ?>][color]" value="<?php echo esc_attr($type['color']); ?>" class="cyp-color-picker">
-                                            <button type="button" class="button cyp-remove-type">Ta bort</button>
+                                            <button type="button" class="button cyp-remove-type"><?php _e('Remove', 'circular-year-planner'); ?></button>
                                         </div>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                             </div>
-                            <button type="button" id="cyp-add-event-type" class="button">Lägg till händelsetyp</button>
-                            <p class="description">Definiera olika typer av händelser och deras färger.</p>
+                            <button type="button" id="cyp-add-event-type" class="button"><?php _e('Add Event Type', 'circular-year-planner'); ?></button>
+                            <p class="description"><?php _e('Define different types of events and their colors.', 'circular-year-planner'); ?></p>
                         </td>
                     </tr>
                     
                     <tr>
                         <th scope="row">
-                            <label for="cyp_fiscal_year_start">Verksamhetsår startar</label>
+                            <label for="cyp_fiscal_year_start"><?php _e('Fiscal Year Start', 'circular-year-planner'); ?></label>
                         </th>
                         <td>
                             <select id="cyp_fiscal_year_start" name="cyp_fiscal_year_start">
-                                <option value="01-01" <?php selected($fiscal_year_start, '01-01'); ?>>Januari (kalenderår)</option>
-                                <option value="02-01" <?php selected($fiscal_year_start, '02-01'); ?>>Februari</option>
-                                <option value="03-01" <?php selected($fiscal_year_start, '03-01'); ?>>Mars</option>
-                                <option value="04-01" <?php selected($fiscal_year_start, '04-01'); ?>>April</option>
-                                <option value="05-01" <?php selected($fiscal_year_start, '05-01'); ?>>Maj</option>
-                                <option value="06-01" <?php selected($fiscal_year_start, '06-01'); ?>>Juni</option>
-                                <option value="07-01" <?php selected($fiscal_year_start, '07-01'); ?>>Juli</option>
-                                <option value="08-01" <?php selected($fiscal_year_start, '08-01'); ?>>Augusti</option>
-                                <option value="09-01" <?php selected($fiscal_year_start, '09-01'); ?>>September</option>
-                                <option value="10-01" <?php selected($fiscal_year_start, '10-01'); ?>>Oktober</option>
-                                <option value="11-01" <?php selected($fiscal_year_start, '11-01'); ?>>November</option>
-                                <option value="12-01" <?php selected($fiscal_year_start, '12-01'); ?>>December</option>
+                                <option value="01-01" <?php selected($fiscal_year_start, '01-01'); ?>><?php _e('January', 'circular-year-planner'); ?> (<?php _e('calendar year', 'circular-year-planner'); ?>)</option>
+                                <option value="02-01" <?php selected($fiscal_year_start, '02-01'); ?>><?php _e('February', 'circular-year-planner'); ?></option>
+                                <option value="03-01" <?php selected($fiscal_year_start, '03-01'); ?>><?php _e('March', 'circular-year-planner'); ?></option>
+                                <option value="04-01" <?php selected($fiscal_year_start, '04-01'); ?>><?php _e('April', 'circular-year-planner'); ?></option>
+                                <option value="05-01" <?php selected($fiscal_year_start, '05-01'); ?>><?php _e('May', 'circular-year-planner'); ?></option>
+                                <option value="06-01" <?php selected($fiscal_year_start, '06-01'); ?>><?php _e('June', 'circular-year-planner'); ?></option>
+                                <option value="07-01" <?php selected($fiscal_year_start, '07-01'); ?>><?php _e('July', 'circular-year-planner'); ?></option>
+                                <option value="08-01" <?php selected($fiscal_year_start, '08-01'); ?>><?php _e('August', 'circular-year-planner'); ?></option>
+                                <option value="09-01" <?php selected($fiscal_year_start, '09-01'); ?>><?php _e('September', 'circular-year-planner'); ?></option>
+                                <option value="10-01" <?php selected($fiscal_year_start, '10-01'); ?>><?php _e('October', 'circular-year-planner'); ?></option>
+                                <option value="11-01" <?php selected($fiscal_year_start, '11-01'); ?>><?php _e('November', 'circular-year-planner'); ?></option>
+                                <option value="12-01" <?php selected($fiscal_year_start, '12-01'); ?>><?php _e('December', 'circular-year-planner'); ?></option>
                             </select>
-                            <p class="description">Välj vilken månad verksamhetsåret börjar.</p>
+                            <p class="description"><?php _e('Select when the fiscal year starts', 'circular-year-planner'); ?>.</p>
                         </td>
                     </tr>
                     
                     <tr>
                         <th scope="row">
-                            <label for="cyp_color_scheme">Färgschema för kalender</label>
+                            <label for="cyp_color_scheme"><?php _e('Color Scheme', 'circular-year-planner'); ?></label>
                         </th>
                         <td>
                             <select id="cyp_color_scheme" name="cyp_color_scheme">
-                                <option value="default" <?php selected($color_scheme, 'default'); ?>>Standard (ljus)</option>
-                                <option value="dark" <?php selected($color_scheme, 'dark'); ?>>Mörk</option>
-                                <option value="blue" <?php selected($color_scheme, 'blue'); ?>>Blå</option>
-                                <option value="green" <?php selected($color_scheme, 'green'); ?>>Grön</option>
+                                <option value="default" <?php selected($color_scheme, 'default'); ?>><?php _e('Standard', 'circular-year-planner'); ?> (<?php _e('light', 'circular-year-planner'); ?>)</option>
+                                <option value="dark" <?php selected($color_scheme, 'dark'); ?>><?php _e('Dark', 'circular-year-planner'); ?></option>
+                                <option value="blue" <?php selected($color_scheme, 'blue'); ?>><?php _e('Blue', 'circular-year-planner'); ?></option>
+                                <option value="green" <?php selected($color_scheme, 'green'); ?>><?php _e('Green', 'circular-year-planner'); ?></option>
                             </select>
-                            <p class="description">Välj färgschema för den cirkulära kalendern.</p>
+                            <p class="description"><?php _e('Choose color scheme for the circular calendar.', 'circular-year-planner'); ?></p>
                         </td>
                     </tr>
                 </table>
                 
-                <?php submit_button('Spara inställningar'); ?>
+                <?php submit_button(__('Save Settings', 'circular-year-planner')); ?>
             </form>
             
             <hr>
             
-            <h2>Hur man använder</h2>
+            <h2><?php _e('How to Use', 'circular-year-planner'); ?></h2>
             <div class="cyp-instructions">
-                <h3>Shortcode</h3>
-                <p>Använd följande shortcode för att visa den cirkulära kalendern:</p>
+                <h3><?php _e('Shortcode', 'circular-year-planner'); ?></h3>
+                <p><?php _e('Use the following shortcode to display the circular calendar:', 'circular-year-planner'); ?></p>
                 <code>[circular_year_planner]</code>
                 
-                <h3>Parametrar</h3>
+                <h3><?php _e('Parameters', 'circular-year-planner'); ?></h3>
                 <ul>
-                    <li><code>[circular_year_planner year="2024/2025"]</code> - Visa specifikt verksamhetsår</li>
-                    <li><code>[circular_year_planner types="0,1"]</code> - Visa endast vissa händelsetyper (index)</li>
+                    <li><code>[circular_year_planner year="2024/2025"]</code> - <?php _e('Show specific fiscal year', 'circular-year-planner'); ?></li>
+                    <li><code>[circular_year_planner types="0,1"]</code> - <?php _e('Show only certain event types (by index)', 'circular-year-planner'); ?></li>
                 </ul>
             </div>
         </div>
@@ -218,9 +218,9 @@ class CYP_Settings {
             $('#cyp-add-event-type').on('click', function() {
                 var index = $('#cyp-event-types .cyp-event-type-row').length;
                 var html = '<div class="cyp-event-type-row">' +
-                    '<input type="text" name="cyp_event_types[' + index + '][name]" placeholder="Namn på händelsetyp" class="regular-text">' +
+                    '<input type="text" name="cyp_event_types[' + index + '][name]" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">' +
                     '<input type="text" name="cyp_event_types[' + index + '][color]" value="#4A90E2" class="cyp-color-picker">' +
-                    '<button type="button" class="button cyp-remove-type">Ta bort</button>' +
+                    '<button type="button" class="button cyp-remove-type"><?php _e('Remove', 'circular-year-planner'); ?></button>' +
                     '</div>';
                 $('#cyp-event-types').append(html);
                 
@@ -246,12 +246,12 @@ class CYP_Settings {
     public function save_settings() {
         // Kontrollera behörighet
         if (!current_user_can('manage_options')) {
-            wp_die('Otillåten åtkomst');
+            wp_die(__('Unauthorized access', 'circular-year-planner'));
         }
         
         // Verifiera nonce
         if (!isset($_POST['cyp_settings_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['cyp_settings_nonce'])), 'cyp_save_settings')) {
-            wp_die('Säkerhetsverifiering misslyckades');
+            wp_die(__('Security verification failed', 'circular-year-planner'));
         }
         
         // Spara händelsetyper

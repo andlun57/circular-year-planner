@@ -24,8 +24,17 @@ msgstr "Händelser"
 msgid "Event"
 msgstr "Händelse"
 
+msgid "Year Planning"
+msgstr "Årsplanering"
+
+msgid "Add New"
+msgstr "Lägg till"
+
 msgid "Add New Event"
 msgstr "Lägg till händelse"
+
+msgid "New Event"
+msgstr "Ny händelse"
 
 msgid "Edit Event"
 msgstr "Redigera händelse"
@@ -170,3 +179,102 @@ msgstr "Föregående år"
 
 msgid "Next Year"
 msgstr "Nästa år"
+
+msgid "No events found in trash"
+msgstr "Inga händelser i papperskorgen"
+
+msgid "Program"
+msgstr "Program"
+
+msgid "Campaign"
+msgstr "Kampanj"
+
+msgid "Training"
+msgstr "Utbildning"
+
+msgid "Meeting"
+msgstr "Möte"
+
+msgid "Select event type"
+msgstr "Välj händelsetyp"
+
+msgid "(calculated automatically from start date)"
+msgstr "(beräknas automatiskt från startdatum)"
+
+msgid "Circular Year Planning Settings"
+msgstr "Inställningar för Cirkulär Årsplanering"
+
+msgid "Event type name"
+msgstr "Namn på händelsetyp"
+
+msgid "Define different types of events and their colors."
+msgstr "Definiera olika typer av händelser och deras färger."
+
+msgid "calendar year"
+msgstr "kalenderår"
+
+msgid "light"
+msgstr "ljus"
+
+msgid "Choose color scheme for the circular calendar."
+msgstr "Välj färgschema för den cirkulära kalendern."
+
+msgid "How to Use"
+msgstr "Hur man använder"
+
+msgid "Shortcode"
+msgstr "Shortcode"
+
+msgid "Use the following shortcode to display the circular calendar:"
+msgstr "Använd följande shortcode för att visa den cirkulära kalendern:"
+
+msgid "Parameters"
+msgstr "Parametrar"
+
+msgid "Show specific fiscal year"
+msgstr "Visa specifikt verksamhetsår"
+
+msgid "Show only certain event types (by index)"
+msgstr "Visa endast vissa händelsetyper (index)"
+
+msgid "Unauthorized access"
+msgstr "Otillåten åtkomst"
+
+msgid "Security verification failed"
+msgstr "Säkerhetsverifiering misslyckades"
+
+msgid "Format: YYYY-MM-DD"
+msgstr "Format: ÅÅÅÅ-MM-DD"
+
+msgid "Jan"
+msgstr "Jan"
+
+msgid "Feb"
+msgstr "Feb"
+
+msgid "Mar"
+msgstr "Mar"
+
+msgid "Apr"
+msgstr "Apr"
+
+msgid "Jun"
+msgstr "Jun"
+
+msgid "Jul"
+msgstr "Jul"
+
+msgid "Aug"
+msgstr "Aug"
+
+msgid "Sep"
+msgstr "Sep"
+
+msgid "Oct"
+msgstr "Okt"
+
+msgid "Nov"
+msgstr "Nov"
+
+msgid "Dec"
+msgstr "Dec"

@@ -67,6 +67,7 @@ class Circular_Year_Planner {
      * Initiera hooks
      */
     private function init_hooks() {
+        add_action('plugins_loaded', array($this, 'load_textdomain'));
         add_action('plugins_loaded', array($this, 'init'));
         add_action('wp_enqueue_scripts', array($this, 'enqueue_frontend_assets'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_assets'));
@@ -74,6 +75,17 @@ class Circular_Year_Planner {
         // Aktivering och avaktivering
         register_activation_hook(__FILE__, array($this, 'activate'));
         register_deactivation_hook(__FILE__, array($this, 'deactivate'));
+    }
+    
+    /**
+     * Ladda textdomän för översättningar
+     */
+    public function load_textdomain() {
+        load_plugin_textdomain(
+            'circular-year-planner',
+            false,
+            dirname(plugin_basename(__FILE__)) . '/languages/'
+        );
     }
     
     /**
@@ -111,6 +123,20 @@ class Circular_Year_Planner {
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'restUrl' => rest_url('cyp/v1/'),
             'nonce' => wp_create_nonce('wp_rest'),
+            'monthNames' => array(
+                __('Jan', 'circular-year-planner'),
+                __('Feb', 'circular-year-planner'),
+                __('Mar', 'circular-year-planner'),
+                __('Apr', 'circular-year-planner'),
+                __('May', 'circular-year-planner'),
+                __('Jun', 'circular-year-planner'),
+                __('Jul', 'circular-year-planner'),
+                __('Aug', 'circular-year-planner'),
+                __('Sep', 'circular-year-planner'),
+                __('Oct', 'circular-year-planner'),
+                __('Nov', 'circular-year-planner'),
+                __('Dec', 'circular-year-planner'),
+            ),
         ));
     }
     
@@ -152,10 +178,10 @@ class Circular_Year_Planner {
         // Sätt standardinställningar om de inte finns
         if (!get_option('cyp_event_types')) {
             update_option('cyp_event_types', array(
-                array('name' => 'Program', 'color' => '#4A90E2'),
-                array('name' => 'Kampanj', 'color' => '#E24A90'),
-                array('name' => 'Utbildning', 'color' => '#90E24A'),
-                array('name' => 'Möte', 'color' => '#E2904A'),
+                array('name' => __('Program', 'circular-year-planner'), 'color' => '#4A90E2'),
+                array('name' => __('Campaign', 'circular-year-planner'), 'color' => '#E24A90'),
+                array('name' => __('Training', 'circular-year-planner'), 'color' => '#90E24A'),
+                array('name' => __('Meeting', 'circular-year-planner'), 'color' => '#E2904A'),
             ));
         }
         

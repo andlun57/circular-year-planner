@@ -31,17 +31,17 @@ class CYP_Event_Post_Type {
      */
     public static function register_post_type() {
         $labels = array(
-            'name' => 'Händelser',
-            'singular_name' => 'Händelse',
-            'menu_name' => 'Årsplanering',
-            'add_new' => 'Lägg till händelse',
-            'add_new_item' => 'Lägg till ny händelse',
-            'edit_item' => 'Redigera händelse',
-            'new_item' => 'Ny händelse',
-            'view_item' => 'Visa händelse',
-            'search_items' => 'Sök händelser',
-            'not_found' => 'Inga händelser hittades',
-            'not_found_in_trash' => 'Inga händelser i papperskorgen',
+            'name' => __('Events', 'circular-year-planner'),
+            'singular_name' => __('Event', 'circular-year-planner'),
+            'menu_name' => __('Year Planning', 'circular-year-planner'),
+            'add_new' => __('Add New', 'circular-year-planner'),
+            'add_new_item' => __('Add New Event', 'circular-year-planner'),
+            'edit_item' => __('Edit Event', 'circular-year-planner'),
+            'new_item' => __('New Event', 'circular-year-planner'),
+            'view_item' => __('View Event', 'circular-year-planner'),
+            'search_items' => __('Search Events', 'circular-year-planner'),
+            'not_found' => __('No events found', 'circular-year-planner'),
+            'not_found_in_trash' => __('No events found in trash', 'circular-year-planner'),
         );
         
         $args = array(
@@ -67,7 +67,7 @@ class CYP_Event_Post_Type {
     public function add_meta_boxes() {
         add_meta_box(
             'cyp_event_details',
-            'Händelsedetaljer',
+            __('Event Details', 'circular-year-planner'),
             array($this, 'render_event_details_meta_box'),
             'cyp_event',
             'normal',
@@ -96,19 +96,21 @@ class CYP_Event_Post_Type {
         ?>
         <div class="cyp-meta-box">
             <p>
-                <label for="cyp_start_date"><strong>Startdatum:</strong></label><br>
-                <input type="date" id="cyp_start_date" name="cyp_start_date" value="<?php echo esc_attr($start_date); ?>" class="widefat" required>
+                <label for="cyp_start_date"><strong><?php _e('Start Date', 'circular-year-planner'); ?>:</strong></label><br>
+                <input type="date" id="cyp_start_date" name="cyp_start_date" value="<?php echo esc_attr($start_date); ?>" class="widefat" required placeholder="yyyy-mm-dd">
+                <span class="description"><?php _e('Format: YYYY-MM-DD', 'circular-year-planner'); ?></span>
             </p>
             
             <p>
-                <label for="cyp_end_date"><strong>Slutdatum:</strong></label><br>
-                <input type="date" id="cyp_end_date" name="cyp_end_date" value="<?php echo esc_attr($end_date); ?>" class="widefat" required>
+                <label for="cyp_end_date"><strong><?php _e('End Date', 'circular-year-planner'); ?>:</strong></label><br>
+                <input type="date" id="cyp_end_date" name="cyp_end_date" value="<?php echo esc_attr($end_date); ?>" class="widefat" required placeholder="yyyy-mm-dd">
+                <span class="description"><?php _e('Format: YYYY-MM-DD', 'circular-year-planner'); ?></span>
             </p>
             
             <p>
-                <label for="cyp_event_type"><strong>Händelsetyp:</strong></label><br>
+                <label for="cyp_event_type"><strong><?php _e('Event Type', 'circular-year-planner'); ?>:</strong></label><br>
                 <select id="cyp_event_type" name="cyp_event_type" class="widefat">
-                    <option value="">Välj händelsetyp</option>
+                    <option value=""><?php _e('Select event type', 'circular-year-planner'); ?></option>
                     <?php foreach ($event_types as $index => $type) : ?>
                         <option value="<?php echo esc_attr($index); ?>" <?php selected($event_type, $index); ?>>
                             <?php echo esc_html($type['name']); ?>
@@ -119,9 +121,9 @@ class CYP_Event_Post_Type {
             
             <?php if ($fiscal_year) : ?>
             <p class="cyp-calculated-info">
-                <strong>Verksamhetsår:</strong> <?php echo esc_html($fiscal_year); ?>
+                <strong><?php _e('Fiscal Year', 'circular-year-planner'); ?>:</strong> <?php echo esc_html($fiscal_year); ?>
                 <span class="description" style="display: block; margin-top: 5px;">
-                    (beräknas automatiskt från startdatum)
+                    <?php _e('(calculated automatically from start date)', 'circular-year-planner'); ?>
                 </span>
             </p>
             <?php endif; ?>
@@ -168,10 +170,10 @@ class CYP_Event_Post_Type {
     public function set_custom_columns($columns) {
         $new_columns = array();
         $new_columns['cb'] = $columns['cb'];
-        $new_columns['title'] = 'Händelse';
-        $new_columns['event_type'] = 'Typ';
-        $new_columns['start_date'] = 'Startdatum';
-        $new_columns['end_date'] = 'Slutdatum';
+        $new_columns['title'] = __('Event', 'circular-year-planner');
+        $new_columns['event_type'] = __('Type', 'circular-year-planner');
+        $new_columns['start_date'] = __('Start Date', 'circular-year-planner');
+        $new_columns['end_date'] = __('End Date', 'circular-year-planner');
         $new_columns['date'] = $columns['date'];
         
         return $new_columns;

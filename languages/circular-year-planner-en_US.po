@@ -170,3 +170,111 @@ msgstr "Previous Year"
 
 msgid "Next Year"
 msgstr "Next Year"
+
+msgid "Year Planning"
+msgstr "Year Planning"
+
+msgid "Add New"
+msgstr "Add New"
+
+msgid "New Event"
+msgstr "New Event"
+
+msgid "No events found in trash"
+msgstr "No events found in trash"
+
+msgid "Program"
+msgstr "Program"
+
+msgid "Campaign"
+msgstr "Campaign"
+
+msgid "Training"
+msgstr "Training"
+
+msgid "Meeting"
+msgstr "Meeting"
+
+msgid "Select event type"
+msgstr "Select event type"
+
+msgid "(calculated automatically from start date)"
+msgstr "(calculated automatically from start date)"
+
+msgid "Circular Year Planning Settings"
+msgstr "Circular Year Planning Settings"
+
+msgid "Event type name"
+msgstr "Event type name"
+
+msgid "Define different types of events and their colors."
+msgstr "Define different types of events and their colors."
+
+msgid "calendar year"
+msgstr "calendar year"
+
+msgid "light"
+msgstr "light"
+
+msgid "Choose color scheme for the circular calendar."
+msgstr "Choose color scheme for the circular calendar."
+
+msgid "How to Use"
+msgstr "How to Use"
+
+msgid "Shortcode"
+msgstr "Shortcode"
+
+msgid "Use the following shortcode to display the circular calendar:"
+msgstr "Use the following shortcode to display the circular calendar:"
+
+msgid "Parameters"
+msgstr "Parameters"
+
+msgid "Show specific fiscal year"
+msgstr "Show specific fiscal year"
+
+msgid "Show only certain event types (by index)"
+msgstr "Show only certain event types (by index)"
+
+msgid "Unauthorized access"
+msgstr "Unauthorized access"
+
+msgid "Security verification failed"
+msgstr "Security verification failed"
+
+msgid "Format: YYYY-MM-DD"
+msgstr "Format: YYYY-MM-DD"
+
+msgid "Jan"
+msgstr "Jan"
+
+msgid "Feb"
+msgstr "Feb"
+
+msgid "Mar"
+msgstr "Mar"
+
+msgid "Apr"
+msgstr "Apr"
+
+msgid "Jun"
+msgstr "Jun"
+
+msgid "Jul"
+msgstr "Jul"
+
+msgid "Aug"
+msgstr "Aug"
+
+msgid "Sep"
+msgstr "Sep"
+
+msgid "Oct"
+msgstr "Oct"
+
+msgid "Nov"
+msgstr "Nov"
+
+msgid "Dec"
+msgstr "Dec"

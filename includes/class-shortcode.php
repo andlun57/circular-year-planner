@@ -53,19 +53,19 @@ class CYP_Shortcode {
              data-width="<?php echo esc_attr($width); ?>"
              data-height="<?php echo esc_attr($height); ?>">
             <div class="cyp-calendar-controls">
-                <button class="cyp-prev-year" aria-label="Föregående år">‹</button>
+                <button class="cyp-prev-year" aria-label="<?php esc_attr_e('Previous Year', 'circular-year-planner'); ?>">‹</button>
                 <h3 class="cyp-year-title"><?php echo esc_html($display_year); ?></h3>
-                <button class="cyp-next-year" aria-label="Nästa år">›</button>
+                <button class="cyp-next-year" aria-label="<?php esc_attr_e('Next Year', 'circular-year-planner'); ?>">›</button>
             </div>
             <div class="cyp-calendar-legend"></div>
             <div class="cyp-calendar-wrapper">
                 <svg id="cyp-circular-calendar" width="<?php echo esc_attr($width); ?>" height="<?php echo esc_attr($height); ?>"></svg>
             </div>
             <div class="cyp-event-details" style="display: none;">
-                <button class="cyp-close-details" aria-label="Stäng">×</button>
+                <button class="cyp-close-details" aria-label="<?php esc_attr_e('Close', 'circular-year-planner'); ?>">×</button>
                 <div class="cyp-event-content"></div>
             </div>
-            <div class="cyp-loading">Laddar...</div>
+            <div class="cyp-loading"><?php _e('Loading calendar...', 'circular-year-planner'); ?></div>
         </div>
         <?php
         return ob_get_clean();

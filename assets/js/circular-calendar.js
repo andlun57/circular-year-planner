@@ -14,6 +14,15 @@
             this.width = parseInt(this.container.data('width')) || 800;
             this.height = parseInt(this.container.data('height')) || 800;
             
+            // Ensure fiscalYear is set and is a string
+            if (!this.fiscalYear) {
+                console.warn('No fiscal year provided, using current year');
+                this.fiscalYear = new Date().getFullYear().toString();
+            } else {
+                // Convert to string to ensure string methods work
+                this.fiscalYear = String(this.fiscalYear);
+            }
+            
             this.centerX = this.width / 2;
             this.centerY = this.height / 2;
             this.outerRadius = Math.min(this.width, this.height) / 2 - 40;
@@ -35,15 +44,24 @@
         async loadSettings() {
             try {
                 const response = await fetch(cypData.restUrl + 'settings');
+                if (!response.ok) {
+                    throw new Error('Failed to load settings: ' + response.status);
+                }
                 this.settings = await response.json();
                 this.renderLegend();
             } catch (error) {
                 console.error('Error loading settings:', error);
+                // Set default settings if loading fails
+                this.settings = {
+                    event_types: [],
+                    fiscal_year_start: '01-01',
+                    color_scheme: 'default'
+                };
             }
         }
         
         async loadEvents() {
-            this.container.find('.cyp-loading').removeClass('hidden');
+            this.container.find('.cyp-loading').show();
             
             try {
                 let url = cypData.restUrl + 'events?fiscal_year=' + encodeURIComponent(this.fiscalYear);
@@ -52,13 +70,19 @@
                 }
                 
                 const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Failed to load events: ' + response.status);
+                }
                 this.events = await response.json();
                 
                 this.render();
             } catch (error) {
                 console.error('Error loading events:', error);
+                // Render anyway with empty events
+                this.events = [];
+                this.render();
             } finally {
-                this.container.find('.cyp-loading').addClass('hidden');
+                this.container.find('.cyp-loading').hide();
             }
         }
         
@@ -484,7 +508,7 @@
         
         drawCenterYear(g) {
             // Förkorta verksamhetsår om det är brutet
-            let displayYear = this.fiscalYear;
+            let displayYear = String(this.fiscalYear);
             if (displayYear.includes('/')) {
                 // Brutet verksamhetsår: "2024/2025" -> "24/25"
                 const years = displayYear.split('/');
@@ -610,7 +634,12 @@
         
         parseFiscalYear(fiscalYear) {
             // Hanterar både "2024" och "2024/2025"
-            return parseInt(fiscalYear.split('/')[0]);
+            if (!fiscalYear) {
+                console.error('fiscalYear is undefined or null');
+                return new Date().getFullYear();
+            }
+            const yearStr = String(fiscalYear).split('/')[0];
+            return parseInt(yearStr);
         }
         
         formatFiscalYear(year) {
@@ -709,7 +738,8 @@
         }
         
         getMonthName(month) {
-            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
+            // Use localized month names from PHP if available, otherwise fallback to English
+            const months = cypData.monthNames || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             return months[month - 1];
         }
         
