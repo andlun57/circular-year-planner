@@ -2,6 +2,31 @@
 
 Alla betydande ändringar i detta projekt dokumenteras i denna fil.
 
+## [1.0.16] - 2024-10-18
+
+### Tillagt
+- 🎨 Textfärgval för varje händelsetyp
+- ✨ Möjlighet att välja anpassad textfärg för bättre synlighet
+- 🔄 Automatisk kontrastfärg om ingen textfärg anges
+- 🎯 Textfärg appliceras både i kalendern och i händelsedetaljer
+- 📊 Sorterbara kolumner i admin-listan för händelser
+
+### Förbättrat
+- 👁️ Bättre läsbarhet av händelsetext med anpassningsbara färger
+- 🎨 Mer flexibel färghantering för händelsetyper
+- 📝 Uppdaterad beskrivning i inställningar om automatisk kontrast
+- 🔍 Alla kolumner i händelselistan kan nu sorteras (Händelsetyp, Startdatum, Slutdatum, Publiceringsdatum)
+
+### Tekniskt
+- Nytt fält: `text_color` i händelsetyper
+- Uppdaterad `sanitize_event_types()` för att hantera textfärg
+- Uppdaterad REST API för att inkludera `event_type_text_color`
+- JavaScript använder custom textfärg eller fallback till `getContrastColor()`
+- Nya översättningar: "Background", "Text", "Auto"
+- Uppdaterade CSS-stilar för färgväljare med etiketter
+- Ny metod: `set_sortable_columns()` för att markera kolumner som sorterbara
+- Ny metod: `handle_custom_column_sorting()` för att hantera sortering av meta-fält
+
 ## [1.0.15] - 2024-10-17
 
 ### Förbättrat

@@ -452,7 +452,9 @@
             // Skapa text-elementet
             const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
             text.setAttribute('class', 'cyp-event-text');
-            text.setAttribute('fill', this.getContrastColor(event.event_type_color));
+            // Använd custom text color om den finns, annars automatisk kontrastfärg
+            const textColor = event.event_type_text_color || this.getContrastColor(event.event_type_color);
+            text.setAttribute('fill', textColor);
             text.setAttribute('font-size', '9px');
             text.setAttribute('font-weight', '600');
             text.setAttribute('pointer-events', 'none');
@@ -568,12 +570,15 @@
                        <span>${this.formatDate(event.end_date)}</span>
                    </div>`;
             
+            // Använd custom text color om den finns, annars automatisk kontrastfärg
+            const badgeTextColor = event.event_type_text_color || this.getContrastColor(event.event_type_color);
+            
             const html = `
                 <h3>${event.title}</h3>
                 <div class="cyp-event-meta">
                     <div class="cyp-event-meta-item">
                         <span class="cyp-event-meta-label">${i18n.type || 'Type'}:</span>
-                        <span class="cyp-event-type-badge" style="background-color: ${event.event_type_color}">
+                        <span class="cyp-event-type-badge" style="background-color: ${event.event_type_color}; color: ${badgeTextColor};">
                             ${event.event_type_name}
                         </span>
                     </div>

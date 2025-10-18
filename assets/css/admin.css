@@ -47,6 +47,19 @@
     display: inline-block;
 }
 
+.cyp-color-picker-group {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.cyp-color-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #555;
+    margin: 0;
+}
+
 .cyp-remove-type {
     color: #b32d2e;
 }

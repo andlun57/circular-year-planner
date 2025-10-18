@@ -73,6 +73,15 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
+msgid "Background"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Auto"
+msgstr ""
+
 msgid "Remove"
 msgstr ""
 

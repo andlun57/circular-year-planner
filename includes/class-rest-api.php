@@ -76,7 +76,7 @@ class CYP_REST_API {
                 }
                 
                 $event_types_data = get_option('cyp_event_types', array());
-                $event_type_data = isset($event_types_data[$event_type_index]) ? $event_types_data[$event_type_index] : array('name' => '', 'color' => '#cccccc');
+                $event_type_data = isset($event_types_data[$event_type_index]) ? $event_types_data[$event_type_index] : array('name' => '', 'color' => '#cccccc', 'text_color' => '');
                 
                 $events[] = array(
                     'id' => $post_id,
@@ -87,6 +87,7 @@ class CYP_REST_API {
                     'event_type' => $event_type_index,
                     'event_type_name' => $event_type_data['name'],
                     'event_type_color' => $event_type_data['color'],
+                    'event_type_text_color' => !empty($event_type_data['text_color']) ? $event_type_data['text_color'] : '',
                     'fiscal_year' => $calculated_fiscal_year,
                 );
             }

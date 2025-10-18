@@ -24,6 +24,8 @@ class CYP_Event_Post_Type {
         add_action('save_post', array($this, 'save_meta_boxes'));
         add_filter('manage_cyp_event_posts_columns', array($this, 'set_custom_columns'));
         add_action('manage_cyp_event_posts_custom_column', array($this, 'custom_column_content'), 10, 2);
+        add_filter('manage_edit-cyp_event_sortable_columns', array($this, 'set_sortable_columns'));
+        add_action('pre_get_posts', array($this, 'handle_custom_column_sorting'));
     }
     
     /**
@@ -257,6 +259,49 @@ class CYP_Event_Post_Type {
         
         $instance = self::get_instance();
         return $instance->calculate_fiscal_year($start_date);
+    }
+    
+    /**
+     * Gör kolumner sorterbara
+     */
+    public function set_sortable_columns($columns) {
+        $columns['event_type'] = 'event_type';
+        $columns['start_date'] = 'start_date';
+        $columns['end_date'] = 'end_date';
+        return $columns;
+    }
+    
+    /**
+     * Hantera sortering av anpassade kolumner
+     */
+    public function handle_custom_column_sorting($query) {
+        // Kontrollera att vi är i admin och på rätt post type
+        if (!is_admin() || !$query->is_main_query()) {
+            return;
+        }
+        
+        if ($query->get('post_type') !== 'cyp_event') {
+            return;
+        }
+        
+        $orderby = $query->get('orderby');
+        
+        switch ($orderby) {
+            case 'start_date':
+                $query->set('meta_key', '_cyp_start_date');
+                $query->set('orderby', 'meta_value');
+                break;
+                
+            case 'end_date':
+                $query->set('meta_key', '_cyp_end_date');
+                $query->set('orderby', 'meta_value');
+                break;
+                
+            case 'event_type':
+                $query->set('meta_key', '_cyp_event_type');
+                $query->set('orderby', 'meta_value_num');
+                break;
+        }
     }
 }
 

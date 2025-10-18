@@ -67,6 +67,7 @@ class CYP_Settings {
                 $sanitized[] = array(
                     'name' => sanitize_text_field($type['name']),
                     'color' => sanitize_hex_color($type['color']),
+                    'text_color' => !empty($type['text_color']) ? sanitize_hex_color($type['text_color']) : '',
                 );
             }
         }
@@ -117,21 +118,35 @@ class CYP_Settings {
                                 <?php if (empty($event_types)) : ?>
                                     <div class="cyp-event-type-row">
                                         <input type="text" name="cyp_event_types[0][name]" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">
-                                        <input type="text" name="cyp_event_types[0][color]" value="#4A90E2" class="cyp-color-picker">
+                                        <div class="cyp-color-picker-group">
+                                            <label class="cyp-color-label"><?php esc_html_e('Background', 'circular-year-planner'); ?></label>
+                                            <input type="text" name="cyp_event_types[0][color]" value="#4A90E2" class="cyp-color-picker">
+                                        </div>
+                                        <div class="cyp-color-picker-group">
+                                            <label class="cyp-color-label"><?php esc_html_e('Text', 'circular-year-planner'); ?></label>
+                                            <input type="text" name="cyp_event_types[0][text_color]" value="" placeholder="<?php esc_attr_e('Auto', 'circular-year-planner'); ?>" class="cyp-color-picker cyp-text-color-picker">
+                                        </div>
                                         <button type="button" class="button cyp-remove-type"><?php esc_html_e('Remove', 'circular-year-planner'); ?></button>
                                     </div>
                                 <?php else : ?>
                                     <?php foreach ($event_types as $index => $type) : ?>
                                         <div class="cyp-event-type-row">
                                             <input type="text" name="cyp_event_types[<?php echo esc_attr($index); ?>][name]" value="<?php echo esc_attr($type['name']); ?>" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">
-                                            <input type="text" name="cyp_event_types[<?php echo esc_attr($index); ?>][color]" value="<?php echo esc_attr($type['color']); ?>" class="cyp-color-picker">
+                                            <div class="cyp-color-picker-group">
+                                                <label class="cyp-color-label"><?php esc_html_e('Background', 'circular-year-planner'); ?></label>
+                                                <input type="text" name="cyp_event_types[<?php echo esc_attr($index); ?>][color]" value="<?php echo esc_attr($type['color']); ?>" class="cyp-color-picker">
+                                            </div>
+                                            <div class="cyp-color-picker-group">
+                                                <label class="cyp-color-label"><?php esc_html_e('Text', 'circular-year-planner'); ?></label>
+                                                <input type="text" name="cyp_event_types[<?php echo esc_attr($index); ?>][text_color]" value="<?php echo esc_attr(!empty($type['text_color']) ? $type['text_color'] : ''); ?>" placeholder="<?php esc_attr_e('Auto', 'circular-year-planner'); ?>" class="cyp-color-picker cyp-text-color-picker">
+                                            </div>
                                             <button type="button" class="button cyp-remove-type"><?php esc_html_e('Remove', 'circular-year-planner'); ?></button>
                                         </div>
                                     <?php endforeach; ?>
                                 <?php endif; ?>
                             </div>
                             <button type="button" id="cyp-add-event-type" class="button"><?php esc_html_e('Add Event Type', 'circular-year-planner'); ?></button>
-                            <p class="description"><?php esc_html_e('Define different types of events and their colors.', 'circular-year-planner'); ?></p>
+                            <p class="description"><?php esc_html_e('Define different types of events and their colors. Leave text color empty for automatic contrast.', 'circular-year-planner'); ?></p>
                         </td>
                     </tr>
                     
@@ -219,7 +234,14 @@ class CYP_Settings {
                 var index = $('#cyp-event-types .cyp-event-type-row').length;
                 var html = '<div class="cyp-event-type-row">' +
                     '<input type="text" name="cyp_event_types[' + index + '][name]" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">' +
+                    '<div class="cyp-color-picker-group">' +
+                    '<label class="cyp-color-label"><?php esc_html_e('Background', 'circular-year-planner'); ?></label>' +
                     '<input type="text" name="cyp_event_types[' + index + '][color]" value="#4A90E2" class="cyp-color-picker">' +
+                    '</div>' +
+                    '<div class="cyp-color-picker-group">' +
+                    '<label class="cyp-color-label"><?php esc_html_e('Text', 'circular-year-planner'); ?></label>' +
+                    '<input type="text" name="cyp_event_types[' + index + '][text_color]" value="" placeholder="<?php esc_attr_e('Auto', 'circular-year-planner'); ?>" class="cyp-color-picker cyp-text-color-picker">' +
+                    '</div>' +
                     '<button type="button" class="button cyp-remove-type"><?php esc_html_e('Remove', 'circular-year-planner'); ?></button>' +
                     '</div>';
                 $('#cyp-event-types').append(html);
@@ -263,6 +285,7 @@ class CYP_Settings {
                     $event_types[] = array(
                         'name' => sanitize_text_field($type['name']),
                         'color' => sanitize_hex_color($type['color']),
+                        'text_color' => !empty($type['text_color']) ? sanitize_hex_color($type['text_color']) : '',
                     );
                 }
             }

@@ -210,6 +210,18 @@ msgstr "Namn på händelsetyp"
 msgid "Define different types of events and their colors."
 msgstr "Definiera olika typer av händelser och deras färger."
 
+msgid "Background"
+msgstr "Bakgrund"
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Auto"
+msgstr "Auto"
+
+msgid "Define different types of events and their colors. Leave text color empty for automatic contrast."
+msgstr "Definiera olika typer av händelser och deras färger. Lämna textfärg tom för automatisk kontrast."
+
 msgid "calendar year"
 msgstr "kalenderår"
 
