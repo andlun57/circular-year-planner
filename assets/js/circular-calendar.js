@@ -368,10 +368,90 @@
                     return parseInt(event.event_type) === index;
                 });
                 
-                // Rita händelser i denna ring
-                typeEvents.forEach(event => {
-                    this.drawEvent(g, event, innerRadius, outerRadius);
+                // Gruppera händelser per vecka och stapla dem radiellt
+                this.drawStackedEvents(g, typeEvents, innerRadius, outerRadius);
+            });
+        }
+        
+        drawStackedEvents(g, events, innerRadius, outerRadius) {
+            if (events.length === 0) return;
+            
+            // Gruppera händelser per vecka
+            const weekGroups = this.groupEventsByWeek(events);
+            
+            // Rita staplade händelser för varje vecka
+            Object.keys(weekGroups).forEach(weekKey => {
+                const weekEvents = weekGroups[weekKey];
+                this.drawEventsInWeek(g, weekEvents, innerRadius, outerRadius);
+            });
+        }
+        
+        groupEventsByWeek(events) {
+            const weekGroups = {};
+            
+            events.forEach(event => {
+                let startDate = new Date(event.start_date);
+                let endDate = new Date(event.end_date);
+                
+                // Om händelsen bara är en dag, visa hela veckan istället
+                const isOneDay = event.start_date === event.end_date;
+                if (isOneDay) {
+                    // Hitta veckans start (måndag) och slut (söndag)
+                    const dayOfWeek = startDate.getDay();
+                    const daysToMonday = (dayOfWeek === 0 ? 6 : dayOfWeek - 1); // Söndag = 0, måste bli 6
+                    
+                    startDate = new Date(startDate);
+                    startDate.setDate(startDate.getDate() - daysToMonday);
+                    
+                    endDate = new Date(startDate);
+                    endDate.setDate(endDate.getDate() + 6); // Hela veckan (måndag-söndag)
+                }
+                
+                // Skapa veckonyckel baserat på veckans startdatum
+                const weekKey = this.getWeekKey(startDate);
+                
+                if (!weekGroups[weekKey]) {
+                    weekGroups[weekKey] = [];
+                }
+                
+                weekGroups[weekKey].push({
+                    ...event,
+                    calculatedStartDate: startDate,
+                    calculatedEndDate: endDate
                 });
+            });
+            
+            return weekGroups;
+        }
+        
+        getWeekKey(date) {
+            // Skapa en unik nyckel för veckan baserat på måndagen
+            const monday = new Date(date);
+            const dayOfWeek = monday.getDay();
+            const daysToMonday = (dayOfWeek === 0 ? 6 : dayOfWeek - 1);
+            monday.setDate(monday.getDate() - daysToMonday);
+            
+            return monday.toISOString().split('T')[0]; // YYYY-MM-DD format
+        }
+        
+        drawEventsInWeek(g, events, innerRadius, outerRadius) {
+            if (events.length === 0) return;
+            
+            // Sortera händelser efter startdatum för konsistent stapling
+            events.sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
+            
+            // Beräkna hur många staplar vi behöver
+            const numStacks = events.length;
+            
+            // Beräkna stapelbredd (dela ringhöjden mellan alla händelser)
+            const stackHeight = (outerRadius - innerRadius) / numStacks;
+            
+            // Rita varje händelse i sin egen stapel
+            events.forEach((event, stackIndex) => {
+                const stackInnerRadius = innerRadius + (stackIndex * stackHeight);
+                const stackOuterRadius = innerRadius + ((stackIndex + 1) * stackHeight);
+                
+                this.drawEvent(g, event, stackInnerRadius, stackOuterRadius);
             });
         }
         
@@ -427,21 +507,29 @@
         
         drawEvent(g, event, innerRadius, outerRadius) {
             const totalDays = this.getTotalDaysInYear();
-            let startDate = new Date(event.start_date);
-            let endDate = new Date(event.end_date);
             
-            // Om händelsen bara är en dag, visa hela veckan istället
-            const isOneDay = event.start_date === event.end_date;
-            if (isOneDay) {
-                // Hitta veckans start (måndag) och slut (söndag)
-                const dayOfWeek = startDate.getDay();
-                const daysToMonday = (dayOfWeek === 0 ? 6 : dayOfWeek - 1); // Söndag = 0, måste bli 6
+            // Använd beräknade datum om de finns (från grupperingen), annars beräkna dem här
+            let startDate, endDate;
+            if (event.calculatedStartDate && event.calculatedEndDate) {
+                startDate = event.calculatedStartDate;
+                endDate = event.calculatedEndDate;
+            } else {
+                startDate = new Date(event.start_date);
+                endDate = new Date(event.end_date);
                 
-                startDate = new Date(startDate);
-                startDate.setDate(startDate.getDate() - daysToMonday);
-                
-                endDate = new Date(startDate);
-                endDate.setDate(endDate.getDate() + 6); // Hela veckan (måndag-söndag)
+                // Om händelsen bara är en dag, visa hela veckan istället
+                const isOneDay = event.start_date === event.end_date;
+                if (isOneDay) {
+                    // Hitta veckans start (måndag) och slut (söndag)
+                    const dayOfWeek = startDate.getDay();
+                    const daysToMonday = (dayOfWeek === 0 ? 6 : dayOfWeek - 1); // Söndag = 0, måste bli 6
+                    
+                    startDate = new Date(startDate);
+                    startDate.setDate(startDate.getDate() - daysToMonday);
+                    
+                    endDate = new Date(startDate);
+                    endDate.setDate(endDate.getDate() + 6); // Hela veckan (måndag-söndag)
+                }
             }
             
             const startDay = this.getDayOfYear(startDate);
