@@ -106,6 +106,7 @@
             this.drawWeekRing(g);
             this.drawEventRings(g);
             this.drawMonthDividers(g); // Rita månadsgränser sist så de syns ovanpå
+            this.drawTodayMarker(g); // Rita dagens datum-markering
             this.drawCenterYear(g);
         }
         
@@ -226,6 +227,69 @@
                 'pointer-events': 'none'
             });
             g.append(yearLine);
+        }
+        
+        drawTodayMarker(g) {
+            // Beräkna var händelseringarna börjar och slutar
+            const eventTypes = this.settings.event_types || [];
+            const numTypes = eventTypes.length;
+            
+            if (numTypes === 0) return; // Inga händelseringar att rita genom
+            
+            const baseRadius = this.outerRadius - 70;
+            const baseRingHeight = 45;
+            const maxRingsForBaseHeight = 5;
+            const totalSpace = baseRingHeight * maxRingsForBaseHeight;
+            const ringHeight = numTypes <= maxRingsForBaseHeight 
+                ? baseRingHeight 
+                : totalSpace / numTypes;
+            
+            // Yttre radie för händelseringarna (där första ringen börjar)
+            const outerEventRadius = baseRadius;
+            // Innersta radie för händelseringarna
+            const innerRadius = baseRadius - numTypes * ringHeight;
+            
+            // Hämta dagens datum
+            const today = new Date();
+            
+            // Kontrollera om dagens datum är inom det aktuella verksamhetsåret
+            const fiscalStart = this.settings.fiscal_year_start || '01-01';
+            const [startMonth, startDay] = fiscalStart.split('-').map(Number);
+            const startYear = this.parseFiscalYear(this.fiscalYear);
+            
+            const fiscalStartDate = new Date(startYear, startMonth - 1, startDay);
+            const fiscalEndDate = new Date(startYear + 1, startMonth - 1, startDay - 1);
+            
+            // Om dagens datum inte är inom verksamhetsåret, rita inte linjen
+            if (today < fiscalStartDate || today > fiscalEndDate) {
+                return;
+            }
+            
+            // Beräkna dagens position i verksamhetsåret
+            const totalDays = this.getTotalDaysInYear();
+            const dayOfYear = this.getDayOfYear(today);
+            const angle = (dayOfYear / totalDays) * 360 - 90;
+            
+            // Rita streckad linje vid dagens datum
+            const angleRad = this.degToRad(angle);
+            const x1 = Math.cos(angleRad) * outerEventRadius;
+            const y1 = Math.sin(angleRad) * outerEventRadius;
+            const x2 = Math.cos(angleRad) * innerRadius;
+            const y2 = Math.sin(angleRad) * innerRadius;
+            
+            const todayLine = this.createSVGElement('line', {
+                x1: x1,
+                y1: y1,
+                x2: x2,
+                y2: y2,
+                class: 'cyp-today-marker',
+                stroke: '#d63638',
+                'stroke-width': '2.5',
+                'stroke-dasharray': '8,4',
+                opacity: '0.8',
+                'pointer-events': 'none'
+            });
+            g.append(todayLine);
         }
         
         drawWeekRing(g) {

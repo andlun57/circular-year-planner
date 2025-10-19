@@ -169,6 +169,14 @@
     pointer-events: none;
 }
 
+.cyp-today-marker {
+    stroke: #d63638;
+    stroke-width: 2.5;
+    stroke-dasharray: 8, 4;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
 .cyp-center-year {
     font-size: 32px;
     font-weight: 700;
