@@ -106,7 +106,7 @@ class CYP_Event_Post_Type {
             <p>
                 <label for="cyp_end_date"><strong><?php esc_html_e('End Date', 'circular-year-planner'); ?>:</strong></label><br>
                 <input type="date" id="cyp_end_date" name="cyp_end_date" value="<?php echo esc_attr($end_date); ?>" class="widefat" required placeholder="yyyy-mm-dd">
-                <span class="description"><?php esc_html_e('Format: YYYY-MM-DD', 'circular-year-planner'); ?></span>
+                <span class="description"><?php esc_html_e('Format: YYYY-MM-DD (automatically set to start date if left empty)', 'circular-year-planner'); ?></span>
             </p>
             
             <p>

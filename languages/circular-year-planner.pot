@@ -179,3 +179,9 @@ msgstr ""
 
 msgid "Next Year"
 msgstr ""
+
+msgid "Format: YYYY-MM-DD"
+msgstr ""
+
+msgid "Format: YYYY-MM-DD (automatically set to start date if left empty)"
+msgstr ""

@@ -258,6 +258,9 @@ msgstr "Säkerhetsverifiering misslyckades"
 msgid "Format: YYYY-MM-DD"
 msgstr "Format: ÅÅÅÅ-MM-DD"
 
+msgid "Format: YYYY-MM-DD (automatically set to start date if left empty)"
+msgstr "Format: ÅÅÅÅ-MM-DD (sätts automatiskt till startdatum om tomt)"
+
 msgid "Jan"
 msgstr "Jan"
 
