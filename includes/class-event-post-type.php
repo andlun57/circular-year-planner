@@ -89,12 +89,6 @@ class CYP_Event_Post_Type {
         
         $event_types = get_option('cyp_event_types', array());
         
-        // Beräkna verksamhetsår från startdatum
-        $fiscal_year = '';
-        if ($start_date) {
-            $fiscal_year = $this->calculate_fiscal_year($start_date);
-        }
-        
         ?>
         <div class="cyp-meta-box">
             <p>
@@ -121,14 +115,6 @@ class CYP_Event_Post_Type {
                 </select>
             </p>
             
-            <?php if ($fiscal_year) : ?>
-            <p class="cyp-calculated-info">
-                <strong><?php esc_html_e('Fiscal Year', 'circular-year-planner'); ?>:</strong> <?php echo esc_html($fiscal_year); ?>
-                <span class="description" style="display: block; margin-top: 5px;">
-                    <?php esc_html_e('(calculated automatically from start date)', 'circular-year-planner'); ?>
-                </span>
-            </p>
-            <?php endif; ?>
         </div>
         <?php
     }
