@@ -2,7 +2,35 @@
 
 Alla betydande ändringar i detta projekt dokumenteras i denna fil.
 
-## [1.0.16] - 2024-10-18
+## [1.0.16] - 2024-12-19
+
+### Tillagt
+- 📅 Streckad linje som markerar dagens datum i kalendern
+- 🔄 Automatisk fyllning av slutdatum när startdatum anges
+- 📊 Radiell stapling av händelser som inträffar samma vecka
+- 🌍 Svensk översättning för automatisk slutdatum-funktionalitet
+
+### Förbättrat
+- 🎯 Dagens datum visas tydligt med röd streckad linje (2.5px bredd)
+- ⚡ Snabbare inmatning av endagshändelser (slutdatum fylls automatiskt)
+- 👁️ Bättre synlighet när flera händelser inträffar samma vecka
+- 🧹 Renare formulär utan överflödig verksamhetsårsinformation
+
+### Fixat
+- 🐛 Slutdatum sätts nu korrekt även när fältet är tomt
+- 🌍 Svenska översättningar kompilerade och fungerar korrekt
+- 📝 Översättningstext uppdaterad för slutdatum-beskrivning
+
+### Tekniskt
+- Ny metod: `drawTodayMarker()` för dagens datum-markering
+- Ny metod: `drawStackedEvents()` för radiell stapling av händelser
+- Ny metod: `groupEventsByWeek()` för veckogruppering av händelser
+- Ny metod: `drawEventsInWeek()` för staplad rendering inom veckor
+- Förbättrad JavaScript-logik för automatisk slutdatum-fyllning
+- Uppdaterade översättningsfiler (.po och .mo) för svenska
+- Borttagen överflödig verksamhetsårsinformation från formulär
+
+## [1.0.15] - 2024-10-18
 
 ### Tillagt
 - 🎨 Textfärgval för varje händelsetyp

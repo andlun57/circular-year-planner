@@ -3,7 +3,7 @@
  * Plugin Name: Circular Year Planner
  * Plugin URI: https://github.com/andlun57/year-planning
  * Description: En cirkulär årsplanerare för att visualisera verksamhetsår och händelser
- * Version: 1.0.15
+ * Version: 1.0.16
  * Author: Anders Lundkvist
  * Author URI: https://github.com/andlun57
  * License: GPL v2 or later
