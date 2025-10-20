@@ -2,6 +2,14 @@
 
 Alla betydande ändringar i detta projekt dokumenteras i denna fil.
 
+## [1.0.17] - 2025-10-20
+
+### Fixat
+- 🐛 Korrigerad datumformatering i frontend som gav felaktiga månadsnamn (t.ex. "Septe09ber").
+
+### Tekniskt
+- Bytt ut global regex-ersättning mot token-baserad formattering i `formatDate()` för att undvika att siffror injiceras i redan insatta månadsnamn. Stöd för escaping med backslash.
+
 ## [1.0.16] - 2024-12-19
 
 ### Tillagt
