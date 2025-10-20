@@ -914,27 +914,48 @@
             
             // Get WordPress date format
             const format = cypData.dateFormat || 'F j, Y';
-            
-            // Convert PHP date format to JavaScript formatted string
-            let formatted = format;
-            
+
             // Month replacements - use translated names from PHP
             const monthNames = cypData.monthNamesFull || ['January', 'February', 'March', 'April', 'May', 'June',
                                'July', 'August', 'September', 'October', 'November', 'December'];
             const monthNamesShort = cypData.monthNames || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                                                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            
-            // Replace PHP format tokens with actual values
-            formatted = formatted.replace(/F/g, monthNames[month - 1]); // Full month name
-            formatted = formatted.replace(/M/g, monthNamesShort[month - 1]); // Short month name
-            formatted = formatted.replace(/m/g, String(month).padStart(2, '0')); // Month with leading zero
-            formatted = formatted.replace(/n/g, month); // Month without leading zero
-            formatted = formatted.replace(/d/g, String(day).padStart(2, '0')); // Day with leading zero
-            formatted = formatted.replace(/j/g, day); // Day without leading zero
-            formatted = formatted.replace(/Y/g, year); // 4-digit year
-            formatted = formatted.replace(/y/g, year.slice(-2)); // 2-digit year
-            
-            return formatted;
+
+            // Prepare token map (PHP date format tokens we support)
+            const tokenValues = {
+                'F': monthNames[month - 1],              // Full month name
+                'M': monthNamesShort[month - 1],         // Short month name
+                'm': String(month).padStart(2, '0'),     // Month with leading zero
+                'n': String(month),                      // Month without leading zero
+                'd': String(day).padStart(2, '0'),       // Day with leading zero
+                'j': String(day),                        // Day without leading zero
+                'Y': year,                                // 4-digit year
+                'y': year.slice(-2)                      // 2-digit year
+            };
+
+            // Build formatted string by scanning the format and replacing tokens only
+            // Supports escaping with backslash like PHP's date() (e.g., \'F')
+            let result = '';
+            let escaping = false;
+            for (let i = 0; i < format.length; i++) {
+                const ch = format[i];
+                if (escaping) {
+                    result += ch;
+                    escaping = false;
+                    continue;
+                }
+                if (ch === '\\') { // escape next character
+                    escaping = true;
+                    continue;
+                }
+                if (Object.prototype.hasOwnProperty.call(tokenValues, ch)) {
+                    result += tokenValues[ch];
+                } else {
+                    result += ch;
+                }
+            }
+
+            return result;
         }
         
         degToRad(degrees) {
