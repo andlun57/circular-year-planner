@@ -26,13 +26,13 @@ class CYPL_REST_API {
      * Registrera REST API routes
      */
     public function register_routes() {
-        register_rest_route('cyp/v1', '/events', array(
+        register_rest_route('cypl/v1', '/events', array(
             'methods' => 'GET',
             'callback' => array($this, 'get_events'),
             'permission_callback' => '__return_true',
         ));
         
-        register_rest_route('cyp/v1', '/settings', array(
+        register_rest_route('cypl/v1', '/settings', array(
             'methods' => 'GET',
             'callback' => array($this, 'get_settings'),
             'permission_callback' => '__return_true',

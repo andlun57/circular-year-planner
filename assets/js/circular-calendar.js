@@ -8,7 +8,7 @@
     class CircularCalendar {
         constructor(container) {
             this.container = $(container);
-            this.svg = this.container.find('#cypll-circular-calendar');
+            this.svg = this.container.find('#cyp-circular-calendar');
             this.fiscalYear = this.container.data('fiscal-year');
             this.eventTypes = this.container.data('event-types');
             this.width = parseInt(this.container.data('width')) || 800;
@@ -61,7 +61,7 @@
         }
         
         async loadEvents() {
-            this.container.find('.cypll-loading').show();
+            this.container.find('.cyp-loading').show();
             
             try {
                 let url = cyplData.restUrl + 'events?fiscal_year=' + encodeURIComponent(this.fiscalYear);
@@ -82,7 +82,7 @@
                 this.events = [];
                 this.render();
             } finally {
-                this.container.find('.cypll-loading').hide();
+                this.container.find('.cyp-loading').hide();
             }
         }
         
@@ -681,7 +681,7 @@
         }
         
         renderLegend() {
-            const legend = this.container.find('.cypll-calendar-legend');
+            const legend = this.container.find('.cyp-calendar-legend');
             legend.empty();
             
             const eventTypes = this.settings.event_types || [];
@@ -697,8 +697,8 @@
         }
         
         showEventDetails(event) {
-            const detailsPanel = this.container.find('.cypll-event-details');
-            const content = detailsPanel.find('.cypll-event-content');
+            const detailsPanel = this.container.find('.cyp-event-details');
+            const content = detailsPanel.find('.cyp-event-content');
             
             // Get translated strings
             const i18n = cyplData.i18n || {};
@@ -747,30 +747,30 @@
             detailsPanel.addClass('active');
             
             // Lägg till overlay
-            if (!$('.cypll-overlay').length) {
+            if (!$('.cyp-overlay').length) {
                 $('body').append('<div class="cypl-overlay"></div>');
             }
-            $('.cypll-overlay').addClass('active');
+            $('.cyp-overlay').addClass('active');
         }
         
         setupEventHandlers() {
             // Stäng detaljer
-            this.container.find('.cypll-close-details').on('click', () => {
-                this.container.find('.cypll-event-details').removeClass('active');
-                $('.cypll-overlay').removeClass('active');
+            this.container.find('.cyp-close-details').on('click', () => {
+                this.container.find('.cyp-event-details').removeClass('active');
+                $('.cyp-overlay').removeClass('active');
             });
             
-            $(document).on('click', '.cypll-overlay', () => {
-                this.container.find('.cypll-event-details').removeClass('active');
-                $('.cypll-overlay').removeClass('active');
+            $(document).on('click', '.cyp-overlay', () => {
+                this.container.find('.cyp-event-details').removeClass('active');
+                $('.cyp-overlay').removeClass('active');
             });
             
             // Årsnavigering
-            this.container.find('.cypll-prev-year').on('click', () => {
+            this.container.find('.cyp-prev-year').on('click', () => {
                 this.changeFiscalYear(-1);
             });
             
-            this.container.find('.cypll-next-year').on('click', () => {
+            this.container.find('.cyp-next-year').on('click', () => {
                 this.changeFiscalYear(1);
             });
         }
@@ -788,7 +788,7 @@
                 displayYear = years[0].slice(-2) + '/' + years[1].slice(-2);
             }
             
-            this.container.find('.cypll-year-title').text(displayYear);
+            this.container.find('.cyp-year-title').text(displayYear);
             this.loadEvents();
         }
         
@@ -999,7 +999,7 @@
     
     // Initiera alla kalendrar på sidan
     $(document).ready(function() {
-        $('.cypll-calendar-container').each(function() {
+        $('.cyp-calendar-container').each(function() {
             new CircularCalendar(this);
         });
     });

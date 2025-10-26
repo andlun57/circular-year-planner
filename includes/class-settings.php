@@ -117,7 +117,10 @@ class CYPL_Settings {
                             <div id="cyp-event-types">
                                 <?php if (empty($event_types)) : ?>
                                     <div class="cyp-event-type-row">
-                                        <input type="text" name="cypl_event_types[0][name]" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">
+                                        <div class="regular-text-container">
+                                            <label class="cyp-color-label"><?php esc_html_e('Name', 'circular-year-planner'); ?></label>
+                                            <input type="text" name="cypl_event_types[0][name]" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">
+                                        </div>
                                         <div class="cyp-color-picker-group">
                                             <label class="cyp-color-label"><?php esc_html_e('Background', 'circular-year-planner'); ?></label>
                                             <input type="text" name="cypl_event_types[0][color]" value="#4A90E2" class="cyp-color-picker">
@@ -131,7 +134,10 @@ class CYPL_Settings {
                                 <?php else : ?>
                                     <?php foreach ($event_types as $index => $type) : ?>
                                         <div class="cyp-event-type-row">
-                                            <input type="text" name="cypl_event_types[<?php echo esc_attr($index); ?>][name]" value="<?php echo esc_attr($type['name']); ?>" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">
+                                            <div class="regular-text-container">
+                                                <label class="cyp-color-label"><?php esc_html_e('Name', 'circular-year-planner'); ?></label>
+                                                <input type="text" name="cypl_event_types[<?php echo esc_attr($index); ?>][name]" value="<?php echo esc_attr($type['name']); ?>" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">
+                                            </div>
                                             <div class="cyp-color-picker-group">
                                                 <label class="cyp-color-label"><?php esc_html_e('Background', 'circular-year-planner'); ?></label>
                                                 <input type="text" name="cypl_event_types[<?php echo esc_attr($index); ?>][color]" value="<?php echo esc_attr($type['color']); ?>" class="cyp-color-picker">

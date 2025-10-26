@@ -53,8 +53,8 @@ jQuery(document).ready(function($) {
     
     // Settings page functionality
     // Lägg till händelsetyp
-    $('#cypl-add-event-type').on('click', function() {
-        var index = $('#cypl-event-types .cypl-event-type-row').length;
+    $('#cyp-add-event-type').on('click', function() {
+        var index = $('#cyp-event-types .cyp-event-type-row').length;
         
         // Get translations from localized data
         var i18n = (typeof cyplAdmin !== 'undefined' && cyplAdmin.i18n) ? cyplAdmin.i18n : {
@@ -65,30 +65,33 @@ jQuery(document).ready(function($) {
             remove: 'Remove'
         };
         
-        var html = '<div class="cypl-event-type-row">' +
+        var html = '<div class="cyp-event-type-row">' +
+            '<div class="regular-text-container">' +
+            '<label class="cyp-color-label">' + 'Name' + '</label>' +
             '<input type="text" name="cypl_event_types[' + index + '][name]" placeholder="' + i18n.eventTypeName + '" class="regular-text">' +
-            '<div class="cypl-color-picker-group">' +
-            '<label class="cypl-color-label">' + i18n.background + '</label>' +
-            '<input type="text" name="cypl_event_types[' + index + '][color]" value="#4A90E2" class="cypl-color-picker">' +
             '</div>' +
-            '<div class="cypl-color-picker-group">' +
-            '<label class="cypl-color-label">' + i18n.text + '</label>' +
-            '<input type="text" name="cypl_event_types[' + index + '][text_color]" value="" placeholder="' + i18n.auto + '" class="cypl-color-picker cypl-text-color-picker">' +
+            '<div class="cyp-color-picker-group">' +
+            '<label class="cyp-color-label">' + i18n.background + '</label>' +
+            '<input type="text" name="cypl_event_types[' + index + '][color]" value="#4A90E2" class="cyp-color-picker">' +
             '</div>' +
-            '<button type="button" class="button cypl-remove-type">' + i18n.remove + '</button>' +
+            '<div class="cyp-color-picker-group">' +
+            '<label class="cyp-color-label">' + i18n.text + '</label>' +
+            '<input type="text" name="cypl_event_types[' + index + '][text_color]" value="" placeholder="' + i18n.auto + '" class="cyp-color-picker cyp-text-color-picker">' +
+            '</div>' +
+            '<button type="button" class="button cyp-remove-type">' + i18n.remove + '</button>' +
             '</div>';
-        $('#cypl-event-types').append(html);
+        $('#cyp-event-types').append(html);
         
         // Initiera color picker för nya fält
-        $('.cypl-color-picker').wpColorPicker();
+        $('.cyp-color-picker').wpColorPicker();
     });
     
     // Ta bort händelsetyp
-    $(document).on('click', '.cypl-remove-type', function() {
-        $(this).closest('.cypl-event-type-row').remove();
+    $(document).on('click', '.cyp-remove-type', function() {
+        $(this).closest('.cyp-event-type-row').remove();
     });
     
     // Initiera color pickers
-    $('.cypl-color-picker').wpColorPicker();
+    $('.cyp-color-picker').wpColorPicker();
 });
 
