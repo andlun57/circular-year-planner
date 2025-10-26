@@ -2,7 +2,7 @@
 
 Alla betydande ändringar i detta projekt dokumenteras i denna fil.
 
-## [1.0.22] - 2025-01-26
+## [1.0.22] - 2025-10-26
 
 ### Fixat
 - 🎨 Färgscheman fungerar nu korrekt - färgscheman appliceras nu på kalendern
@@ -14,7 +14,7 @@ Alla betydande ändringar i detta projekt dokumenteras i denna fil.
 - Lade till CSS-regler för blue och green color schemes i frontend.css
 - Färgscheman: default, dark, blue, green fungerar nu alla korrekt
 
-## [1.0.21] - 2025-01-26
+## [1.0.21] - 2025-10-26
 
 ### Fixat
 - 🎨 Dropdown-menyerna har nu konsekvent bredd (280px minimum)
