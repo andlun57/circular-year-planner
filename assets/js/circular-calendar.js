@@ -93,6 +93,13 @@
             this.svg.attr('overflow', 'visible');
             this.svg.css('overflow', 'visible');
             
+            // Applicera färgschema
+            if (this.settings.color_scheme && this.settings.color_scheme !== 'default') {
+                this.container.attr('data-color-scheme', this.settings.color_scheme);
+            } else {
+                this.container.removeAttr('data-color-scheme');
+            }
+            
             // Skapa SVG-grupper
             const g = this.createSVGElement('g', {
                 transform: `translate(${this.centerX}, ${this.centerY})`,

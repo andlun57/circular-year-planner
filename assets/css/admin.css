@@ -153,6 +153,12 @@
     width: 220px;
 }
 
+/* Make dropdowns consistent width */
+#cypl_fiscal_year_start,
+#cypl_color_scheme {
+    min-width: 180px;
+}
+
 
 
 /* Admin columns */

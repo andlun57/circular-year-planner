@@ -400,3 +400,67 @@
 .cypl-calendar-container[data-color-scheme="dark"] .cypl-calendar-legend {
     background: #2a2a2a;
 }
+
+/* Blue Color Scheme */
+.cyp-calendar-container[data-color-scheme="blue"],
+.cypl-calendar-container[data-color-scheme="blue"] {
+    background: #e8f4f8;
+    color: #003d5c;
+}
+
+.cyp-calendar-container[data-color-scheme="blue"] .cyp-month-label,
+.cyp-calendar-container[data-color-scheme="blue"] .cypl-month-label,
+.cyp-calendar-container[data-color-scheme="blue"] .cyp-center-year,
+.cyp-calendar-container[data-color-scheme="blue"] .cypl-center-year,
+.cypl-calendar-container[data-color-scheme="blue"] .cyp-month-label,
+.cypl-calendar-container[data-color-scheme="blue"] .cypl-month-label,
+.cypl-calendar-container[data-color-scheme="blue"] .cyp-center-year,
+.cypl-calendar-container[data-color-scheme="blue"] .cypl-center-year {
+    fill: #003d5c;
+}
+
+.cyp-calendar-container[data-color-scheme="blue"] .cyp-week-label,
+.cyp-calendar-container[data-color-scheme="blue"] .cypl-week-label,
+.cypl-calendar-container[data-color-scheme="blue"] .cyp-week-label,
+.cypl-calendar-container[data-color-scheme="blue"] .cypl-week-label {
+    fill: #006699;
+}
+
+.cyp-calendar-container[data-color-scheme="blue"] .cyp-calendar-legend,
+.cyp-calendar-container[data-color-scheme="blue"] .cypl-calendar-legend,
+.cypl-calendar-container[data-color-scheme="blue"] .cyp-calendar-legend,
+.cypl-calendar-container[data-color-scheme="blue"] .cypl-calendar-legend {
+    background: #d0e7f2;
+}
+
+/* Green Color Scheme */
+.cyp-calendar-container[data-color-scheme="green"],
+.cypl-calendar-container[data-color-scheme="green"] {
+    background: #f0f8f0;
+    color: #1a5a1a;
+}
+
+.cyp-calendar-container[data-color-scheme="green"] .cyp-month-label,
+.cyp-calendar-container[data-color-scheme="green"] .cypl-month-label,
+.cyp-calendar-container[data-color-scheme="green"] .cyp-center-year,
+.cyp-calendar-container[data-color-scheme="green"] .cypl-center-year,
+.cypl-calendar-container[data-color-scheme="green"] .cyp-month-label,
+.cypl-calendar-container[data-color-scheme="green"] .cypl-month-label,
+.cypl-calendar-container[data-color-scheme="green"] .cyp-center-year,
+.cypl-calendar-container[data-color-scheme="green"] .cypl-center-year {
+    fill: #1a5a1a;
+}
+
+.cyp-calendar-container[data-color-scheme="green"] .cyp-week-label,
+.cyp-calendar-container[data-color-scheme="green"] .cypl-week-label,
+.cypl-calendar-container[data-color-scheme="green"] .cyp-week-label,
+.cypl-calendar-container[data-color-scheme="green"] .cypl-week-label {
+    fill: #2d7d2d;
+}
+
+.cyp-calendar-container[data-color-scheme="green"] .cyp-calendar-legend,
+.cyp-calendar-container[data-color-scheme="green"] .cypl-calendar-legend,
+.cypl-calendar-container[data-color-scheme="green"] .cyp-calendar-legend,
+.cypl-calendar-container[data-color-scheme="green"] .cypl-calendar-legend {
+    background: #d4eed4;
+}

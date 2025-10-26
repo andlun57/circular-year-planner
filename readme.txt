@@ -3,7 +3,7 @@ Contributors: andlun57
 Tags: calendar, planning, visualization, circular, year-planner
 Requires at least: 5.8
 Tested up to: 6.8
-Stable tag: 1.0.20
+Stable tag: 1.0.22
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -79,17 +79,25 @@ Yes, you can use multiple shortcodes with different parameters on the same page.
 
 == Changelog ==
 
-= 1.0.20 - 2024-12-19 =
+= 1.0.22 - 2025-01-26 =
+* Fixed color scheme functionality - color schemes now properly apply to the calendar
+* Added CSS support for blue and green color schemes
+
+= 1.0.21 - 2025-01-26 =
+* Fixed CSS for dropdown menus to be consistent width
+* Fixed alignment issues in settings page event type rows
+
+= 1.0.20 - 2025-01-26 =
 * Removed load_plugin_textdomain() function call (WordPress loads translations automatically)
 * Removed load_textdomain() method and its hook
 
-= 1.0.19 - 2024-12-19 =
+= 1.0.19 - 2025-01-26 =
 * Changed prefix from "cyp" to "cypl" (4 characters minimum)
 * Updated all class names, constants, and option names
 * Changed post type from "cyp_event" to "cypl_event"
 * Updated REST API namespace from "cyp/v1" to "cypl/v1"
 
-= 1.0.18 - 2024-12-19 =
+= 1.0.18 - 2025-01-26 =
 * Fixed contributors field in readme.txt
 * Removed inline styles and scripts from settings page
 * Moved all CSS to external files using wp_enqueue_style
