@@ -1,9 +1,9 @@
 === Circular Year Planner ===
-Contributors: andreaslundberg
+Contributors: andlun57
 Tags: calendar, planning, visualization, circular, year-planner
 Requires at least: 5.8
 Tested up to: 6.8
-Stable tag: 1.0.17
+Stable tag: 1.0.20
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -78,6 +78,24 @@ Yes, you can use multiple shortcodes with different parameters on the same page.
 4. Calendar legend with all event types
 
 == Changelog ==
+
+= 1.0.20 - 2024-12-19 =
+* Removed load_plugin_textdomain() function call (WordPress loads translations automatically)
+* Removed load_textdomain() method and its hook
+
+= 1.0.19 - 2024-12-19 =
+* Changed prefix from "cyp" to "cypl" (4 characters minimum)
+* Updated all class names, constants, and option names
+* Changed post type from "cyp_event" to "cypl_event"
+* Updated REST API namespace from "cyp/v1" to "cypl/v1"
+
+= 1.0.18 - 2024-12-19 =
+* Fixed contributors field in readme.txt
+* Removed inline styles and scripts from settings page
+* Moved all CSS to external files using wp_enqueue_style
+* Moved all JavaScript to external files using wp_enqueue_script
+* Added proper translation support for JavaScript strings
+* All code now follows WordPress Plugin Directory guidelines
 
 = 1.0.15 - 2024-10-17 =
 * Dynamic ring size for 6+ event types

@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class CYP_Event_Post_Type {
+class CYPL_Event_Post_Type {
     
     private static $instance = null;
     
@@ -22,9 +22,9 @@ class CYP_Event_Post_Type {
         add_action('init', array($this, 'register_post_type'));
         add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
         add_action('save_post', array($this, 'save_meta_boxes'));
-        add_filter('manage_cyp_event_posts_columns', array($this, 'set_custom_columns'));
-        add_action('manage_cyp_event_posts_custom_column', array($this, 'custom_column_content'), 10, 2);
-        add_filter('manage_edit-cyp_event_sortable_columns', array($this, 'set_sortable_columns'));
+        add_filter('manage_cypl_event_posts_columns', array($this, 'set_custom_columns'));
+        add_action('manage_cypl_event_posts_custom_column', array($this, 'custom_column_content'), 10, 2);
+        add_filter('manage_edit-cypl_event_sortable_columns', array($this, 'set_sortable_columns'));
         add_action('pre_get_posts', array($this, 'handle_custom_column_sorting'));
     }
     
@@ -60,7 +60,7 @@ class CYP_Event_Post_Type {
             'rewrite' => array('slug' => 'event'),
         );
         
-        register_post_type('cyp_event', $args);
+        register_post_type('cypl_event', $args);
     }
     
     /**
@@ -68,10 +68,10 @@ class CYP_Event_Post_Type {
      */
     public function add_meta_boxes() {
         add_meta_box(
-            'cyp_event_details',
+            'cypl_event_details',
             __('Event Details', 'circular-year-planner'),
             array($this, 'render_event_details_meta_box'),
-            'cyp_event',
+            'cypl_event',
             'normal',
             'high'
         );
@@ -81,31 +81,31 @@ class CYP_Event_Post_Type {
      * Rendera meta box för händelsedetaljer
      */
     public function render_event_details_meta_box($post) {
-        wp_nonce_field('cyp_save_event_details', 'cyp_event_details_nonce');
+        wp_nonce_field('cypl_save_event_details', 'cypl_event_details_nonce');
         
-        $start_date = get_post_meta($post->ID, '_cyp_start_date', true);
-        $end_date = get_post_meta($post->ID, '_cyp_end_date', true);
-        $event_type = get_post_meta($post->ID, '_cyp_event_type', true);
+        $start_date = get_post_meta($post->ID, '_cypl_start_date', true);
+        $end_date = get_post_meta($post->ID, '_cypl_end_date', true);
+        $event_type = get_post_meta($post->ID, '_cypl_event_type', true);
         
-        $event_types = get_option('cyp_event_types', array());
+        $event_types = get_option('cypl_event_types', array());
         
         ?>
         <div class="cyp-meta-box">
             <p>
-                <label for="cyp_start_date"><strong><?php esc_html_e('Start Date', 'circular-year-planner'); ?>:</strong></label><br>
-                <input type="date" id="cyp_start_date" name="cyp_start_date" value="<?php echo esc_attr($start_date); ?>" class="widefat" required placeholder="yyyy-mm-dd">
+                <label for="cypl_start_date"><strong><?php esc_html_e('Start Date', 'circular-year-planner'); ?>:</strong></label><br>
+                <input type="date" id="cypl_start_date" name="cypl_start_date" value="<?php echo esc_attr($start_date); ?>" class="widefat" required placeholder="yyyy-mm-dd">
                 <span class="description"><?php esc_html_e('Format: YYYY-MM-DD', 'circular-year-planner'); ?></span>
             </p>
             
             <p>
-                <label for="cyp_end_date"><strong><?php esc_html_e('End Date', 'circular-year-planner'); ?>:</strong></label><br>
-                <input type="date" id="cyp_end_date" name="cyp_end_date" value="<?php echo esc_attr($end_date); ?>" class="widefat" required placeholder="yyyy-mm-dd">
+                <label for="cypl_end_date"><strong><?php esc_html_e('End Date', 'circular-year-planner'); ?>:</strong></label><br>
+                <input type="date" id="cypl_end_date" name="cypl_end_date" value="<?php echo esc_attr($end_date); ?>" class="widefat" required placeholder="yyyy-mm-dd">
                 <span class="description"><?php esc_html_e('Format: YYYY-MM-DD (automatically set to start date if left empty)', 'circular-year-planner'); ?></span>
             </p>
             
             <p>
-                <label for="cyp_event_type"><strong><?php esc_html_e('Event Type', 'circular-year-planner'); ?>:</strong></label><br>
-                <select id="cyp_event_type" name="cyp_event_type" class="widefat">
+                <label for="cypl_event_type"><strong><?php esc_html_e('Event Type', 'circular-year-planner'); ?>:</strong></label><br>
+                <select id="cypl_event_type" name="cypl_event_type" class="widefat">
                     <option value=""><?php esc_html_e('Select event type', 'circular-year-planner'); ?></option>
                     <?php foreach ($event_types as $index => $type) : ?>
                         <option value="<?php echo esc_attr($index); ?>" <?php selected($event_type, $index); ?>>
@@ -124,7 +124,7 @@ class CYP_Event_Post_Type {
      */
     public function save_meta_boxes($post_id) {
         // Kontrollera nonce
-        if (!isset($_POST['cyp_event_details_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['cyp_event_details_nonce'])), 'cyp_save_event_details')) {
+        if (!isset($_POST['cypl_event_details_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['cypl_event_details_nonce'])), 'cypl_save_event_details')) {
             return;
         }
         
@@ -139,16 +139,16 @@ class CYP_Event_Post_Type {
         }
         
         // Spara fält
-        if (isset($_POST['cyp_start_date'])) {
-            update_post_meta($post_id, '_cyp_start_date', sanitize_text_field(wp_unslash($_POST['cyp_start_date'])));
+        if (isset($_POST['cypl_start_date'])) {
+            update_post_meta($post_id, '_cypl_start_date', sanitize_text_field(wp_unslash($_POST['cypl_start_date'])));
         }
         
-        if (isset($_POST['cyp_end_date'])) {
-            update_post_meta($post_id, '_cyp_end_date', sanitize_text_field(wp_unslash($_POST['cyp_end_date'])));
+        if (isset($_POST['cypl_end_date'])) {
+            update_post_meta($post_id, '_cypl_end_date', sanitize_text_field(wp_unslash($_POST['cypl_end_date'])));
         }
         
-        if (isset($_POST['cyp_event_type'])) {
-            update_post_meta($post_id, '_cyp_event_type', sanitize_text_field(wp_unslash($_POST['cyp_event_type'])));
+        if (isset($_POST['cypl_event_type'])) {
+            update_post_meta($post_id, '_cypl_event_type', sanitize_text_field(wp_unslash($_POST['cypl_event_type'])));
         }
     }
     
@@ -173,8 +173,8 @@ class CYP_Event_Post_Type {
     public function custom_column_content($column, $post_id) {
         switch ($column) {
             case 'event_type':
-                $event_type_index = get_post_meta($post_id, '_cyp_event_type', true);
-                $event_types = get_option('cyp_event_types', array());
+                $event_type_index = get_post_meta($post_id, '_cypl_event_type', true);
+                $event_types = get_option('cypl_event_types', array());
                 if (isset($event_types[$event_type_index])) {
                     $type = $event_types[$event_type_index];
                     echo '<span style="display: inline-block; width: 12px; height: 12px; background-color: ' . esc_attr($type['color']) . '; border-radius: 50%; margin-right: 5px;"></span>';
@@ -183,7 +183,7 @@ class CYP_Event_Post_Type {
                 break;
                 
             case 'start_date':
-                $start_date = get_post_meta($post_id, '_cyp_start_date', true);
+                $start_date = get_post_meta($post_id, '_cypl_start_date', true);
                 if ($start_date) {
                     // Format according to WordPress date settings using mysql2date
                     echo esc_html(mysql2date(get_option('date_format'), $start_date));
@@ -193,7 +193,7 @@ class CYP_Event_Post_Type {
                 break;
                 
             case 'end_date':
-                $end_date = get_post_meta($post_id, '_cyp_end_date', true);
+                $end_date = get_post_meta($post_id, '_cypl_end_date', true);
                 if ($end_date) {
                     // Format according to WordPress date settings using mysql2date
                     echo esc_html(mysql2date(get_option('date_format'), $end_date));
@@ -208,7 +208,7 @@ class CYP_Event_Post_Type {
      * Beräkna verksamhetsår baserat på ett datum
      */
     public function calculate_fiscal_year($date) {
-        $fiscal_start = get_option('cyp_fiscal_year_start', '01-01');
+        $fiscal_start = get_option('cypl_fiscal_year_start', '01-01');
         list($start_month, $start_day) = explode('-', $fiscal_start);
         
         $event_date = new DateTime($date);
@@ -238,7 +238,7 @@ class CYP_Event_Post_Type {
      * Hämta verksamhetsår för en händelse (statisk metod för användning utanför klassen)
      */
     public static function get_event_fiscal_year($post_id) {
-        $start_date = get_post_meta($post_id, '_cyp_start_date', true);
+        $start_date = get_post_meta($post_id, '_cypl_start_date', true);
         if (!$start_date) {
             return '';
         }
@@ -266,7 +266,7 @@ class CYP_Event_Post_Type {
             return;
         }
         
-        if ($query->get('post_type') !== 'cyp_event') {
+        if ($query->get('post_type') !== 'cypl_event') {
             return;
         }
         
@@ -274,17 +274,17 @@ class CYP_Event_Post_Type {
         
         switch ($orderby) {
             case 'start_date':
-                $query->set('meta_key', '_cyp_start_date');
+                $query->set('meta_key', '_cypl_start_date');
                 $query->set('orderby', 'meta_value');
                 break;
                 
             case 'end_date':
-                $query->set('meta_key', '_cyp_end_date');
+                $query->set('meta_key', '_cypl_end_date');
                 $query->set('orderby', 'meta_value');
                 break;
                 
             case 'event_type':
-                $query->set('meta_key', '_cyp_event_type');
+                $query->set('meta_key', '_cypl_event_type');
                 $query->set('orderby', 'meta_value_num');
                 break;
         }

@@ -2,7 +2,7 @@
  * Frontend Styles för Circular Year Planner
  */
 
-.cyp-calendar-container {
+.cypl-calendar-container {
     max-width: 100%;
     margin: 0 auto;
     padding: 20px;
@@ -10,7 +10,7 @@
 }
 
 /* Controls */
-.cyp-calendar-controls {
+.cypl-calendar-controls {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +18,7 @@
     margin-bottom: 20px;
 }
 
-.cyp-year-title {
+.cypl-year-title {
     margin: 0;
     font-size: 24px;
     font-weight: 600;
@@ -26,8 +26,8 @@
     text-align: center;
 }
 
-.cyp-prev-year,
-.cyp-next-year {
+.cypl-prev-year,
+.cypl-next-year {
     background: #0073aa;
     color: white;
     border: none;
@@ -42,13 +42,13 @@
     justify-content: center;
 }
 
-.cyp-prev-year:hover,
-.cyp-next-year:hover {
+.cypl-prev-year:hover,
+.cypl-next-year:hover {
     background: #005177;
 }
 
 /* Legend */
-.cyp-calendar-legend {
+.cypl-calendar-legend {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -59,25 +59,25 @@
     border-radius: 8px;
 }
 
-.cyp-legend-item {
+.cypl-legend-item {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.cyp-legend-color {
+.cypl-legend-color {
     width: 20px;
     height: 20px;
     border-radius: 4px;
 }
 
-.cyp-legend-label {
+.cypl-legend-label {
     font-size: 14px;
     font-weight: 500;
 }
 
 /* Calendar wrapper */
-.cyp-calendar-wrapper {
+.cypl-calendar-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,43 +96,43 @@
 }
 
 /* SVG styles */
-.cyp-month-arc {
+.cypl-month-arc {
     fill: none;
     stroke: #333;
     stroke-width: 2;
 }
 
-.cyp-week-arc {
+.cypl-week-arc {
     fill: none;
     stroke: #999;
     stroke-width: 1;
 }
 
-.cyp-month-label {
+.cypl-month-label {
     font-size: 14px;
     font-weight: 600;
     fill: #333;
     text-anchor: middle;
 }
 
-.cyp-week-label {
+.cypl-week-label {
     font-size: 10px;
     fill: #666;
     text-anchor: middle;
 }
 
-.cyp-event-arc {
+.cypl-event-arc {
     cursor: pointer;
     opacity: 0.85;
     transition: opacity 0.2s ease, filter 0.2s ease;
 }
 
-.cyp-event-arc:hover {
+.cypl-event-arc:hover {
     opacity: 1;
     filter: brightness(1.15);
 }
 
-.cyp-event-text {
+.cypl-event-text {
     pointer-events: none;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-weight: 600;
@@ -141,35 +141,35 @@
     overflow: visible !important;
 }
 
-.cyp-event-text textPath {
+.cypl-event-text textPath {
     text-anchor: middle;
     overflow: visible !important;
 }
 
-.cyp-ring-border {
+.cypl-ring-border {
     pointer-events: none;
 }
 
-.cyp-ring-background,
-.cyp-ring-background-inner {
+.cypl-ring-background,
+.cypl-ring-background-inner {
     pointer-events: none;
 }
 
-.cyp-month-divider {
+.cypl-month-divider {
     stroke: #999;
     stroke-width: 1;
     opacity: 0.4;
     pointer-events: none;
 }
 
-.cyp-year-divider {
+.cypl-year-divider {
     stroke: #666;
     stroke-width: 2;
     opacity: 0.6;
     pointer-events: none;
 }
 
-.cyp-today-marker {
+.cypl-today-marker {
     stroke: #d63638;
     stroke-width: 2.5;
     stroke-dasharray: 8, 4;
@@ -177,7 +177,7 @@
     pointer-events: none;
 }
 
-.cyp-center-year {
+.cypl-center-year {
     font-size: 32px;
     font-weight: 700;
     fill: #333;
@@ -185,7 +185,7 @@
 }
 
 /* Event details panel */
-.cyp-event-details {
+.cypl-event-details {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -201,11 +201,11 @@
     overflow-y: auto;
 }
 
-.cyp-event-details.active {
+.cypl-event-details.active {
     display: block !important;
 }
 
-.cyp-close-details {
+.cypl-close-details {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -220,17 +220,17 @@
     height: 32px;
 }
 
-.cyp-close-details:hover {
+.cypl-close-details:hover {
     color: #333;
 }
 
-.cyp-event-content h3 {
+.cypl-event-content h3 {
     margin-top: 0;
     color: #333;
     font-size: 24px;
 }
 
-.cyp-event-meta {
+.cypl-event-meta {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -240,18 +240,18 @@
     border-radius: 8px;
 }
 
-.cyp-event-meta-item {
+.cypl-event-meta-item {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.cyp-event-meta-label {
+.cypl-event-meta-label {
     font-weight: 600;
     min-width: 100px;
 }
 
-.cyp-info-note {
+.cypl-info-note {
     background: #f0f6fc;
     padding: 8px;
     border-radius: 4px;
@@ -260,7 +260,7 @@
     color: #0073aa;
 }
 
-.cyp-event-type-badge {
+.cypl-event-type-badge {
     display: inline-block;
     padding: 4px 12px;
     border-radius: 4px;
@@ -269,14 +269,14 @@
     font-weight: 600;
 }
 
-.cyp-event-description {
+.cypl-event-description {
     margin-top: 15px;
     line-height: 1.6;
     color: #555;
 }
 
 /* Overlay */
-.cyp-overlay {
+.cypl-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -287,64 +287,64 @@
     display: none;
 }
 
-.cyp-overlay.active {
+.cypl-overlay.active {
     display: block;
 }
 
 /* Loading state */
-.cyp-loading {
+.cypl-loading {
     text-align: center;
     padding: 40px;
     font-size: 18px;
     color: #666;
 }
 
-.cyp-loading.hidden {
+.cypl-loading.hidden {
     display: none;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-    .cyp-calendar-container {
+    .cypl-calendar-container {
         padding: 10px;
     }
     
-    .cyp-year-title {
+    .cypl-year-title {
         font-size: 18px;
     }
     
-    .cyp-prev-year,
-    .cyp-next-year {
+    .cypl-prev-year,
+    .cypl-next-year {
         width: 35px;
         height: 35px;
         font-size: 20px;
     }
     
-    .cyp-event-details {
+    .cypl-event-details {
         padding: 20px;
     }
     
-    .cyp-event-content h3 {
+    .cypl-event-content h3 {
         font-size: 20px;
     }
 }
 
 /* Color schemes */
-.cyp-calendar-container[data-color-scheme="dark"] {
+.cypl-calendar-container[data-color-scheme="dark"] {
     background: #1a1a1a;
     color: #fff;
 }
 
-.cyp-calendar-container[data-color-scheme="dark"] .cyp-month-label,
-.cyp-calendar-container[data-color-scheme="dark"] .cyp-center-year {
+.cypl-calendar-container[data-color-scheme="dark"] .cypl-month-label,
+.cypl-calendar-container[data-color-scheme="dark"] .cypl-center-year {
     fill: #fff;
 }
 
-.cyp-calendar-container[data-color-scheme="dark"] .cyp-week-label {
+.cypl-calendar-container[data-color-scheme="dark"] .cypl-week-label {
     fill: #ccc;
 }
 
-.cyp-calendar-container[data-color-scheme="dark"] .cyp-calendar-legend {
+.cypl-calendar-container[data-color-scheme="dark"] .cypl-calendar-legend {
     background: #2a2a2a;
 }
 

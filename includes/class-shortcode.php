@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class CYP_Shortcode {
+class CYPL_Shortcode {
     
     private static $instance = null;
     
@@ -75,7 +75,7 @@ class CYP_Shortcode {
      * Beräkna aktuellt verksamhetsår
      */
     private function get_current_fiscal_year() {
-        $fiscal_start = get_option('cyp_fiscal_year_start', '01-01');
+        $fiscal_start = get_option('cypl_fiscal_year_start', '01-01');
         list($start_month, $start_day) = explode('-', $fiscal_start);
         
         $current_date = new DateTime();

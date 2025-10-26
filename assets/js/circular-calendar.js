@@ -8,7 +8,7 @@
     class CircularCalendar {
         constructor(container) {
             this.container = $(container);
-            this.svg = this.container.find('#cyp-circular-calendar');
+            this.svg = this.container.find('#cypll-circular-calendar');
             this.fiscalYear = this.container.data('fiscal-year');
             this.eventTypes = this.container.data('event-types');
             this.width = parseInt(this.container.data('width')) || 800;
@@ -43,7 +43,7 @@
         
         async loadSettings() {
             try {
-                const response = await fetch(cypData.restUrl + 'settings');
+                const response = await fetch(cyplData.restUrl + 'settings');
                 if (!response.ok) {
                     throw new Error('Failed to load settings: ' + response.status);
                 }
@@ -61,10 +61,10 @@
         }
         
         async loadEvents() {
-            this.container.find('.cyp-loading').show();
+            this.container.find('.cypll-loading').show();
             
             try {
-                let url = cypData.restUrl + 'events?fiscal_year=' + encodeURIComponent(this.fiscalYear);
+                let url = cyplData.restUrl + 'events?fiscal_year=' + encodeURIComponent(this.fiscalYear);
                 if (this.eventTypes) {
                     url += '&types=' + encodeURIComponent(this.eventTypes);
                 }
@@ -82,7 +82,7 @@
                 this.events = [];
                 this.render();
             } finally {
-                this.container.find('.cyp-loading').hide();
+                this.container.find('.cypll-loading').hide();
             }
         }
         
@@ -131,7 +131,7 @@
                 const text = this.createSVGElement('text', {
                     x: labelX,
                     y: labelY,
-                    class: 'cyp-month-label',
+                    class: 'cypl-month-label',
                     'text-anchor': 'middle',
                     'dominant-baseline': 'middle'
                 });
@@ -142,7 +142,7 @@
                 const arc = this.createArc(monthRadius - 20, monthRadius, startAngle, endAngle);
                 const path = this.createSVGElement('path', {
                     d: arc,
-                    class: 'cyp-month-arc',
+                    class: 'cypl-month-arc',
                     fill: 'none',
                     stroke: '#ddd',
                     'stroke-width': '2'
@@ -195,7 +195,7 @@
                         y1: y1,
                         x2: x2,
                         y2: y2,
-                        class: 'cyp-month-divider',
+                        class: 'cypl-month-divider',
                         stroke: '#999',
                         'stroke-width': '1',
                         opacity: '0.4',
@@ -220,7 +220,7 @@
                 y1: y1,
                 x2: x2,
                 y2: y2,
-                class: 'cyp-year-divider',
+                class: 'cypl-year-divider',
                 stroke: '#666',
                 'stroke-width': '2',
                 opacity: '0.6',
@@ -282,7 +282,7 @@
                 y1: y1,
                 x2: x2,
                 y2: y2,
-                class: 'cyp-today-marker',
+                class: 'cypl-today-marker',
                 stroke: '#d63638',
                 'stroke-width': '2.5',
                 'stroke-dasharray': '8,4',
@@ -308,7 +308,7 @@
                 const arc = this.createArc(weekRadius - 20, weekRadius, startAngle, endAngle);
                 const path = this.createSVGElement('path', {
                     d: arc,
-                    class: 'cyp-week-arc',
+                    class: 'cypl-week-arc',
                     fill: 'none',
                     stroke: '#eee',
                     'stroke-width': '1'
@@ -325,7 +325,7 @@
                     const text = this.createSVGElement('text', {
                         x: labelX,
                         y: labelY,
-                        class: 'cyp-week-label',
+                        class: 'cypl-week-label',
                         'text-anchor': 'middle',
                         'dominant-baseline': 'middle'
                     });
@@ -462,7 +462,7 @@
                 cy: 0,
                 r: outerRadius,
                 fill: '#f5f5f5',
-                class: 'cyp-ring-background'
+                class: 'cypl-ring-background'
             });
             g.append(backgroundCircle);
             
@@ -472,7 +472,7 @@
                 cy: 0,
                 r: innerRadius,
                 fill: '#ffffff',
-                class: 'cyp-ring-background-inner'
+                class: 'cypl-ring-background-inner'
             });
             g.append(innerCircle);
         }
@@ -487,7 +487,7 @@
                 stroke: color,
                 'stroke-width': '1.5',
                 opacity: '0.3',
-                class: 'cyp-ring-border'
+                class: 'cypl-ring-border'
             });
             g.append(outerCircle);
             
@@ -500,7 +500,7 @@
                 stroke: color,
                 'stroke-width': '1.5',
                 opacity: '0.3',
-                class: 'cyp-ring-border'
+                class: 'cypl-ring-border'
             });
             g.append(innerCircle);
         }
@@ -544,7 +544,7 @@
             
             const path = this.createSVGElement('path', {
                 d: arc,
-                class: 'cyp-event-arc',
+                class: 'cypl-event-arc',
                 fill: event.event_type_color,
                 'data-event-id': event.id,
                 id: pathId,
@@ -603,7 +603,7 @@
             
             // Skapa text-elementet
             const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-            text.setAttribute('class', 'cyp-event-text');
+            text.setAttribute('class', 'cypl-event-text');
             // Använd custom text color om den finns, annars automatisk kontrastfärg
             const textColor = event.event_type_text_color || this.getContrastColor(event.event_type_color);
             text.setAttribute('fill', textColor);
@@ -672,7 +672,7 @@
             const text = this.createSVGElement('text', {
                 x: 0,
                 y: 0,
-                class: 'cyp-center-year',
+                class: 'cypl-center-year',
                 'text-anchor': 'middle',
                 'dominant-baseline': 'middle'
             });
@@ -681,15 +681,15 @@
         }
         
         renderLegend() {
-            const legend = this.container.find('.cyp-calendar-legend');
+            const legend = this.container.find('.cypll-calendar-legend');
             legend.empty();
             
             const eventTypes = this.settings.event_types || [];
             
             eventTypes.forEach(type => {
-                const item = $('<div class="cyp-legend-item"></div>');
-                const color = $('<div class="cyp-legend-color"></div>').css('background-color', type.color);
-                const label = $('<span class="cyp-legend-label"></span>').text(type.name);
+                const item = $('<div class="cypl-legend-item"></div>');
+                const color = $('<div class="cypl-legend-color"></div>').css('background-color', type.color);
+                const label = $('<span class="cypl-legend-label"></span>').text(type.name);
                 
                 item.append(color, label);
                 legend.append(item);
@@ -697,28 +697,28 @@
         }
         
         showEventDetails(event) {
-            const detailsPanel = this.container.find('.cyp-event-details');
-            const content = detailsPanel.find('.cyp-event-content');
+            const detailsPanel = this.container.find('.cypll-event-details');
+            const content = detailsPanel.find('.cypll-event-content');
             
             // Get translated strings
-            const i18n = cypData.i18n || {};
+            const i18n = cyplData.i18n || {};
             
             const isOneDay = event.start_date === event.end_date;
             const dateInfo = isOneDay 
-                ? `<div class="cyp-event-meta-item">
-                       <span class="cyp-event-meta-label">${i18n.date || 'Date'}:</span>
+                ? `<div class="cypl-event-meta-item">
+                       <span class="cypl-event-meta-label">${i18n.date || 'Date'}:</span>
                        <span>${this.formatDate(event.start_date)}</span>
                    </div>
-                   <div class="cyp-event-meta-item cyp-info-note">
-                       <span class="cyp-event-meta-label">${i18n.display || 'Display'}:</span>
+                   <div class="cypl-event-meta-item cypl-info-note">
+                       <span class="cypl-event-meta-label">${i18n.display || 'Display'}:</span>
                        <span>${i18n.wholeWeek || 'Whole week (for visibility)'}</span>
                    </div>`
-                : `<div class="cyp-event-meta-item">
-                       <span class="cyp-event-meta-label">${i18n.startDate || 'Start Date'}:</span>
+                : `<div class="cypl-event-meta-item">
+                       <span class="cypl-event-meta-label">${i18n.startDate || 'Start Date'}:</span>
                        <span>${this.formatDate(event.start_date)}</span>
                    </div>
-                   <div class="cyp-event-meta-item">
-                       <span class="cyp-event-meta-label">${i18n.endDate || 'End Date'}:</span>
+                   <div class="cypl-event-meta-item">
+                       <span class="cypl-event-meta-label">${i18n.endDate || 'End Date'}:</span>
                        <span>${this.formatDate(event.end_date)}</span>
                    </div>`;
             
@@ -727,50 +727,50 @@
             
             const html = `
                 <h3>${event.title}</h3>
-                <div class="cyp-event-meta">
-                    <div class="cyp-event-meta-item">
-                        <span class="cyp-event-meta-label">${i18n.type || 'Type'}:</span>
-                        <span class="cyp-event-type-badge" style="background-color: ${event.event_type_color}; color: ${badgeTextColor};">
+                <div class="cypl-event-meta">
+                    <div class="cypl-event-meta-item">
+                        <span class="cypl-event-meta-label">${i18n.type || 'Type'}:</span>
+                        <span class="cypl-event-type-badge" style="background-color: ${event.event_type_color}; color: ${badgeTextColor};">
                             ${event.event_type_name}
                         </span>
                     </div>
                     ${dateInfo}
-                    <div class="cyp-event-meta-item">
-                        <span class="cyp-event-meta-label">${i18n.fiscalYear || 'Fiscal Year'}:</span>
+                    <div class="cypl-event-meta-item">
+                        <span class="cypl-event-meta-label">${i18n.fiscalYear || 'Fiscal Year'}:</span>
                         <span>${event.fiscal_year}</span>
                     </div>
                 </div>
-                ${event.description ? `<div class="cyp-event-description"><strong>${i18n.description || 'Description'}:</strong><br>${event.description}</div>` : ''}
+                ${event.description ? `<div class="cypl-event-description"><strong>${i18n.description || 'Description'}:</strong><br>${event.description}</div>` : ''}
             `;
             
             content.html(html);
             detailsPanel.addClass('active');
             
             // Lägg till overlay
-            if (!$('.cyp-overlay').length) {
-                $('body').append('<div class="cyp-overlay"></div>');
+            if (!$('.cypll-overlay').length) {
+                $('body').append('<div class="cypl-overlay"></div>');
             }
-            $('.cyp-overlay').addClass('active');
+            $('.cypll-overlay').addClass('active');
         }
         
         setupEventHandlers() {
             // Stäng detaljer
-            this.container.find('.cyp-close-details').on('click', () => {
-                this.container.find('.cyp-event-details').removeClass('active');
-                $('.cyp-overlay').removeClass('active');
+            this.container.find('.cypll-close-details').on('click', () => {
+                this.container.find('.cypll-event-details').removeClass('active');
+                $('.cypll-overlay').removeClass('active');
             });
             
-            $(document).on('click', '.cyp-overlay', () => {
-                this.container.find('.cyp-event-details').removeClass('active');
-                $('.cyp-overlay').removeClass('active');
+            $(document).on('click', '.cypll-overlay', () => {
+                this.container.find('.cypll-event-details').removeClass('active');
+                $('.cypll-overlay').removeClass('active');
             });
             
             // Årsnavigering
-            this.container.find('.cyp-prev-year').on('click', () => {
+            this.container.find('.cypll-prev-year').on('click', () => {
                 this.changeFiscalYear(-1);
             });
             
-            this.container.find('.cyp-next-year').on('click', () => {
+            this.container.find('.cypll-next-year').on('click', () => {
                 this.changeFiscalYear(1);
             });
         }
@@ -788,7 +788,7 @@
                 displayYear = years[0].slice(-2) + '/' + years[1].slice(-2);
             }
             
-            this.container.find('.cyp-year-title').text(displayYear);
+            this.container.find('.cypll-year-title').text(displayYear);
             this.loadEvents();
         }
         
@@ -899,7 +899,7 @@
         
         getMonthName(month) {
             // Use localized month names from PHP if available, otherwise fallback to English
-            const months = cypData.monthNames || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const months = cyplData.monthNames || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             return months[month - 1];
         }
         
@@ -913,12 +913,12 @@
             const day = parseInt(parts[2], 10);
             
             // Get WordPress date format
-            const format = cypData.dateFormat || 'F j, Y';
+            const format = cyplData.dateFormat || 'F j, Y';
 
             // Month replacements - use translated names from PHP
-            const monthNames = cypData.monthNamesFull || ['January', 'February', 'March', 'April', 'May', 'June',
+            const monthNames = cyplData.monthNamesFull || ['January', 'February', 'March', 'April', 'May', 'June',
                                'July', 'August', 'September', 'October', 'November', 'December'];
-            const monthNamesShort = cypData.monthNames || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+            const monthNamesShort = cyplData.monthNames || ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                                                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
             // Prepare token map (PHP date format tokens we support)
@@ -999,7 +999,7 @@
     
     // Initiera alla kalendrar på sidan
     $(document).ready(function() {
-        $('.cyp-calendar-container').each(function() {
+        $('.cypll-calendar-container').each(function() {
             new CircularCalendar(this);
         });
     });

@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class CYP_REST_API {
+class CYPL_REST_API {
     
     private static $instance = null;
     
@@ -47,7 +47,7 @@ class CYP_REST_API {
         $event_types = $request->get_param('types');
         
         $args = array(
-            'post_type' => 'cyp_event',
+            'post_type' => 'cypl_event',
             'posts_per_page' => -1,
             'post_status' => 'publish',
         );
@@ -60,7 +60,7 @@ class CYP_REST_API {
                 $query->the_post();
                 $post_id = get_the_ID();
                 
-                $event_type_index = get_post_meta($post_id, '_cyp_event_type', true);
+                $event_type_index = get_post_meta($post_id, '_cypl_event_type', true);
                 
                 // Filtrera på händelsetyper om angivet
                 if ($event_types && !in_array($event_type_index, explode(',', $event_types))) {
@@ -68,22 +68,22 @@ class CYP_REST_API {
                 }
                 
                 // Beräkna verksamhetsår från startdatum
-                $calculated_fiscal_year = CYP_Event_Post_Type::get_event_fiscal_year($post_id);
+                $calculated_fiscal_year = CYPL_Event_Post_Type::get_event_fiscal_year($post_id);
                 
                 // Filtrera på verksamhetsår om angivet
                 if ($fiscal_year && $calculated_fiscal_year !== $fiscal_year) {
                     continue;
                 }
                 
-                $event_types_data = get_option('cyp_event_types', array());
+                $event_types_data = get_option('cypl_event_types', array());
                 $event_type_data = isset($event_types_data[$event_type_index]) ? $event_types_data[$event_type_index] : array('name' => '', 'color' => '#cccccc', 'text_color' => '');
                 
                 $events[] = array(
                     'id' => $post_id,
                     'title' => get_the_title(),
                     'description' => get_the_content(),
-                    'start_date' => get_post_meta($post_id, '_cyp_start_date', true),
-                    'end_date' => get_post_meta($post_id, '_cyp_end_date', true),
+                    'start_date' => get_post_meta($post_id, '_cypl_start_date', true),
+                    'end_date' => get_post_meta($post_id, '_cypl_end_date', true),
                     'event_type' => $event_type_index,
                     'event_type_name' => $event_type_data['name'],
                     'event_type_color' => $event_type_data['color'],
@@ -102,9 +102,9 @@ class CYP_REST_API {
      */
     public function get_settings($request) {
         $settings = array(
-            'event_types' => get_option('cyp_event_types', array()),
-            'fiscal_year_start' => get_option('cyp_fiscal_year_start', '01-01'),
-            'color_scheme' => get_option('cyp_color_scheme', 'default'),
+            'event_types' => get_option('cypl_event_types', array()),
+            'fiscal_year_start' => get_option('cypl_fiscal_year_start', '01-01'),
+            'color_scheme' => get_option('cypl_color_scheme', 'default'),
         );
         
         return rest_ensure_response($settings);

@@ -7,7 +7,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class CYP_Settings {
+class CYPL_Settings {
     
     private static $instance = null;
     
@@ -21,7 +21,7 @@ class CYP_Settings {
     private function __construct() {
         add_action('admin_menu', array($this, 'add_settings_page'));
         add_action('admin_init', array($this, 'register_settings'));
-        add_action('admin_post_cyp_save_settings', array($this, 'save_settings'));
+        add_action('admin_post_cypl_save_settings', array($this, 'save_settings'));
     }
     
     /**
@@ -29,11 +29,11 @@ class CYP_Settings {
      */
     public function add_settings_page() {
         add_submenu_page(
-            'edit.php?post_type=cyp_event',
+            'edit.php?post_type=cypl_event',
             __('Year Planning Settings', 'circular-year-planner'),
             __('Settings', 'circular-year-planner'),
             'manage_options',
-            'cyp-settings',
+            'cypl-settings',
             array($this, 'render_settings_page')
         );
     }
@@ -42,13 +42,13 @@ class CYP_Settings {
      * Registrera inställningar
      */
     public function register_settings() {
-        register_setting('cyp_settings', 'cyp_event_types', array(
+        register_setting('cypl_settings', 'cypl_event_types', array(
             'sanitize_callback' => array($this, 'sanitize_event_types'),
         ));
-        register_setting('cyp_settings', 'cyp_fiscal_year_start', array(
+        register_setting('cypl_settings', 'cypl_fiscal_year_start', array(
             'sanitize_callback' => 'sanitize_text_field',
         ));
-        register_setting('cyp_settings', 'cyp_color_scheme', array(
+        register_setting('cypl_settings', 'cypl_color_scheme', array(
             'sanitize_callback' => 'sanitize_text_field',
         ));
     }
@@ -85,14 +85,14 @@ class CYP_Settings {
         // Hantera meddelanden
         $message = '';
         if (isset($_GET['message']) && isset($_GET['_wpnonce'])) {
-            if (wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'cyp_settings_saved')) {
+            if (wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'cypl_settings_saved')) {
                 $message = sanitize_text_field(wp_unslash($_GET['message']));
             }
         }
         
-        $event_types = get_option('cyp_event_types', array());
-        $fiscal_year_start = get_option('cyp_fiscal_year_start', '01-01');
-        $color_scheme = get_option('cyp_color_scheme', 'default');
+        $event_types = get_option('cypl_event_types', array());
+        $fiscal_year_start = get_option('cypl_fiscal_year_start', '01-01');
+        $color_scheme = get_option('cypl_color_scheme', 'default');
         
         ?>
         <div class="wrap">
@@ -104,9 +104,9 @@ class CYP_Settings {
                 </div>
             <?php endif; ?>
             
-            <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" id="cyp-settings-form">
-                <input type="hidden" name="action" value="cyp_save_settings">
-                <?php wp_nonce_field('cyp_save_settings', 'cyp_settings_nonce'); ?>
+            <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" id="cypl-settings-form">
+                <input type="hidden" name="action" value="cypl_save_settings">
+                <?php wp_nonce_field('cypl_save_settings', 'cypl_settings_nonce'); ?>
                 
                 <table class="form-table">
                     <tr>
@@ -117,28 +117,28 @@ class CYP_Settings {
                             <div id="cyp-event-types">
                                 <?php if (empty($event_types)) : ?>
                                     <div class="cyp-event-type-row">
-                                        <input type="text" name="cyp_event_types[0][name]" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">
+                                        <input type="text" name="cypl_event_types[0][name]" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">
                                         <div class="cyp-color-picker-group">
                                             <label class="cyp-color-label"><?php esc_html_e('Background', 'circular-year-planner'); ?></label>
-                                            <input type="text" name="cyp_event_types[0][color]" value="#4A90E2" class="cyp-color-picker">
+                                            <input type="text" name="cypl_event_types[0][color]" value="#4A90E2" class="cyp-color-picker">
                                         </div>
                                         <div class="cyp-color-picker-group">
                                             <label class="cyp-color-label"><?php esc_html_e('Text', 'circular-year-planner'); ?></label>
-                                            <input type="text" name="cyp_event_types[0][text_color]" value="" placeholder="<?php esc_attr_e('Auto', 'circular-year-planner'); ?>" class="cyp-color-picker cyp-text-color-picker">
+                                            <input type="text" name="cypl_event_types[0][text_color]" value="" placeholder="<?php esc_attr_e('Auto', 'circular-year-planner'); ?>" class="cyp-color-picker cyp-text-color-picker">
                                         </div>
                                         <button type="button" class="button cyp-remove-type"><?php esc_html_e('Remove', 'circular-year-planner'); ?></button>
                                     </div>
                                 <?php else : ?>
                                     <?php foreach ($event_types as $index => $type) : ?>
                                         <div class="cyp-event-type-row">
-                                            <input type="text" name="cyp_event_types[<?php echo esc_attr($index); ?>][name]" value="<?php echo esc_attr($type['name']); ?>" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">
+                                            <input type="text" name="cypl_event_types[<?php echo esc_attr($index); ?>][name]" value="<?php echo esc_attr($type['name']); ?>" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">
                                             <div class="cyp-color-picker-group">
                                                 <label class="cyp-color-label"><?php esc_html_e('Background', 'circular-year-planner'); ?></label>
-                                                <input type="text" name="cyp_event_types[<?php echo esc_attr($index); ?>][color]" value="<?php echo esc_attr($type['color']); ?>" class="cyp-color-picker">
+                                                <input type="text" name="cypl_event_types[<?php echo esc_attr($index); ?>][color]" value="<?php echo esc_attr($type['color']); ?>" class="cyp-color-picker">
                                             </div>
                                             <div class="cyp-color-picker-group">
                                                 <label class="cyp-color-label"><?php esc_html_e('Text', 'circular-year-planner'); ?></label>
-                                                <input type="text" name="cyp_event_types[<?php echo esc_attr($index); ?>][text_color]" value="<?php echo esc_attr(!empty($type['text_color']) ? $type['text_color'] : ''); ?>" placeholder="<?php esc_attr_e('Auto', 'circular-year-planner'); ?>" class="cyp-color-picker cyp-text-color-picker">
+                                                <input type="text" name="cypl_event_types[<?php echo esc_attr($index); ?>][text_color]" value="<?php echo esc_attr(!empty($type['text_color']) ? $type['text_color'] : ''); ?>" placeholder="<?php esc_attr_e('Auto', 'circular-year-planner'); ?>" class="cyp-color-picker cyp-text-color-picker">
                                             </div>
                                             <button type="button" class="button cyp-remove-type"><?php esc_html_e('Remove', 'circular-year-planner'); ?></button>
                                         </div>
@@ -152,10 +152,10 @@ class CYP_Settings {
                     
                     <tr>
                         <th scope="row">
-                            <label for="cyp_fiscal_year_start"><?php esc_html_e('Fiscal Year Start', 'circular-year-planner'); ?></label>
+                            <label for="cypl_fiscal_year_start"><?php esc_html_e('Fiscal Year Start', 'circular-year-planner'); ?></label>
                         </th>
                         <td>
-                            <select id="cyp_fiscal_year_start" name="cyp_fiscal_year_start">
+                            <select id="cypl_fiscal_year_start" name="cypl_fiscal_year_start">
                                 <option value="01-01" <?php selected($fiscal_year_start, '01-01'); ?>><?php esc_html_e('January', 'circular-year-planner'); ?> (<?php esc_html_e('calendar year', 'circular-year-planner'); ?>)</option>
                                 <option value="02-01" <?php selected($fiscal_year_start, '02-01'); ?>><?php esc_html_e('February', 'circular-year-planner'); ?></option>
                                 <option value="03-01" <?php selected($fiscal_year_start, '03-01'); ?>><?php esc_html_e('March', 'circular-year-planner'); ?></option>
@@ -175,10 +175,10 @@ class CYP_Settings {
                     
                     <tr>
                         <th scope="row">
-                            <label for="cyp_color_scheme"><?php esc_html_e('Color Scheme', 'circular-year-planner'); ?></label>
+                            <label for="cypl_color_scheme"><?php esc_html_e('Color Scheme', 'circular-year-planner'); ?></label>
                         </th>
                         <td>
-                            <select id="cyp_color_scheme" name="cyp_color_scheme">
+                            <select id="cypl_color_scheme" name="cypl_color_scheme">
                                 <option value="default" <?php selected($color_scheme, 'default'); ?>><?php esc_html_e('Standard', 'circular-year-planner'); ?> (<?php esc_html_e('light', 'circular-year-planner'); ?>)</option>
                                 <option value="dark" <?php selected($color_scheme, 'dark'); ?>><?php esc_html_e('Dark', 'circular-year-planner'); ?></option>
                                 <option value="blue" <?php selected($color_scheme, 'blue'); ?>><?php esc_html_e('Blue', 'circular-year-planner'); ?></option>
@@ -195,7 +195,7 @@ class CYP_Settings {
             <hr>
             
             <h2><?php esc_html_e('How to Use', 'circular-year-planner'); ?></h2>
-            <div class="cyp-instructions">
+            <div class="cypl-instructions">
                 <h3><?php esc_html_e('Shortcode', 'circular-year-planner'); ?></h3>
                 <p><?php esc_html_e('Use the following shortcode to display the circular calendar:', 'circular-year-planner'); ?></p>
                 <code>[circular_year_planner]</code>
@@ -207,58 +207,6 @@ class CYP_Settings {
                 </ul>
             </div>
         </div>
-        
-        <style>
-            .cyp-event-type-row {
-                margin-bottom: 10px;
-                display: flex;
-                gap: 10px;
-                align-items: center;
-            }
-            .cyp-instructions {
-                background: #f9f9f9;
-                padding: 20px;
-                border-left: 4px solid #2271b1;
-            }
-            .cyp-instructions code {
-                background: #fff;
-                padding: 2px 6px;
-                border: 1px solid #ddd;
-            }
-        </style>
-        
-        <script>
-        jQuery(document).ready(function($) {
-            // Lägg till händelsetyp
-            $('#cyp-add-event-type').on('click', function() {
-                var index = $('#cyp-event-types .cyp-event-type-row').length;
-                var html = '<div class="cyp-event-type-row">' +
-                    '<input type="text" name="cyp_event_types[' + index + '][name]" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">' +
-                    '<div class="cyp-color-picker-group">' +
-                    '<label class="cyp-color-label"><?php esc_html_e('Background', 'circular-year-planner'); ?></label>' +
-                    '<input type="text" name="cyp_event_types[' + index + '][color]" value="#4A90E2" class="cyp-color-picker">' +
-                    '</div>' +
-                    '<div class="cyp-color-picker-group">' +
-                    '<label class="cyp-color-label"><?php esc_html_e('Text', 'circular-year-planner'); ?></label>' +
-                    '<input type="text" name="cyp_event_types[' + index + '][text_color]" value="" placeholder="<?php esc_attr_e('Auto', 'circular-year-planner'); ?>" class="cyp-color-picker cyp-text-color-picker">' +
-                    '</div>' +
-                    '<button type="button" class="button cyp-remove-type"><?php esc_html_e('Remove', 'circular-year-planner'); ?></button>' +
-                    '</div>';
-                $('#cyp-event-types').append(html);
-                
-                // Initiera color picker för nya fält
-                $('.cyp-color-picker').wpColorPicker();
-            });
-            
-            // Ta bort händelsetyp
-            $(document).on('click', '.cyp-remove-type', function() {
-                $(this).closest('.cyp-event-type-row').remove();
-            });
-            
-            // Initiera color pickers
-            $('.cyp-color-picker').wpColorPicker();
-        });
-        </script>
         <?php
     }
     
@@ -272,14 +220,14 @@ class CYP_Settings {
         }
         
         // Verifiera nonce
-        if (!isset($_POST['cyp_settings_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['cyp_settings_nonce'])), 'cyp_save_settings')) {
+        if (!isset($_POST['cypl_settings_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['cypl_settings_nonce'])), 'cypl_save_settings')) {
             wp_die(esc_html__('Security verification failed', 'circular-year-planner'));
         }
         
         // Spara händelsetyper
-        if (isset($_POST['cyp_event_types'])) {
+        if (isset($_POST['cypl_event_types'])) {
             $event_types = array();
-            $raw_event_types = wp_unslash($_POST['cyp_event_types']); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+            $raw_event_types = wp_unslash($_POST['cypl_event_types']); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
             foreach ($raw_event_types as $type) {
                 if (!empty($type['name'])) {
                     $event_types[] = array(
@@ -289,25 +237,25 @@ class CYP_Settings {
                     );
                 }
             }
-            update_option('cyp_event_types', $event_types);
+            update_option('cypl_event_types', $event_types);
         }
         
         // Spara verksamhetsår
-        if (isset($_POST['cyp_fiscal_year_start'])) {
-            update_option('cyp_fiscal_year_start', sanitize_text_field(wp_unslash($_POST['cyp_fiscal_year_start'])));
+        if (isset($_POST['cypl_fiscal_year_start'])) {
+            update_option('cypl_fiscal_year_start', sanitize_text_field(wp_unslash($_POST['cypl_fiscal_year_start'])));
         }
         
         // Spara färgschema
-        if (isset($_POST['cyp_color_scheme'])) {
-            update_option('cyp_color_scheme', sanitize_text_field(wp_unslash($_POST['cyp_color_scheme'])));
+        if (isset($_POST['cypl_color_scheme'])) {
+            update_option('cypl_color_scheme', sanitize_text_field(wp_unslash($_POST['cypl_color_scheme'])));
         }
         
         // Redirect tillbaka med meddelande
         $redirect_url = add_query_arg(array(
-            'post_type' => 'cyp_event',
-            'page' => 'cyp-settings',
+            'post_type' => 'cypl_event',
+            'page' => 'cypl-settings',
             'message' => 'saved',
-            '_wpnonce' => wp_create_nonce('cyp_settings_saved')
+            '_wpnonce' => wp_create_nonce('cypl_settings_saved')
         ), admin_url('edit.php'));
         wp_redirect($redirect_url);
         exit;

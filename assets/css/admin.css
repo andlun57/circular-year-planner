@@ -2,28 +2,28 @@
  * Admin Styles för Circular Year Planner
  */
 
-.cyp-meta-box {
+.cypl-meta-box {
     padding: 10px 0;
 }
 
-.cyp-meta-box p {
+.cypl-meta-box p {
     margin: 15px 0;
 }
 
-.cyp-meta-box label {
+.cypl-meta-box label {
     display: block;
     margin-bottom: 5px;
     font-weight: 600;
 }
 
-.cyp-meta-box input[type="date"],
-.cyp-meta-box input[type="text"],
-.cyp-meta-box select {
+.cypl-meta-box input[type="date"],
+.cypl-meta-box input[type="text"],
+.cypl-meta-box select {
     width: 100%;
     max-width: 400px;
 }
 
-.cyp-meta-box .description {
+.cypl-meta-box .description {
     color: #666;
     font-style: italic;
     margin-top: 5px;
@@ -31,57 +31,57 @@
 }
 
 /* Event type rows */
-.cyp-event-type-row {
+.cypl-event-type-row {
     display: flex;
     gap: 10px;
     align-items: center;
     margin-bottom: 10px;
 }
 
-.cyp-event-type-row input.regular-text {
+.cypl-event-type-row input.regular-text {
     flex: 1;
     max-width: 300px;
 }
 
-.cyp-event-type-row .wp-picker-container {
+.cypl-event-type-row .wp-picker-container {
     display: inline-block;
 }
 
-.cyp-color-picker-group {
+.cypl-color-picker-group {
     display: flex;
     flex-direction: column;
     gap: 3px;
 }
 
-.cyp-color-label {
+.cypl-color-label {
     font-size: 11px;
     font-weight: 600;
     color: #555;
     margin: 0;
 }
 
-.cyp-remove-type {
+.cypl-remove-type {
     color: #b32d2e;
 }
 
-.cyp-remove-type:hover {
+.cypl-remove-type:hover {
     color: #dc3232;
     border-color: #dc3232;
 }
 
 /* Instructions section */
-.cyp-instructions {
+.cypl-instructions {
     background: #f0f6fc;
     padding: 20px;
     border-left: 4px solid #0073aa;
     margin-top: 20px;
 }
 
-.cyp-instructions h3 {
+.cypl-instructions h3 {
     margin-top: 0;
 }
 
-.cyp-instructions code {
+.cypl-instructions code {
     background: #fff;
     padding: 3px 8px;
     border: 1px solid #ddd;
@@ -90,7 +90,7 @@
     font-size: 13px;
 }
 
-.cyp-instructions ul {
+.cypl-instructions ul {
     list-style-type: disc;
     margin-left: 20px;
 }
@@ -98,6 +98,26 @@
 /* Settings page */
 #cyp-settings-form .form-table th {
     width: 220px;
+}
+
+/* Settings page inline styles - moved from PHP to CSS */
+.cypl-event-type-row {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.cypl-instructions {
+    background: #f9f9f9;
+    padding: 20px;
+    border-left: 4px solid #2271b1;
+}
+
+.cypl-instructions code {
+    background: #fff;
+    padding: 2px 6px;
+    border: 1px solid #ddd;
 }
 
 /* Admin columns */
@@ -108,7 +128,7 @@
 }
 
 /* Calculated info styling */
-.cyp-calculated-info {
+.cypl-calculated-info {
     background: #f0f6fc;
     padding: 10px;
     border-left: 3px solid #0073aa;
