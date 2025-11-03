@@ -75,7 +75,6 @@ Yes, you can use multiple shortcodes with different parameters on the same page.
 1. Circular calendar view with months, weeks and events
 2. Administrative settings for event types
 3. Event editor with dates and type
-4. Calendar legend with all event types
 
 == Changelog ==
 
