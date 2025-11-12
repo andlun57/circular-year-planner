@@ -79,12 +79,12 @@ Yes, you can use multiple shortcodes with different parameters on the same page.
 == Changelog ==
 
 = 1.1 - 2025-11-12 =
-* Rebrand från Circular Year Planner till Planly
-* Ändrat plugin-namn till Planly
-* Uppdaterat alla användargränssnittssträngar
-* Ändrat shortcode från [circular_year_planner] till [planly]
-* Förbättrat översättningar (svenska och engelska)
-* Fixat stora bokstäver i färgschema-alternativ
+* Rebrand from Circular Year Planner to Planly
+* Changed plugin name to Planly
+* Updated all user interface strings
+* Changed shortcode from [circular_year_planner] to [planly]
+* Improved translations (Swedish and English)
+* Fixed capitalization in color scheme options
 
 = 1.0.22 - 2025-10-26 =
 * Fixed color scheme functionality - color schemes now properly apply to the calendar
