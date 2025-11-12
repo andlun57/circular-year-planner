@@ -3,7 +3,7 @@ Contributors: andlun57
 Tags: calendar, planning, visualization, circular, year-planner
 Requires at least: 5.8
 Tested up to: 6.8
-Stable tag: 1.0.22
+Stable tag: 1.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -77,6 +77,14 @@ Yes, you can use multiple shortcodes with different parameters on the same page.
 3. Event editor with dates and type
 
 == Changelog ==
+
+= 1.1 - 2025-11-12 =
+* Rebrand från Circular Year Planner till Planly
+* Ändrat plugin-namn till Planly
+* Uppdaterat alla användargränssnittssträngar
+* Ändrat shortcode från [circular_year_planner] till [planly]
+* Förbättrat översättningar (svenska och engelska)
+* Fixat stora bokstäver i färgschema-alternativ
 
 = 1.0.22 - 2025-10-26 =
 * Fixed color scheme functionality - color schemes now properly apply to the calendar
