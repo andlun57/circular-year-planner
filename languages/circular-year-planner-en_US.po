@@ -15,8 +15,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Circular Year Planner"
-msgstr "Circular Year Planner"
+msgid "Planly"
+msgstr "Planly"
 
 msgid "Events"
 msgstr "Events"
@@ -60,8 +60,8 @@ msgstr "Fiscal Year"
 msgid "Settings"
 msgstr "Settings"
 
-msgid "Year Planning Settings"
-msgstr "Year Planning Settings"
+msgid "Planly Settings"
+msgstr "Planly Settings"
 
 msgid "Event Types"
 msgstr "Event Types"
@@ -171,8 +171,8 @@ msgstr "Previous Year"
 msgid "Next Year"
 msgstr "Next Year"
 
-msgid "Year Planning"
-msgstr "Year Planning"
+msgid "Planly"
+msgstr "Planly"
 
 msgid "Add New"
 msgstr "Add New"
@@ -201,8 +201,8 @@ msgstr "Select event type"
 msgid "(calculated automatically from start date)"
 msgstr "(calculated automatically from start date)"
 
-msgid "Circular Year Planning Settings"
-msgstr "Circular Year Planning Settings"
+msgid "Planly Settings"
+msgstr "Planly Settings"
 
 msgid "Event type name"
 msgstr "Event type name"

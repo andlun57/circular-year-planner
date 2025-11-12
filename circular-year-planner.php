@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Circular Year Planner
+ * Plugin Name: Planly
  * Plugin URI: https://github.com/andlun57/year-planning
  * Description: En cirkulär årsplanerare för att visualisera verksamhetsår och händelser
  * Version: 1.0.22

@@ -15,17 +15,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Circular Year Planner"
-msgstr "Cirkulär Årsplanerare"
+msgid "Planly"
+msgstr "Planly"
 
 msgid "Events"
 msgstr "Händelser"
 
 msgid "Event"
 msgstr "Händelse"
-
-msgid "Year Planning"
-msgstr "Årsplanering"
 
 msgid "Add New"
 msgstr "Lägg till"
@@ -69,8 +66,8 @@ msgstr "Verksamhetsår"
 msgid "Settings"
 msgstr "Inställningar"
 
-msgid "Year Planning Settings"
-msgstr "Inställningar för Årsplanering"
+msgid "Planly Settings"
+msgstr "Planly-inställningar"
 
 msgid "Event Types"
 msgstr "Händelsetyper"
@@ -134,6 +131,9 @@ msgstr "Färgschema"
 
 msgid "Standard"
 msgstr "Standard"
+
+msgid "Light"
+msgstr "Ljus"
 
 msgid "Dark"
 msgstr "Mörk"
@@ -201,9 +201,6 @@ msgstr "Välj händelsetyp"
 msgid "(calculated automatically from start date)"
 msgstr "(beräknas automatiskt från startdatum)"
 
-msgid "Circular Year Planning Settings"
-msgstr "Inställningar för Cirkulär Årsplanering"
-
 msgid "Event type name"
 msgstr "Namn på händelsetyp"
 
@@ -226,10 +223,10 @@ msgid "calendar year"
 msgstr "kalenderår"
 
 msgid "light"
-msgstr "ljus"
+msgstr "Ljus"
 
 msgid "Choose color scheme for the circular calendar."
-msgstr "Välj färgschema för den cirkulära kalendern."
+msgstr "Välj färgschema..."
 
 msgid "How to Use"
 msgstr "Hur man använder"

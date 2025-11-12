@@ -11,7 +11,7 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
 #: circular-year-planner.php
-msgid "Circular Year Planner"
+msgid "Planly"
 msgstr ""
 
 #: includes/class-event-post-type.php
@@ -58,7 +58,7 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-msgid "Year Planning Settings"
+msgid "Planly Settings"
 msgstr ""
 
 msgid "Event Types"

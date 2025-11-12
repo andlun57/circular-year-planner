@@ -1,4 +1,4 @@
-=== Circular Year Planner ===
+=== Planly ===
 Contributors: andlun57
 Tags: calendar, planning, visualization, circular, year-planner
 Requires at least: 5.8
@@ -29,13 +29,13 @@ Circular Year Planner is a WordPress plugin that visualizes fiscal years and eve
 
 Use shortcode in any page or post:
 
-`[circular_year_planner]`
+`[planly]`
 
 **Parameters:**
 
-* `year` - Display specific fiscal year, e.g. `[circular_year_planner year="2024/2025"]`
-* `types` - Display only certain event types (index), e.g. `[circular_year_planner types="0,1"]`
-* `width` and `height` - Customize size, e.g. `[circular_year_planner width="1000" height="1000"]`
+* `year` - Display specific fiscal year, e.g. `[planly year="2024/2025"]`
+* `types` - Display only certain event types (index), e.g. `[planly types="0,1"]`
+* `width` and `height` - Customize size, e.g. `[planly width="1000" height="1000"]`
 
 = Technical Information =
 
@@ -48,15 +48,15 @@ Use shortcode in any page or post:
 
 1. Upload the plugin folder to `/wp-content/plugins/`
 2. Activate the plugin through the WordPress admin panel
-3. Go to "Year Planning" → "Settings" to configure
-4. Add events via "Year Planning" → "Add Event"
-5. Use shortcode `[circular_year_planner]` to display the calendar
+3. Go to "Planly" → "Settings" to configure
+4. Add events via "Planly" → "Add Event"
+5. Use shortcode `[planly]` to display the calendar
 
 == Frequently Asked Questions ==
 
 = How do I change the colors of event types? =
 
-Go to Year Planning → Settings and click the color picker for each event type.
+Go to Planly → Settings and click the color picker for each event type.
 
 = Can I use a broken fiscal year? =
 

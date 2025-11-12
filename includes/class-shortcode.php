@@ -19,7 +19,7 @@ class CYPL_Shortcode {
     }
     
     private function __construct() {
-        add_shortcode('circular_year_planner', array($this, 'render_shortcode'));
+        add_shortcode('planly', array($this, 'render_shortcode'));
     }
     
     /**

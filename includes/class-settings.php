@@ -30,7 +30,7 @@ class CYPL_Settings {
     public function add_settings_page() {
         add_submenu_page(
             'edit.php?post_type=cypl_event',
-            __('Year Planning Settings', 'circular-year-planner'),
+            __('Planly Settings', 'circular-year-planner'),
             __('Settings', 'circular-year-planner'),
             'manage_options',
             'cypl-settings',
@@ -96,7 +96,7 @@ class CYPL_Settings {
         
         ?>
         <div class="wrap">
-            <h1><?php esc_html_e('Circular Year Planning Settings', 'circular-year-planner'); ?></h1>
+            <h1><?php esc_html_e('Planly Settings', 'circular-year-planner'); ?></h1>
             
             <?php if ($message === 'saved') : ?>
                 <div class="notice notice-success is-dismissible">
@@ -185,7 +185,7 @@ class CYPL_Settings {
                         </th>
                         <td>
                             <select id="cypl_color_scheme" name="cypl_color_scheme">
-                                <option value="default" <?php selected($color_scheme, 'default'); ?>><?php esc_html_e('Standard', 'circular-year-planner'); ?> (<?php esc_html_e('light', 'circular-year-planner'); ?>)</option>
+                                <option value="default" <?php selected($color_scheme, 'default'); ?>><?php esc_html_e('Standard', 'circular-year-planner'); ?> (<?php esc_html_e('Light', 'circular-year-planner'); ?>)</option>
                                 <option value="dark" <?php selected($color_scheme, 'dark'); ?>><?php esc_html_e('Dark', 'circular-year-planner'); ?></option>
                                 <option value="blue" <?php selected($color_scheme, 'blue'); ?>><?php esc_html_e('Blue', 'circular-year-planner'); ?></option>
                                 <option value="green" <?php selected($color_scheme, 'green'); ?>><?php esc_html_e('Green', 'circular-year-planner'); ?></option>
@@ -204,12 +204,12 @@ class CYPL_Settings {
             <div class="cypl-instructions">
                 <h3><?php esc_html_e('Shortcode', 'circular-year-planner'); ?></h3>
                 <p><?php esc_html_e('Use the following shortcode to display the circular calendar:', 'circular-year-planner'); ?></p>
-                <code>[circular_year_planner]</code>
+                <code>[planly]</code>
                 
                 <h3><?php esc_html_e('Parameters', 'circular-year-planner'); ?></h3>
                 <ul>
-                    <li><code>[circular_year_planner year="2024/2025"]</code> - <?php esc_html_e('Show specific fiscal year', 'circular-year-planner'); ?></li>
-                    <li><code>[circular_year_planner types="0,1"]</code> - <?php esc_html_e('Show only certain event types (by index)', 'circular-year-planner'); ?></li>
+                    <li><code>[planly year="2024/2025"]</code> - <?php esc_html_e('Show specific fiscal year', 'circular-year-planner'); ?></li>
+                    <li><code>[planly types="0,1"]</code> - <?php esc_html_e('Show only certain event types (by index)', 'circular-year-planner'); ?></li>
                 </ul>
             </div>
         </div>

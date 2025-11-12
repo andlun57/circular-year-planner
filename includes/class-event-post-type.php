@@ -35,7 +35,7 @@ class CYPL_Event_Post_Type {
         $labels = array(
             'name' => __('Events', 'circular-year-planner'),
             'singular_name' => __('Event', 'circular-year-planner'),
-            'menu_name' => __('Year Planning', 'circular-year-planner'),
+            'menu_name' => __('Planly', 'circular-year-planner'),
             'add_new' => __('Add New', 'circular-year-planner'),
             'add_new_item' => __('Add New Event', 'circular-year-planner'),
             'edit_item' => __('Edit Event', 'circular-year-planner'),
