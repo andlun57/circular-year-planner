@@ -2,8 +2,8 @@
 Contributors: andlun57
 Tags: calendar, planning, visualization, circular, year-planner
 Requires at least: 5.8
-Tested up to: 6.8
-Stable tag: 1.1
+Tested up to: 6.9
+Stable tag: 1.1.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -77,6 +77,10 @@ Yes, you can use multiple shortcodes with different parameters on the same page.
 3. Event editor with dates and type
 
 == Changelog ==
+
+= 1.1.1 - 2025-11-12 =
+* Fixed security: Changed wp_redirect() to wp_safe_redirect()
+* Updated tested up to WordPress 6.9
 
 = 1.1 - 2025-11-12 =
 * Rebrand from Circular Year Planner to Planly
