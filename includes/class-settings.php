@@ -263,7 +263,7 @@ class CYPL_Settings {
             'message' => 'saved',
             '_wpnonce' => wp_create_nonce('cypl_settings_saved')
         ), admin_url('edit.php'));
-        wp_redirect($redirect_url);
+        wp_safe_redirect($redirect_url);
         exit;
     }
 }
