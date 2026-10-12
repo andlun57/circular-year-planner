@@ -72,6 +72,7 @@ class Circular_Year_Planner {
         add_action('plugins_loaded', array($this, 'init'));
         add_action('init', array($this, 'load_translations'), 0);
         add_action('change_locale', array($this, 'load_translations'));
+        add_action('init', array($this, 'maybe_upgrade'), 99);
         add_action('wp_enqueue_scripts', array($this, 'enqueue_frontend_assets'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_assets'));
         
@@ -90,6 +91,18 @@ class Circular_Year_Planner {
         CYPL_Settings::get_instance();
         CYPL_REST_API::get_instance();
         CYPL_Shortcode::get_instance();
+    }
+    
+    /**
+     * Kör uppgraderingssteg en gång när pluginversionen ändras
+     */
+    public function maybe_upgrade() {
+        if (get_option('cypl_version') === CYPL_VERSION) {
+            return;
+        }
+        
+        flush_rewrite_rules();
+        update_option('cypl_version', CYPL_VERSION);
     }
     
     /**

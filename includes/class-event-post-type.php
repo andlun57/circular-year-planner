@@ -46,16 +46,20 @@ class CYPL_Event_Post_Type {
         
         $args = array(
             'labels' => $labels,
-            'public' => true,
+            'public' => false,
             'has_archive' => false,
-            'publicly_queryable' => true,
+            'publicly_queryable' => false,
+            'exclude_from_search' => true,
             'show_ui' => true,
             'show_in_menu' => true,
+            'show_in_nav_menus' => false,
+            'show_in_admin_bar' => true,
             'show_in_rest' => true,
             'menu_icon' => 'dashicons-calendar-alt',
             'supports' => array('title'),
             'capability_type' => 'post',
-            'rewrite' => array('slug' => 'event'),
+            'rewrite' => false,
+            'query_var' => false,
         );
         
         register_post_type('cypl_event', $args);
