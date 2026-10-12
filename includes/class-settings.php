@@ -90,7 +90,7 @@ class CYPL_Settings {
                 'post_status' => array('publish', 'pending', 'draft', 'future', 'private'),
                 'posts_per_page' => 1,
                 'fields' => 'ids',
-                // phpcs:ignore WordPress.DB.SlowDBQuery.slow_query_meta_query -- Körs bara på inställningssidan.
+                // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Körs bara på inställningssidan.
                 'meta_query' => array(
                     array(
                         'key' => '_cypl_event_type',
