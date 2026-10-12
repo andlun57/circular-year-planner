@@ -3,7 +3,7 @@ Contributors: andlun57
 Tags: calendar, planning, visualization, circular, year-planner
 Requires at least: 5.8
 Tested up to: 7.1
-Stable tag: 1.2.1
+Stable tag: 2.0.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -18,6 +18,7 @@ Circular Year Planner is a WordPress plugin that visualizes fiscal years and eve
 
 * **Circular Calendar View** - Year's months, weeks and events in concentric rings
 * **Flexible Event Management** - Customizable event types with individual colors
+* **Repeating Events** - Daily, weekly, monthly or yearly, with options such as "the last weekday of the month"
 * **Administrative Settings** - Manage event types and fiscal years
 * **Easy Integration** - Use shortcode to display the calendar
 * **REST API** - For external integrations
@@ -34,7 +35,7 @@ Use shortcode in any page or post:
 **Parameters:**
 
 * `year` - Display specific fiscal year, e.g. `[planly year="2024/2025"]`
-* `types` - Display only certain event types (index), e.g. `[planly types="0,1"]`
+* `types` - Display only certain event types by ID, shown in the settings, e.g. `[planly types="0,1"]`
 * `width` and `height` - Customize size, e.g. `[planly width="1000" height="1000"]`
 
 = Technical Information =
@@ -49,7 +50,7 @@ Use shortcode in any page or post:
 1. Upload the plugin folder to `/wp-content/plugins/`
 2. Activate the plugin through the WordPress admin panel
 3. Go to "Planly" → "Settings" to configure
-4. Add events via "Planly" → "Add Event"
+4. Add events via "Planly" → "Add New Event"
 5. Use shortcode `[planly]` to display the calendar
 
 == Frequently Asked Questions ==
@@ -74,11 +75,11 @@ Yes, you can use multiple shortcodes with different parameters on the same page.
 
 1. Circular calendar view with months, weeks and events
 2. Administrative settings for event types
-3. Event editor with dates and type
+3. Event form with dates, type and repeat options
 
 == Changelog ==
 
-= 1.2.1 =
+= 2.0.0 - 2026-10-12 =
 * New event form replacing the post editor, with clearly labelled fields
 * Repeating events: daily, weekly, monthly and yearly with intervals and positions such as "second to last weekday"
 * Delete a single occurrence or all future occurrences directly from the calendar
@@ -86,6 +87,12 @@ Yes, you can use multiple shortcodes with different parameters on the same page.
 * Removed the description (post content) field from events
 * Fixed the overlay behind the event details panel
 * Escaped event data in the details panel
+* Event types have permanent IDs, shown in the settings; removing a type no longer changes the type of other events
+* Event types that are used by events cannot be removed
+* Event list: filter by event type, and by year or month in which events take place
+* Event list: removed Quick Edit, Bulk Edit, View and the publish date column
+* Events no longer have public pages, search results or sitemap entries
+* The interface follows the site language fully in English and Swedish
 * Updated tested up to WordPress 7.1
 
 = 1.1.1 - 2025-11-12 =
@@ -155,6 +162,9 @@ Yes, you can use multiple shortcodes with different parameters on the same page.
 * First version
 
 == Upgrade Notice ==
+
+= 2.0.0 =
+Major update with a new event form and repeating events. The description field has been removed from events; existing descriptions are kept in the database but no longer shown. Events no longer have public pages.
 
 = 1.0.15 =
 New version with dynamic scaling and better visual delimitation. GPL-licensed for WordPress Plugin Directory.

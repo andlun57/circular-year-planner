@@ -3,9 +3,9 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Circular Year Planner 1.0.15\n"
-"Report-Msgid-Bugs-To: https://github.com/andlun57/year-planning\n"
-"POT-Creation-Date: 2025-10-17 10:46+0000\n"
+"Project-Id-Version: Planly 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/circular-year-planner\n"
+"POT-Creation-Date: 2026-10-12T19:55:12+00:00\n"
 "PO-Revision-Date: 2025-10-17 10:46+0000\n"
 "Last-Translator: Andreas Lundberg\n"
 "Language-Team: Swedish\n"
@@ -15,489 +15,727 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. Plugin Name of the plugin
+#: circular-year-planner.php includes/class-event-post-type.php:274
 msgid "Planly"
 msgstr "Planly"
 
-msgid "Events"
-msgstr "Händelser"
-
-msgid "Event"
-msgstr "Händelse"
-
-msgid "Add New"
-msgstr "Lägg till"
-
-msgid "Add New Event"
-msgstr "Lägg till händelse"
-
-msgid "New Event"
-msgstr "Ny händelse"
-
-msgid "Edit Event"
-msgstr "Redigera händelse"
-
-msgid "All Events"
-msgstr "Alla händelser"
-
-msgid "View Event"
-msgstr "Visa händelse"
-
-msgid "Search Events"
-msgstr "Sök händelser"
-
-msgid "No events found"
-msgstr "Inga händelser hittades"
-
-msgid "Event Details"
-msgstr "Händelsedetaljer"
-
-msgid "Start Date"
-msgstr "Startdatum"
-
-msgid "End Date"
-msgstr "Slutdatum"
-
-msgid "Event Type"
-msgstr "Händelsetyp"
-
-msgid "Fiscal Year"
-msgstr "Verksamhetsår"
-
-msgid "Settings"
-msgstr "Inställningar"
-
-msgid "Planly Settings"
-msgstr "Planly-inställningar"
-
-msgid "Event Types"
-msgstr "Händelsetyper"
-
-msgid "Add Event Type"
-msgstr "Lägg till händelsetyp"
-
-msgid "Name"
-msgstr "Namn"
-
-msgid "Color"
-msgstr "Färg"
-
-msgid "Remove"
-msgstr "Ta bort"
-
-msgid "Fiscal Year Start"
-msgstr "Verksamhetsår börjar"
-
-msgid "Select when the fiscal year starts"
-msgstr "Välj när verksamhetsåret börjar"
-
-msgid "January"
-msgstr "Januari"
-
-msgid "February"
-msgstr "Februari"
-
-msgid "March"
-msgstr "Mars"
-
-msgid "April"
-msgstr "April"
-
-msgid "May"
-msgstr "Maj"
-
-msgid "June"
-msgstr "Juni"
-
-msgid "July"
-msgstr "Juli"
-
-msgid "August"
-msgstr "Augusti"
-
-msgid "September"
-msgstr "September"
-
-msgid "October"
-msgstr "Oktober"
-
-msgid "November"
-msgstr "November"
-
-msgid "December"
-msgstr "December"
-
-msgid "Color Scheme"
-msgstr "Färgschema"
-
-msgid "Standard"
-msgstr "Standard"
-
-msgid "Light"
-msgstr "Ljus"
-
-msgid "Dark"
-msgstr "Mörk"
-
-msgid "Blue"
-msgstr "Blå"
-
-msgid "Green"
-msgstr "Grön"
-
-msgid "Save Settings"
-msgstr "Spara inställningar"
-
-msgid "Settings saved successfully"
-msgstr "Inställningar sparade"
-
-msgid "Loading calendar..."
-msgstr "Laddar kalender..."
-
-msgid "Close"
-msgstr "Stäng"
-
-msgid "Week"
-msgstr "Vecka"
-
-msgid "Type"
-msgstr "Typ"
-
-msgid "Date"
-msgstr "Datum"
-
-msgid "Display"
-msgstr "Visning"
-
-msgid "Whole week (for visibility)"
-msgstr "Hela veckan (för synlighet)"
-
-msgid "Description"
-msgstr "Beskrivning"
-
-msgid "Previous Year"
-msgstr "Föregående år"
-
-msgid "Next Year"
-msgstr "Nästa år"
-
-msgid "No events found in trash"
-msgstr "Inga händelser i papperskorgen"
-
-msgid "Program"
-msgstr "Program"
-
-msgid "Campaign"
-msgstr "Kampanj"
-
-msgid "Training"
-msgstr "Utbildning"
-
-msgid "Meeting"
-msgstr "Möte"
-
-msgid "Select event type"
-msgstr "Välj händelsetyp"
-
-msgid "(calculated automatically from start date)"
-msgstr "(beräknas automatiskt från startdatum)"
-
-msgid "Event type name"
-msgstr "Namn på händelsetyp"
-
-msgid "Define different types of events and their colors."
-msgstr "Definiera olika typer av händelser och deras färger."
-
-msgid "Background"
-msgstr "Bakgrund"
-
-msgid "Text"
-msgstr "Text"
-
-msgid "Auto"
-msgstr "Auto"
-
-msgid "Define different types of events and their colors. Leave text color empty for automatic contrast."
-msgstr "Definiera olika typer av händelser och deras färger. Lämna textfärg tom för automatisk kontrast."
-
-msgid "calendar year"
-msgstr "kalenderår"
-
-msgid "light"
-msgstr "Ljus"
-
-msgid "Choose color scheme for the circular calendar."
-msgstr "Välj färgschema..."
-
-msgid "How to Use"
-msgstr "Hur man använder"
-
-msgid "Shortcode"
-msgstr "Shortcode"
-
-msgid "Use the following shortcode to display the circular calendar:"
-msgstr "Använd följande shortcode för att visa den cirkulära kalendern:"
-
-msgid "Parameters"
-msgstr "Parametrar"
-
-msgid "Show specific fiscal year"
-msgstr "Visa specifikt verksamhetsår"
-
-msgid "Show only certain event types (by index)"
-msgstr "Visa endast vissa händelsetyper (index)"
-
-msgid "Unauthorized access"
-msgstr "Otillåten åtkomst"
-
-msgid "Security verification failed"
-msgstr "Säkerhetsverifiering misslyckades"
-
-msgid "Format: YYYY-MM-DD"
-msgstr "Format: ÅÅÅÅ-MM-DD"
-
-msgid "Format: YYYY-MM-DD (automatically set to start date if left empty)"
-msgstr "Format: ÅÅÅÅ-MM-DD (sätts automatiskt till startdatum om tomt)"
-
+#. Plugin URI of the plugin
+#: circular-year-planner.php
+msgid "https://github.com/andlun57/year-planning"
+msgstr ""
+
+#. Description of the plugin
+#: circular-year-planner.php
+msgid "A circular year planner to visualize fiscal years and events."
+msgstr "En cirkulär årsplanerare för att visualisera verksamhetsår och händelser."
+
+#. Author of the plugin
+#: circular-year-planner.php
+msgid "Anders Lundkvist"
+msgstr ""
+
+#. Author URI of the plugin
+#: circular-year-planner.php
+msgid "https://github.com/andlun57"
+msgstr ""
+
+#: circular-year-planner.php:156
 msgid "Jan"
 msgstr "Jan"
 
+#: circular-year-planner.php:157
 msgid "Feb"
 msgstr "Feb"
 
+#: circular-year-planner.php:158
 msgid "Mar"
 msgstr "Mar"
 
+#: circular-year-planner.php:159
 msgid "Apr"
 msgstr "Apr"
 
+#: circular-year-planner.php:160 circular-year-planner.php:174
+#: includes/class-settings.php:252
+msgid "May"
+msgstr "Maj"
+
+#: circular-year-planner.php:161
 msgid "Jun"
 msgstr "Jun"
 
+#: circular-year-planner.php:162
 msgid "Jul"
 msgstr "Jul"
 
+#: circular-year-planner.php:163
 msgid "Aug"
 msgstr "Aug"
 
+#: circular-year-planner.php:164
 msgid "Sep"
 msgstr "Sep"
 
+#: circular-year-planner.php:165
 msgid "Oct"
 msgstr "Okt"
 
+#: circular-year-planner.php:166
 msgid "Nov"
 msgstr "Nov"
 
+#: circular-year-planner.php:167
 msgid "Dec"
 msgstr "Dec"
 
+#: circular-year-planner.php:170 includes/class-settings.php:248
+msgid "January"
+msgstr "Januari"
+
+#: circular-year-planner.php:171 includes/class-settings.php:249
+msgid "February"
+msgstr "Februari"
+
+#: circular-year-planner.php:172 includes/class-settings.php:250
+msgid "March"
+msgstr "Mars"
+
+#: circular-year-planner.php:173 includes/class-settings.php:251
+msgid "April"
+msgstr "April"
+
+#: circular-year-planner.php:175 includes/class-settings.php:253
+msgid "June"
+msgstr "Juni"
+
+#: circular-year-planner.php:176 includes/class-settings.php:254
+msgid "July"
+msgstr "Juli"
+
+#: circular-year-planner.php:177 includes/class-settings.php:255
+msgid "August"
+msgstr "Augusti"
+
+#: circular-year-planner.php:178 includes/class-settings.php:256
+msgid "September"
+msgstr "September"
+
+#: circular-year-planner.php:179 includes/class-settings.php:257
+msgid "October"
+msgstr "Oktober"
+
+#: circular-year-planner.php:180 includes/class-settings.php:258
+msgid "November"
+msgstr "November"
+
+#: circular-year-planner.php:181 includes/class-settings.php:259
+msgid "December"
+msgstr "December"
+
+#: circular-year-planner.php:184
+msgid "Date"
+msgstr "Datum"
+
+#: circular-year-planner.php:185 includes/class-event-form.php:171
+#: includes/class-event-post-type.php:314
+msgid "Start Date"
+msgstr "Startdatum"
+
+#: circular-year-planner.php:186 includes/class-event-form.php:177
+#: includes/class-event-post-type.php:315
+msgid "End Date"
+msgstr "Slutdatum"
+
+#: circular-year-planner.php:187 includes/class-event-post-type.php:313
+msgid "Type"
+msgstr "Typ"
+
+#: circular-year-planner.php:188
+msgid "Fiscal Year"
+msgstr "Verksamhetsår"
+
+#: circular-year-planner.php:189
+msgid "Display"
+msgstr "Visning"
+
+#: circular-year-planner.php:190
+msgid "Whole week (for visibility)"
+msgstr "Hela veckan (för synlighet)"
+
+#. translators: Prefix for week numbers in the calendar, e.g. "W12"
+#: circular-year-planner.php:192
+msgctxt "week number prefix"
+msgid "W"
+msgstr "v"
+
+#: circular-year-planner.php:193 includes/class-event-post-type.php:316
+msgid "Repeats"
+msgstr "Upprepas"
+
+#: circular-year-planner.php:194
+msgid "Delete"
+msgstr "Radera"
+
+#: circular-year-planner.php:195
+msgid "Edit"
+msgstr "Redigera"
+
+#: circular-year-planner.php:196
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: circular-year-planner.php:197
+msgid "Do you want to delete this event?"
+msgstr "Vill du radera den här händelsen?"
+
+#: circular-year-planner.php:198
+msgid "Delete event"
+msgstr "Radera händelse"
+
+#: circular-year-planner.php:199
+msgid "This is a repeating event. Do you want to delete only this occurrence or all future occurrences?"
+msgstr "Det här är en återkommande händelse. Vill du radera bara den här förekomsten eller alla framtida förekomster?"
+
+#: circular-year-planner.php:200
+msgid "Only this occurrence"
+msgstr "Bara den här förekomsten"
+
+#: circular-year-planner.php:201
+msgid "All future occurrences"
+msgstr "Alla framtida förekomster"
+
+#: circular-year-planner.php:202 includes/class-rest-api.php:176
+msgid "The event could not be deleted."
+msgstr "Händelsen kunde inte raderas."
+
+#: circular-year-planner.php:232 includes/class-event-form.php:267
+msgid "The end date cannot be before the start date."
+msgstr "Slutdatum kan inte vara före startdatum."
+
+#: circular-year-planner.php:260 includes/class-settings.php:183
+#: includes/class-settings.php:205
+msgid "ID"
+msgstr "ID"
+
+#: circular-year-planner.php:261 includes/class-settings.php:187
+#: includes/class-settings.php:209
+msgid "Name"
+msgstr "Namn"
+
+#: circular-year-planner.php:262 includes/class-settings.php:188
+#: includes/class-settings.php:210
+msgid "Event type name"
+msgstr "Namn på händelsetyp"
+
+#: circular-year-planner.php:263 includes/class-settings.php:191
+#: includes/class-settings.php:213
+msgid "Background"
+msgstr "Bakgrund"
+
+#: circular-year-planner.php:264 includes/class-settings.php:195
+#: includes/class-settings.php:217
+msgid "Text"
+msgstr "Text"
+
+#: circular-year-planner.php:265 includes/class-settings.php:196
+#: includes/class-settings.php:218
+msgid "Auto"
+msgstr "Automatisk"
+
+#: circular-year-planner.php:266 includes/class-settings.php:198
+#: includes/class-settings.php:220
+msgid "Remove"
+msgstr "Ta bort"
+
+#: circular-year-planner.php:285
+msgid "Program"
+msgstr "Program"
+
+#: circular-year-planner.php:286
+msgid "Campaign"
+msgstr "Kampanj"
+
+#: circular-year-planner.php:287
+msgid "Training"
+msgstr "Utbildning"
+
+#: circular-year-planner.php:288
+msgid "Meeting"
+msgstr "Möte"
+
+#: includes/class-event-form.php:54 includes/class-event-form.php:55
+#: includes/class-event-form.php:148 includes/class-event-form.php:151
+#: includes/class-event-post-type.php:276
+msgid "Add New Event"
+msgstr "Lägg till ny händelse"
+
+#: includes/class-event-form.php:119
+msgid "Event not found."
+msgstr "Händelsen hittades inte."
+
+#: includes/class-event-form.php:122 includes/class-event-form.php:455
+msgid "Sorry, you are not allowed to edit this event."
+msgstr "Du har inte behörighet att redigera den här händelsen."
+
+#: includes/class-event-form.php:148 includes/class-event-post-type.php:277
+msgid "Edit Event"
+msgstr "Redigera händelse"
+
+#: includes/class-event-form.php:164
 msgid "Title"
 msgstr "Rubrik"
 
+#: includes/class-event-form.php:167
 msgid "Shown on the event in the calendar."
 msgstr "Visas på händelsen i kalendern."
 
+#: includes/class-event-form.php:180
 msgid "For single-day events, use the same date as the start date."
 msgstr "För endagshändelser anger du samma datum som startdatum."
 
+#: includes/class-event-form.php:184
+msgid "Event Type"
+msgstr "Händelsetyp"
+
+#: includes/class-event-form.php:187
+msgid "Select event type"
+msgstr "Välj händelsetyp"
+
+#: includes/class-event-form.php:197
 msgid "Repeat"
 msgstr "Upprepa"
 
+#: includes/class-event-form.php:200
 msgid "Never"
 msgstr "Aldrig"
 
+#: includes/class-event-form.php:201
 msgid "Daily"
 msgstr "Dagligen"
 
+#: includes/class-event-form.php:202
 msgid "Weekly"
 msgstr "Veckovis"
 
+#: includes/class-event-form.php:203
 msgid "Monthly"
 msgstr "Månadsvis"
 
+#: includes/class-event-form.php:204
 msgid "Yearly"
 msgstr "Årligen"
 
-msgid "Every %s day(s)"
-msgstr "Med intervall på %s dag"
-
-msgid "Every %s week(s) on:"
-msgstr "Med intervall på %s vecka på:"
-
-msgid "Every %s month(s)"
-msgstr "Med intervall på %s månad"
-
-msgid "Every %s year(s) in:"
-msgstr "Med intervall på %s år i:"
-
-msgid "Weekday"
-msgstr "Veckodag"
-
-msgid "Month"
-msgstr "Månad"
-
-msgid "Each"
-msgstr "Varje"
-
-msgid "On the"
-msgstr "Den"
-
-msgid "Day of month"
-msgstr "Dag i månaden"
-
-msgid "Position"
-msgstr "Position"
-
-msgid "Day"
-msgstr "Dag"
-
-msgid "first"
-msgstr "första"
-
-msgid "second"
-msgstr "andra"
-
-msgid "third"
-msgstr "tredje"
-
-msgid "fourth"
-msgstr "fjärde"
-
-msgid "fifth"
-msgstr "femte"
-
-msgid "second to last"
-msgstr "näst sista"
-
-msgid "last"
-msgstr "sista"
-
-msgid "day"
-msgstr "dag"
-
-msgid "weekday"
-msgstr "veckodag"
-
-msgid "weekend day"
-msgstr "veckoslutsdag"
-
+#. translators: %s: date of the last possible occurrence
+#: includes/class-event-form.php:223
+#, php-format
 msgid "The series ends on %s because future occurrences have been deleted."
 msgstr "Serien slutar %s eftersom framtida förekomster har raderats."
 
+#. translators: %d: number of deleted occurrences
+#: includes/class-event-form.php:234
+#, php-format
 msgid "%d occurrence has been deleted from the series."
 msgid_plural "%d occurrences have been deleted from the series."
 msgstr[0] "%d förekomst har raderats ur serien."
 msgstr[1] "%d förekomster har raderats ur serien."
 
+#: includes/class-event-form.php:242
 msgid "Restore the series (remove the end date and all deleted occurrences)"
 msgstr "Återställ serien (ta bort slutdatumet och alla raderade förekomster)"
 
+#: includes/class-event-form.php:251
 msgid "Save Event"
 msgstr "Spara händelse"
 
+#: includes/class-event-form.php:252
+msgid "All Events"
+msgstr "Alla händelser"
+
+#: includes/class-event-form.php:254
 msgid "Move to Trash"
 msgstr "Flytta till papperskorgen"
 
+#: includes/class-event-form.php:264
 msgid "Event saved."
 msgstr "Händelsen har sparats."
 
+#: includes/class-event-form.php:265
 msgid "Please enter a title."
 msgstr "Ange en rubrik."
 
+#: includes/class-event-form.php:266
 msgid "Please enter a valid start date."
 msgstr "Ange ett giltigt startdatum."
 
-msgid "The end date cannot be before the start date."
-msgstr "Slutdatum kan inte vara före startdatum."
-
+#: includes/class-event-form.php:268
 msgid "Please select an event type."
 msgstr "Välj en händelsetyp."
 
-msgid "Event not found."
-msgstr "Händelsen hittades inte."
+#. translators: %s: number input for the interval in days
+#: includes/class-event-form.php:336
+#, php-format
+msgid "Every %s day(s)"
+msgstr "Med intervall på %s dag"
 
-msgid "Sorry, you are not allowed to edit this event."
-msgstr "Du har inte behörighet att redigera den här händelsen."
+#. translators: %s: number input for the interval in weeks
+#: includes/class-event-form.php:343
+#, php-format
+msgid "Every %s week(s) on:"
+msgstr "Med intervall på %s vecka på:"
 
-msgid "Sorry, you are not allowed to delete this event."
-msgstr "Du har inte behörighet att radera den här händelsen."
+#: includes/class-event-form.php:345
+msgid "Weekday"
+msgstr "Veckodag"
 
+#. translators: %s: number input for the interval in months
+#: includes/class-event-form.php:362
+#, php-format
+msgid "Every %s month(s)"
+msgstr "Med intervall på %s månad"
+
+#: includes/class-event-form.php:367
+msgid "Each"
+msgstr "Varje"
+
+#: includes/class-event-form.php:369
+msgid "Day of month"
+msgstr "Dag i månaden"
+
+#: includes/class-event-form.php:378 includes/class-event-form.php:404
+msgid "On the"
+msgstr "Den"
+
+#. translators: %s: number input for the interval in years
+#: includes/class-event-form.php:391
+#, php-format
+msgid "Every %s year(s) in:"
+msgstr "Med intervall på %s år i:"
+
+#: includes/class-event-form.php:393
+msgid "Month"
+msgstr "Månad"
+
+#: includes/class-event-form.php:417
+msgid "Position"
+msgstr "Position"
+
+#: includes/class-event-form.php:426
+msgid "Day"
+msgstr "Dag"
+
+#: includes/class-event-form.php:447 includes/class-settings.php:313
+msgid "Security verification failed"
+msgstr "Säkerhetsverifiering misslyckades"
+
+#: includes/class-event-form.php:458 includes/class-settings.php:308
+msgid "Unauthorized access"
+msgstr "Obehörig åtkomst"
+
+#: includes/class-event-post-type.php:159
+msgid "Filter by date"
+msgstr "Filtrera efter datum"
+
+#: includes/class-event-post-type.php:161
+msgid "All dates"
+msgstr "Alla datum"
+
+#. translators: 1: Month name, 2: Year
+#: includes/class-event-post-type.php:168
+#, php-format
+msgid "%1$s %2$s"
+msgstr "%1$s %2$s"
+
+#: includes/class-event-post-type.php:236
+msgid "Filter by event type"
+msgstr "Filtrera efter händelsetyp"
+
+#: includes/class-event-post-type.php:238
+msgid "All event types"
+msgstr "Alla händelsetyper"
+
+#: includes/class-event-post-type.php:272
+msgid "Events"
+msgstr "Händelser"
+
+#: includes/class-event-post-type.php:273
+#: includes/class-event-post-type.php:312
+msgid "Event"
+msgstr "Händelse"
+
+#: includes/class-event-post-type.php:275
+msgid "Add New"
+msgstr "Lägg till ny"
+
+#: includes/class-event-post-type.php:278
+msgid "New Event"
+msgstr "Ny händelse"
+
+#: includes/class-event-post-type.php:279
+msgid "View Event"
+msgstr "Visa händelse"
+
+#: includes/class-event-post-type.php:280
+msgid "Search Events"
+msgstr "Sök händelser"
+
+#: includes/class-event-post-type.php:281
+msgid "No events found"
+msgstr "Inga händelser hittades"
+
+#: includes/class-event-post-type.php:282
+msgid "No events found in trash"
+msgstr "Inga händelser i papperskorgen"
+
+#: includes/class-recurrence.php:254
 msgid "The occurrence does not exist."
 msgstr "Förekomsten finns inte."
 
-msgid "Repeats"
-msgstr "Upprepas"
+#: includes/class-recurrence.php:435
+msgid "first"
+msgstr "första"
 
+#: includes/class-recurrence.php:436
+msgid "second"
+msgstr "andra"
+
+#: includes/class-recurrence.php:437
+msgid "third"
+msgstr "tredje"
+
+#: includes/class-recurrence.php:438
+msgid "fourth"
+msgstr "fjärde"
+
+#: includes/class-recurrence.php:439
+msgid "fifth"
+msgstr "femte"
+
+#: includes/class-recurrence.php:441
+msgid "second to last"
+msgstr "näst sista"
+
+#: includes/class-recurrence.php:442
+msgid "last"
+msgstr "sista"
+
+#: includes/class-recurrence.php:455
+msgid "day"
+msgstr "dag"
+
+#: includes/class-recurrence.php:456
+msgid "weekday"
+msgstr "veckodag"
+
+#: includes/class-recurrence.php:457
+msgid "weekend day"
+msgstr "veckoslutsdag"
+
+#: includes/class-recurrence.php:486
 msgid "Every day"
 msgstr "Varje dag"
 
+#. translators: %d: number of days between occurrences
+#: includes/class-recurrence.php:488
+#, php-format
 msgid "Every %d day"
 msgid_plural "Every %d days"
 msgstr[0] "Med intervall på %d dag"
 msgstr[1] "Med intervall på %d dagar"
 
+#: includes/class-recurrence.php:492
 msgid "Every week"
 msgstr "Varje vecka"
 
+#. translators: %d: number of weeks between occurrences
+#: includes/class-recurrence.php:494
+#, php-format
 msgid "Every %d week"
 msgid_plural "Every %d weeks"
 msgstr[0] "Med intervall på %d vecka"
 msgstr[1] "Med intervall på %d veckor"
 
+#. translators: 1: frequency such as "Every 2 weeks", 2: weekday name
+#. translators: 1: frequency such as "Every 2 months", 2: position such as "the first Monday"
+#: includes/class-recurrence.php:496 includes/class-recurrence.php:505
+#, php-format
+msgid "%1$s on %2$s"
+msgstr "%1$s på %2$s"
+
+#: includes/class-recurrence.php:500
 msgid "Every month"
 msgstr "Varje månad"
 
+#. translators: %d: number of months between occurrences
+#: includes/class-recurrence.php:502
+#, php-format
 msgid "Every %d month"
 msgid_plural "Every %d months"
 msgstr[0] "Med intervall på %d månad"
 msgstr[1] "Med intervall på %d månader"
 
+#. translators: 1: frequency such as "Every 2 months", 2: day of month
+#: includes/class-recurrence.php:508
+#, php-format
+msgid "%1$s on day %2$d"
+msgstr "%1$s den %2$d"
+
+#: includes/class-recurrence.php:512
 msgid "Every year"
 msgstr "Varje år"
 
+#. translators: %d: number of years between occurrences
+#: includes/class-recurrence.php:514
+#, php-format
 msgid "Every %d year"
 msgid_plural "Every %d years"
 msgstr[0] "Med intervall på %d år"
 msgstr[1] "Med intervall på %d år"
 
-msgid "%1$s on %2$s"
-msgstr "%1$s på %2$s"
-
-msgid "%1$s on day %2$d"
-msgstr "%1$s den %2$d"
-
+#. translators: 1: frequency such as "Every 2 years", 2: month name, 3: position such as "the first Monday"
+#: includes/class-recurrence.php:518
+#, php-format
 msgid "%1$s in %2$s on %3$s"
 msgstr "%1$s i %2$s på %3$s"
 
+#. translators: 1: frequency such as "Every 2 years", 2: month name
+#: includes/class-recurrence.php:521
+#, php-format
 msgid "%1$s in %2$s"
 msgstr "%1$s i %2$s"
 
+#. translators: 1: ordinal such as "first" or "last", 2: day such as "Monday" or "weekday"
+#: includes/class-recurrence.php:533
+#, php-format
 msgid "the %1$s %2$s"
 msgstr "den %1$s %2$sen"
 
-msgid "Delete"
-msgstr "Radera"
+#: includes/class-rest-api.php:173
+msgid "Sorry, you are not allowed to delete this event."
+msgstr "Du har inte behörighet att radera den här händelsen."
 
-msgid "Edit"
-msgstr "Redigera"
+#: includes/class-settings.php:33 includes/class-settings.php:147
+msgid "Planly Settings"
+msgstr "Planly-inställningar"
 
-msgid "Cancel"
-msgstr "Avbryt"
+#: includes/class-settings.php:34
+msgid "Settings"
+msgstr "Inställningar"
 
-msgid "Do you want to delete this event?"
-msgstr "Vill du radera den här händelsen?"
+#: includes/class-settings.php:151
+msgid "Settings saved successfully"
+msgstr "Inställningarna har sparats"
 
-msgid "Delete event"
-msgstr "Radera händelse"
+#. translators: %s: Comma-separated list of event type names
+#: includes/class-settings.php:161
+#, php-format
+msgid "These event types were not removed because events use them: %s. Delete all events of a type before removing it."
+msgstr "Följande händelsetyper togs inte bort eftersom händelser använder dem: %s. Ta bort alla händelser av en typ innan du tar bort typen."
 
-msgid "This is a repeating event. Do you want to delete only this occurrence or all future occurrences?"
-msgstr "Det här är en återkommande händelse. Vill du radera bara den här förekomsten eller alla framtida förekomster?"
+#: includes/class-settings.php:176
+msgid "Event Types"
+msgstr "Händelsetyper"
 
-msgid "Only this occurrence"
-msgstr "Bara den här förekomsten"
+#. translators: %d: Number of events
+#: includes/class-settings.php:226
+#, php-format
+msgid "This event type cannot be removed because %d event uses it. Delete all events of this type first."
+msgid_plural "This event type cannot be removed because %d events use it. Delete all events of this type first."
+msgstr[0] "Händelsetypen kan inte tas bort eftersom %d händelse använder den. Ta först bort alla händelser av den här typen."
+msgstr[1] "Händelsetypen kan inte tas bort eftersom %d händelser använder den. Ta först bort alla händelser av den här typen."
 
-msgid "All future occurrences"
-msgstr "Alla framtida förekomster"
+#: includes/class-settings.php:230
+msgid "Show events"
+msgstr "Visa händelser"
 
-msgid "The event could not be deleted."
-msgstr "Händelsen kunde inte raderas."
+#: includes/class-settings.php:237
+msgid "Add Event Type"
+msgstr "Lägg till händelsetyp"
+
+#: includes/class-settings.php:238
+msgid "Define different types of events and their colors. Leave text color empty for automatic contrast."
+msgstr "Definiera olika typer av händelser och deras färger. Lämna textfärg tom för automatisk kontrast."
+
+#: includes/class-settings.php:244
+msgid "Fiscal Year Start"
+msgstr "Verksamhetsåret börjar"
+
+#: includes/class-settings.php:248
+msgid "calendar year"
+msgstr "kalenderår"
+
+#: includes/class-settings.php:261
+msgid "Select when the fiscal year starts"
+msgstr "Välj när verksamhetsåret börjar"
+
+#: includes/class-settings.php:267
+msgid "Color Scheme"
+msgstr "Färgschema"
+
+#: includes/class-settings.php:271
+msgid "Standard"
+msgstr "Standard"
+
+#: includes/class-settings.php:271
+msgid "Light"
+msgstr "Ljus"
+
+#: includes/class-settings.php:272
+msgid "Dark"
+msgstr "Mörk"
+
+#: includes/class-settings.php:273
+msgid "Blue"
+msgstr "Blå"
+
+#: includes/class-settings.php:274
+msgid "Green"
+msgstr "Grön"
+
+#: includes/class-settings.php:276
+msgid "Choose color scheme for the circular calendar."
+msgstr "Välj färgschema för den cirkulära kalendern."
+
+#: includes/class-settings.php:281
+msgid "Save Settings"
+msgstr "Spara inställningar"
+
+#: includes/class-settings.php:286
+msgid "How to Use"
+msgstr "Hur man använder"
+
+#: includes/class-settings.php:288
+msgid "Shortcode"
+msgstr "Kortkod"
+
+#: includes/class-settings.php:289
+msgid "Use the following shortcode to display the circular calendar:"
+msgstr "Använd följande kortkod för att visa den cirkulära kalendern:"
+
+#: includes/class-settings.php:292
+msgid "Parameters"
+msgstr "Parametrar"
+
+#: includes/class-settings.php:294
+msgid "Show specific fiscal year"
+msgstr "Visa specifikt verksamhetsår"
+
+#: includes/class-settings.php:295
+msgid "Show only certain event types (by ID)"
+msgstr "Visa endast vissa händelsetyper (per ID)"
+
+#: includes/class-shortcode.php:56
+msgid "Previous Year"
+msgstr "Föregående år"
+
+#: includes/class-shortcode.php:58
+msgid "Next Year"
+msgstr "Nästa år"
+
+#: includes/class-shortcode.php:65
+msgid "Close"
+msgstr "Stäng"
+
+#: includes/class-shortcode.php:68
+msgid "Loading calendar..."
+msgstr "Laddar kalender..."

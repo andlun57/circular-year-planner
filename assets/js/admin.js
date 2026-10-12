@@ -6,12 +6,17 @@ jQuery(document).ready(function($) {
     'use strict';
     
     // Settings page functionality
+    // Nya typer får sitt id när inställningarna sparas; fram till dess en tillfällig nyckel
+    var newTypeCounter = $('#cyp-event-types .cyp-event-type-row').length;
+    
     // Lägg till händelsetyp
     $('#cyp-add-event-type').on('click', function() {
-        var index = $('#cyp-event-types .cyp-event-type-row').length;
+        var index = 'new-' + newTypeCounter++;
         
         // Get translations from localized data
         var i18n = (typeof cyplAdmin !== 'undefined' && cyplAdmin.i18n) ? cyplAdmin.i18n : {
+            id: 'ID',
+            name: 'Name',
             eventTypeName: 'Event type name',
             background: 'Background',
             text: 'Text',
@@ -20,8 +25,12 @@ jQuery(document).ready(function($) {
         };
         
         var html = '<div class="cyp-event-type-row">' +
+            '<div class="cyp-type-index">' +
+            '<span class="cyp-color-label">' + i18n.id + '</span>' +
+            '<span class="cyp-type-index-value">–</span>' +
+            '</div>' +
             '<div class="regular-text-container">' +
-            '<label class="cyp-color-label">' + 'Name' + '</label>' +
+            '<label class="cyp-color-label">' + i18n.name + '</label>' +
             '<input type="text" name="cypl_event_types[' + index + '][name]" placeholder="' + i18n.eventTypeName + '" class="regular-text">' +
             '</div>' +
             '<div class="cyp-color-picker-group">' +
@@ -42,7 +51,12 @@ jQuery(document).ready(function($) {
     
     // Ta bort händelsetyp
     $(document).on('click', '.cyp-remove-type', function() {
-        $(this).closest('.cyp-event-type-row').remove();
+        var row = $(this).closest('.cyp-event-type-row');
+        if (parseInt(row.data('event-count'), 10) > 0) {
+            row.find('.cyp-type-in-use-notice').prop('hidden', false);
+            return;
+        }
+        row.remove();
     });
     
     // Initiera color pickers

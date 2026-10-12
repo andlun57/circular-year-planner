@@ -336,7 +336,8 @@
                         'text-anchor': 'middle',
                         'dominant-baseline': 'middle'
                     });
-                    text.text('v' + week.weekNumber);
+                    const weekPrefix = (cyplData.i18n && cyplData.i18n.weekPrefix) || 'W';
+                    text.text(weekPrefix + week.weekNumber);
                     g.append(text);
                 }
             });
@@ -372,7 +373,7 @@
                 
                 // Filtrera händelser för denna typ
                 const typeEvents = this.events.filter(event => {
-                    return parseInt(event.event_type) === index;
+                    return parseInt(event.event_type, 10) === type.id;
                 });
                 
                 // Gruppera händelser per vecka och stapla dem radiellt

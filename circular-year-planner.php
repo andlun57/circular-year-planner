@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Planly
  * Plugin URI: https://github.com/andlun57/year-planning
- * Description: En cirkulär årsplanerare för att visualisera verksamhetsår och händelser
- * Version: 1.2.1
+ * Description: A circular year planner to visualize fiscal years and events.
+ * Version: 2.0.0
  * Author: Anders Lundkvist
  * Author URI: https://github.com/andlun57
  * License: GPL v2 or later
@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Plugin-konstanter
-define('CYPL_VERSION', '1.2.1');
+define('CYPL_VERSION', '2.0.0');
 define('CYPL_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('CYPL_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('CYPL_PLUGIN_FILE', __FILE__);
@@ -70,6 +70,9 @@ class Circular_Year_Planner {
      */
     private function init_hooks() {
         add_action('plugins_loaded', array($this, 'init'));
+        add_action('init', array($this, 'load_translations'), 0);
+        add_action('change_locale', array($this, 'load_translations'));
+        add_action('init', array($this, 'maybe_upgrade'), 99);
         add_action('wp_enqueue_scripts', array($this, 'enqueue_frontend_assets'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_assets'));
         
@@ -88,6 +91,41 @@ class Circular_Year_Planner {
         CYPL_Settings::get_instance();
         CYPL_REST_API::get_instance();
         CYPL_Shortcode::get_instance();
+    }
+    
+    /**
+     * Kör uppgraderingssteg en gång när pluginversionen ändras
+     */
+    public function maybe_upgrade() {
+        if (get_option('cypl_version') === CYPL_VERSION) {
+            return;
+        }
+        
+        flush_rewrite_rules();
+        update_option('cypl_version', CYPL_VERSION);
+    }
+    
+    /**
+     * Ladda översättningar
+     *
+     * De medföljande filerna laddas först och har företräde, så att pluginets
+     * terminologi (t.ex. "verksamhetsår") gäller. Språkpaketet från
+     * translate.wordpress.org fyller i övriga strängar och språk.
+     */
+    public function load_translations() {
+        $domain = 'circular-year-planner';
+        $locale = determine_locale();
+        $directories = array(
+            CYPL_PLUGIN_DIR . 'languages/',
+            WP_LANG_DIR . '/plugins/',
+        );
+        
+        foreach ($directories as $directory) {
+            $mofile = $directory . $domain . '-' . $locale . '.mo';
+            if (is_readable($mofile) || is_readable(substr($mofile, 0, -3) . '.l10n.php')) {
+                load_textdomain($domain, $mofile, $locale);
+            }
+        }
     }
     
     /**
@@ -150,6 +188,8 @@ class Circular_Year_Planner {
                 'fiscalYear' => __('Fiscal Year', 'circular-year-planner'),
                 'display' => __('Display', 'circular-year-planner'),
                 'wholeWeek' => __('Whole week (for visibility)', 'circular-year-planner'),
+                /* translators: Prefix for week numbers in the calendar, e.g. "W12" */
+                'weekPrefix' => _x('W', 'week number prefix', 'circular-year-planner'),
                 'repeats' => __('Repeats', 'circular-year-planner'),
                 'delete' => __('Delete', 'circular-year-planner'),
                 'edit' => __('Edit', 'circular-year-planner'),
@@ -217,6 +257,8 @@ class Circular_Year_Planner {
             // Skicka översättningar till JavaScript
             wp_localize_script('cypl-admin', 'cyplAdmin', array(
                 'i18n' => array(
+                    'id' => __('ID', 'circular-year-planner'),
+                    'name' => __('Name', 'circular-year-planner'),
                     'eventTypeName' => __('Event type name', 'circular-year-planner'),
                     'background' => __('Background', 'circular-year-planner'),
                     'text' => __('Text', 'circular-year-planner'),

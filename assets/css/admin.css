@@ -137,6 +137,51 @@
     margin-top: 0;
 }
 
+.cypl-instructions h3:not(:first-child) {
+    margin-top: 1.5em;
+}
+
+.cyp-type-index {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    min-width: 36px;
+}
+
+.cyp-event-type-row {
+    flex-wrap: wrap;
+}
+
+/* Samma höjd som färgväljarnas knappar */
+.cyp-event-type-row input.regular-text,
+.cyp-event-type-row .button.cyp-remove-type {
+    min-height: 32px;
+    height: 32px;
+}
+
+.cyp-event-type-row .button.cyp-remove-type {
+    line-height: 30px;
+    padding: 0 12px;
+}
+
+.cyp-type-in-use-notice {
+    flex-basis: 100%;
+    margin: 0;
+    padding: 6px 10px;
+    border-left: 4px solid #d63638;
+    background: #fcf0f1;
+}
+
+.cyp-type-in-use-notice[hidden] {
+    display: none;
+}
+
+.cyp-type-index-value {
+    font-weight: 600;
+    line-height: 30px;
+}
+
 .cypl-instructions code {
     background: #fff;
     padding: 2px 6px;

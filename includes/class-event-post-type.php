@@ -24,6 +24,244 @@ class CYPL_Event_Post_Type {
         add_action('manage_cypl_event_posts_custom_column', array($this, 'custom_column_content'), 10, 2);
         add_filter('manage_edit-cypl_event_sortable_columns', array($this, 'set_sortable_columns'));
         add_action('pre_get_posts', array($this, 'handle_custom_column_sorting'));
+        add_action('restrict_manage_posts', array($this, 'render_event_type_filter'));
+        add_action('pre_get_posts', array($this, 'handle_event_type_filter'));
+        add_filter('disable_months_dropdown', array($this, 'disable_core_months_dropdown'), 10, 2);
+        add_action('restrict_manage_posts', array($this, 'render_period_filter'), 5);
+        add_action('pre_get_posts', array($this, 'handle_period_filter'));
+        add_filter('post_row_actions', array($this, 'filter_row_actions'), 10, 2);
+        add_filter('bulk_actions-edit-cypl_event', array($this, 'filter_bulk_actions'));
+    }
+    
+    /**
+     * Snabbredigering ändrar bara inläggsfält som händelser inte använder
+     */
+    public function filter_row_actions($actions, $post) {
+        if ('cypl_event' === $post->post_type) {
+            unset($actions['inline hide-if-no-js']);
+        }
+        
+        return $actions;
+    }
+    
+    public function filter_bulk_actions($actions) {
+        unset($actions['edit']);
+        
+        return $actions;
+    }
+    
+    /**
+     * Månader (YYYY-MM) per händelse, cachad per anrop
+     *
+     * @var array|null
+     */
+    private $event_months = null;
+    
+    /**
+     * WordPress inbyggda datumfilter utgår från publiceringsdatum, inte händelsens datum
+     */
+    public function disable_core_months_dropdown($disable, $post_type) {
+        return 'cypl_event' === $post_type ? true : $disable;
+    }
+    
+    /**
+     * Hämta valt period-filter (YYYY eller YYYY-MM) från URL:en, eller null om inget är valt
+     */
+    private function get_period_filter() {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Filtrering i listvy, ändrar inget.
+        $period = isset($_GET['cypl_period']) ? sanitize_text_field(wp_unslash($_GET['cypl_period'])) : '';
+        
+        return preg_match('/^\d{4}(-(0[1-9]|1[0-2]))?$/', $period) ? $period : null;
+    }
+    
+    /**
+     * Månader (YYYY-MM) då varje händelse pågår, indexerat på post-ID
+     *
+     * Återkommande serier slutar aldrig, så deras förekomster räknas fram till
+     * slutet av nästa verksamhetsår.
+     */
+    private function get_event_months() {
+        if (null !== $this->event_months) {
+            return $this->event_months;
+        }
+        
+        $this->event_months = array();
+        $current = CYPL_Recurrence::get_current_fiscal_year_range();
+        $horizon = $current[1]->modify('+1 year');
+        
+        $post_ids = get_posts(array(
+            'post_type' => 'cypl_event',
+            'post_status' => array('publish', 'pending', 'draft', 'future', 'private', 'trash'),
+            'numberposts' => -1,
+            'fields' => 'ids',
+            'no_found_rows' => true,
+        ));
+        
+        foreach ($post_ids as $post_id) {
+            $start = CYPL_Recurrence::parse_date(get_post_meta($post_id, '_cypl_start_date', true));
+            if (!$start) {
+                continue;
+            }
+            
+            $end = CYPL_Recurrence::parse_date(get_post_meta($post_id, '_cypl_end_date', true));
+            $duration = ($end && $end > $start) ? CYPL_Recurrence::days_between($start, $end) : 0;
+            
+            if (CYPL_Recurrence::get_rule($post_id)) {
+                $occurrences = CYPL_Recurrence::get_occurrence_dates($post_id, $start, $horizon);
+            } else {
+                $occurrences = array($start->format('Y-m-d'));
+            }
+            
+            $months = array();
+            foreach ($occurrences as $occurrence) {
+                $month = CYPL_Recurrence::parse_date($occurrence)->modify('first day of this month');
+                $last = CYPL_Recurrence::parse_date($occurrence)->modify('+' . $duration . ' days');
+                while ($month <= $last) {
+                    $months[$month->format('Y-m')] = true;
+                    $month = $month->modify('+1 month');
+                }
+            }
+            
+            $this->event_months[$post_id] = array_keys($months);
+        }
+        
+        return $this->event_months;
+    }
+    
+    /**
+     * Visa filter för år och månad ovanför listan
+     */
+    public function render_period_filter($post_type) {
+        global $wp_locale;
+        
+        if ('cypl_event' !== $post_type) {
+            return;
+        }
+        
+        $all_months = array();
+        foreach ($this->get_event_months() as $months) {
+            $all_months = array_merge($all_months, $months);
+        }
+        $all_months = array_unique($all_months);
+        sort($all_months);
+        
+        if (empty($all_months)) {
+            return;
+        }
+        
+        $years = array();
+        foreach ($all_months as $month) {
+            $years[substr($month, 0, 4)][] = $month;
+        }
+        
+        $selected = $this->get_period_filter();
+        ?>
+        <label for="cypl-filter-period" class="screen-reader-text"><?php esc_html_e('Filter by date', 'circular-year-planner'); ?></label>
+        <select name="cypl_period" id="cypl-filter-period">
+            <option value=""><?php esc_html_e('All dates', 'circular-year-planner'); ?></option>
+            <?php foreach ($years as $year => $months) : ?>
+                <option value="<?php echo esc_attr($year); ?>" <?php selected($selected, (string) $year); ?>><?php echo esc_html($year); ?></option>
+                <?php foreach ($months as $month) : ?>
+                    <option value="<?php echo esc_attr($month); ?>" <?php selected($selected, $month); ?>>
+                        <?php
+                        /* translators: 1: Month name, 2: Year */
+                        echo '&nbsp;&nbsp;&nbsp;' . esc_html(sprintf(__('%1$s %2$s', 'circular-year-planner'), $wp_locale->get_month(substr($month, 5, 2)), $year));
+                        ?>
+                    </option>
+                <?php endforeach; ?>
+            <?php endforeach; ?>
+        </select>
+        <?php
+    }
+    
+    /**
+     * Filtrera adminlistan på år eller månad då händelsen pågår
+     */
+    public function handle_period_filter($query) {
+        if (!is_admin() || !$query->is_main_query() || $query->get('post_type') !== 'cypl_event') {
+            return;
+        }
+        
+        $period = $this->get_period_filter();
+        if (null === $period) {
+            return;
+        }
+        
+        $matching = array();
+        foreach ($this->get_event_months() as $post_id => $months) {
+            foreach ($months as $month) {
+                if (0 === strpos($month, $period)) {
+                    $matching[] = $post_id;
+                    break;
+                }
+            }
+        }
+        
+        $post_in = $query->get('post__in');
+        if (!empty($post_in)) {
+            $matching = array_intersect($matching, array_map('intval', $post_in));
+        }
+        
+        $query->set('post__in', !empty($matching) ? array_values($matching) : array(0));
+    }
+    
+    /**
+     * Hämta valt händelsetypsfilter från URL:en, eller null om inget är valt
+     */
+    private function get_event_type_filter() {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Filtrering i listvy, ändrar inget.
+        if (!isset($_GET['cypl_event_type']) || '' === $_GET['cypl_event_type']) {
+            return null;
+        }
+        
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Filtrering i listvy, ändrar inget.
+        return absint(wp_unslash($_GET['cypl_event_type']));
+    }
+    
+    /**
+     * Visa filter för händelsetyp ovanför listan
+     */
+    public function render_event_type_filter($post_type) {
+        if ('cypl_event' !== $post_type) {
+            return;
+        }
+        
+        $event_types = get_option('cypl_event_types', array());
+        if (empty($event_types)) {
+            return;
+        }
+        
+        $selected = $this->get_event_type_filter();
+        ?>
+        <label for="cypl-filter-event-type" class="screen-reader-text"><?php esc_html_e('Filter by event type', 'circular-year-planner'); ?></label>
+        <select name="cypl_event_type" id="cypl-filter-event-type">
+            <option value=""><?php esc_html_e('All event types', 'circular-year-planner'); ?></option>
+            <?php foreach ($event_types as $index => $type) : ?>
+                <option value="<?php echo esc_attr($index); ?>" <?php selected($selected, (int) $index); ?>><?php echo esc_html($type['name']); ?></option>
+            <?php endforeach; ?>
+        </select>
+        <?php
+    }
+    
+    /**
+     * Filtrera adminlistan på händelsetyp
+     */
+    public function handle_event_type_filter($query) {
+        if (!is_admin() || !$query->is_main_query() || $query->get('post_type') !== 'cypl_event') {
+            return;
+        }
+        
+        $selected = $this->get_event_type_filter();
+        if (null === $selected) {
+            return;
+        }
+        
+        $meta_query = (array) $query->get('meta_query');
+        $meta_query[] = array(
+            'key' => '_cypl_event_type',
+            'value' => (string) $selected,
+        );
+        $query->set('meta_query', $meta_query);
     }
     
     /**
@@ -46,16 +284,20 @@ class CYPL_Event_Post_Type {
         
         $args = array(
             'labels' => $labels,
-            'public' => true,
+            'public' => false,
             'has_archive' => false,
-            'publicly_queryable' => true,
+            'publicly_queryable' => false,
+            'exclude_from_search' => true,
             'show_ui' => true,
             'show_in_menu' => true,
+            'show_in_nav_menus' => false,
+            'show_in_admin_bar' => true,
             'show_in_rest' => true,
             'menu_icon' => 'dashicons-calendar-alt',
             'supports' => array('title'),
             'capability_type' => 'post',
-            'rewrite' => array('slug' => 'event'),
+            'rewrite' => false,
+            'query_var' => false,
         );
         
         register_post_type('cypl_event', $args);
@@ -72,7 +314,6 @@ class CYPL_Event_Post_Type {
         $new_columns['start_date'] = __('Start Date', 'circular-year-planner');
         $new_columns['end_date'] = __('End Date', 'circular-year-planner');
         $new_columns['recurrence'] = __('Repeats', 'circular-year-planner');
-        $new_columns['date'] = $columns['date'];
         
         return $new_columns;
     }
