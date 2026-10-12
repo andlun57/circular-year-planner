@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-12T19:50:27+00:00\n"
+"POT-Creation-Date: 2026-10-12T19:55:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: circular-year-planner\n"
@@ -58,7 +58,7 @@ msgstr ""
 
 #: circular-year-planner.php:160
 #: circular-year-planner.php:174
-#: includes/class-settings.php:193
+#: includes/class-settings.php:252
 msgid "May"
 msgstr ""
 
@@ -91,57 +91,57 @@ msgid "Dec"
 msgstr ""
 
 #: circular-year-planner.php:170
-#: includes/class-settings.php:189
+#: includes/class-settings.php:248
 msgid "January"
 msgstr ""
 
 #: circular-year-planner.php:171
-#: includes/class-settings.php:190
+#: includes/class-settings.php:249
 msgid "February"
 msgstr ""
 
 #: circular-year-planner.php:172
-#: includes/class-settings.php:191
+#: includes/class-settings.php:250
 msgid "March"
 msgstr ""
 
 #: circular-year-planner.php:173
-#: includes/class-settings.php:192
+#: includes/class-settings.php:251
 msgid "April"
 msgstr ""
 
 #: circular-year-planner.php:175
-#: includes/class-settings.php:194
+#: includes/class-settings.php:253
 msgid "June"
 msgstr ""
 
 #: circular-year-planner.php:176
-#: includes/class-settings.php:195
+#: includes/class-settings.php:254
 msgid "July"
 msgstr ""
 
 #: circular-year-planner.php:177
-#: includes/class-settings.php:196
+#: includes/class-settings.php:255
 msgid "August"
 msgstr ""
 
 #: circular-year-planner.php:178
-#: includes/class-settings.php:197
+#: includes/class-settings.php:256
 msgid "September"
 msgstr ""
 
 #: circular-year-planner.php:179
-#: includes/class-settings.php:198
+#: includes/class-settings.php:257
 msgid "October"
 msgstr ""
 
 #: circular-year-planner.php:180
-#: includes/class-settings.php:199
+#: includes/class-settings.php:258
 msgid "November"
 msgstr ""
 
 #: circular-year-planner.php:181
-#: includes/class-settings.php:200
+#: includes/class-settings.php:259
 msgid "December"
 msgstr ""
 
@@ -232,44 +232,44 @@ msgid "The end date cannot be before the start date."
 msgstr ""
 
 #: circular-year-planner.php:260
-#: includes/class-settings.php:137
-#: includes/class-settings.php:158
+#: includes/class-settings.php:183
+#: includes/class-settings.php:205
 msgid "ID"
 msgstr ""
 
 #: circular-year-planner.php:261
-#: includes/class-settings.php:141
-#: includes/class-settings.php:162
+#: includes/class-settings.php:187
+#: includes/class-settings.php:209
 msgid "Name"
 msgstr ""
 
 #: circular-year-planner.php:262
-#: includes/class-settings.php:142
-#: includes/class-settings.php:163
+#: includes/class-settings.php:188
+#: includes/class-settings.php:210
 msgid "Event type name"
 msgstr ""
 
 #: circular-year-planner.php:263
-#: includes/class-settings.php:145
-#: includes/class-settings.php:166
+#: includes/class-settings.php:191
+#: includes/class-settings.php:213
 msgid "Background"
 msgstr ""
 
 #: circular-year-planner.php:264
-#: includes/class-settings.php:149
-#: includes/class-settings.php:170
+#: includes/class-settings.php:195
+#: includes/class-settings.php:217
 msgid "Text"
 msgstr ""
 
 #: circular-year-planner.php:265
-#: includes/class-settings.php:150
-#: includes/class-settings.php:171
+#: includes/class-settings.php:196
+#: includes/class-settings.php:218
 msgid "Auto"
 msgstr ""
 
 #: circular-year-planner.php:266
-#: includes/class-settings.php:152
-#: includes/class-settings.php:173
+#: includes/class-settings.php:198
+#: includes/class-settings.php:220
 msgid "Remove"
 msgstr ""
 
@@ -455,12 +455,12 @@ msgid "Day"
 msgstr ""
 
 #: includes/class-event-form.php:447
-#: includes/class-settings.php:254
+#: includes/class-settings.php:313
 msgid "Security verification failed"
 msgstr ""
 
 #: includes/class-event-form.php:458
-#: includes/class-settings.php:249
+#: includes/class-settings.php:308
 msgid "Unauthorized access"
 msgstr ""
 
@@ -648,7 +648,7 @@ msgid "Sorry, you are not allowed to delete this event."
 msgstr ""
 
 #: includes/class-settings.php:33
-#: includes/class-settings.php:115
+#: includes/class-settings.php:147
 msgid "Planly Settings"
 msgstr ""
 
@@ -656,87 +656,105 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: includes/class-settings.php:119
+#: includes/class-settings.php:151
 msgid "Settings saved successfully"
 msgstr ""
 
-#: includes/class-settings.php:130
+#. translators: %s: Comma-separated list of event type names
+#: includes/class-settings.php:161
+#, php-format
+msgid "These event types were not removed because events use them: %s. Delete all events of a type before removing it."
+msgstr ""
+
+#: includes/class-settings.php:176
 msgid "Event Types"
 msgstr ""
 
-#: includes/class-settings.php:178
+#. translators: %d: Number of events
+#: includes/class-settings.php:226
+#, php-format
+msgid "This event type cannot be removed because %d event uses it. Delete all events of this type first."
+msgid_plural "This event type cannot be removed because %d events use it. Delete all events of this type first."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-settings.php:230
+msgid "Show events"
+msgstr ""
+
+#: includes/class-settings.php:237
 msgid "Add Event Type"
 msgstr ""
 
-#: includes/class-settings.php:179
+#: includes/class-settings.php:238
 msgid "Define different types of events and their colors. Leave text color empty for automatic contrast."
 msgstr ""
 
-#: includes/class-settings.php:185
+#: includes/class-settings.php:244
 msgid "Fiscal Year Start"
 msgstr ""
 
-#: includes/class-settings.php:189
+#: includes/class-settings.php:248
 msgid "calendar year"
 msgstr ""
 
-#: includes/class-settings.php:202
+#: includes/class-settings.php:261
 msgid "Select when the fiscal year starts"
 msgstr ""
 
-#: includes/class-settings.php:208
+#: includes/class-settings.php:267
 msgid "Color Scheme"
 msgstr ""
 
-#: includes/class-settings.php:212
+#: includes/class-settings.php:271
 msgid "Standard"
 msgstr ""
 
-#: includes/class-settings.php:212
+#: includes/class-settings.php:271
 msgid "Light"
 msgstr ""
 
-#: includes/class-settings.php:213
+#: includes/class-settings.php:272
 msgid "Dark"
 msgstr ""
 
-#: includes/class-settings.php:214
+#: includes/class-settings.php:273
 msgid "Blue"
 msgstr ""
 
-#: includes/class-settings.php:215
+#: includes/class-settings.php:274
 msgid "Green"
 msgstr ""
 
-#: includes/class-settings.php:217
+#: includes/class-settings.php:276
 msgid "Choose color scheme for the circular calendar."
 msgstr ""
 
-#: includes/class-settings.php:222
+#: includes/class-settings.php:281
 msgid "Save Settings"
 msgstr ""
 
-#: includes/class-settings.php:227
+#: includes/class-settings.php:286
 msgid "How to Use"
 msgstr ""
 
-#: includes/class-settings.php:229
+#: includes/class-settings.php:288
 msgid "Shortcode"
 msgstr ""
 
-#: includes/class-settings.php:230
+#: includes/class-settings.php:289
 msgid "Use the following shortcode to display the circular calendar:"
 msgstr ""
 
-#: includes/class-settings.php:233
+#: includes/class-settings.php:292
 msgid "Parameters"
 msgstr ""
 
-#: includes/class-settings.php:235
+#: includes/class-settings.php:294
 msgid "Show specific fiscal year"
 msgstr ""
 
-#: includes/class-settings.php:236
+#: includes/class-settings.php:295
 msgid "Show only certain event types (by ID)"
 msgstr ""
 

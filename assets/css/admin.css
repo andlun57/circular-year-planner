@@ -149,6 +149,22 @@
     min-width: 36px;
 }
 
+.cyp-event-type-row {
+    flex-wrap: wrap;
+}
+
+.cyp-type-in-use-notice {
+    flex-basis: 100%;
+    margin: 0;
+    padding: 6px 10px;
+    border-left: 4px solid #d63638;
+    background: #fcf0f1;
+}
+
+.cyp-type-in-use-notice[hidden] {
+    display: none;
+}
+
 .cyp-type-index-value {
     font-weight: 600;
     line-height: 30px;

@@ -51,7 +51,12 @@ jQuery(document).ready(function($) {
     
     // Ta bort händelsetyp
     $(document).on('click', '.cyp-remove-type', function() {
-        $(this).closest('.cyp-event-type-row').remove();
+        var row = $(this).closest('.cyp-event-type-row');
+        if (parseInt(row.data('event-count'), 10) > 0) {
+            row.find('.cyp-type-in-use-notice').prop('hidden', false);
+            return;
+        }
+        row.remove();
     });
     
     // Initiera color pickers
