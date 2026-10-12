@@ -25,10 +25,10 @@ msgid "Event"
 msgstr "Händelse"
 
 msgid "Add New"
-msgstr "Lägg till"
+msgstr "Lägg till ny"
 
 msgid "Add New Event"
-msgstr "Lägg till händelse"
+msgstr "Lägg till ny händelse"
 
 msgid "New Event"
 msgstr "Ny händelse"
@@ -85,7 +85,7 @@ msgid "Remove"
 msgstr "Ta bort"
 
 msgid "Fiscal Year Start"
-msgstr "Verksamhetsår börjar"
+msgstr "Verksamhetsåret börjar"
 
 msgid "Select when the fiscal year starts"
 msgstr "Välj när verksamhetsåret börjar"
@@ -148,7 +148,7 @@ msgid "Save Settings"
 msgstr "Spara inställningar"
 
 msgid "Settings saved successfully"
-msgstr "Inställningar sparade"
+msgstr "Inställningarna har sparats"
 
 msgid "Loading calendar..."
 msgstr "Laddar kalender..."
@@ -214,7 +214,7 @@ msgid "Text"
 msgstr "Text"
 
 msgid "Auto"
-msgstr "Auto"
+msgstr "Automatisk"
 
 msgid "Define different types of events and their colors. Leave text color empty for automatic contrast."
 msgstr "Definiera olika typer av händelser och deras färger. Lämna textfärg tom för automatisk kontrast."
@@ -226,16 +226,16 @@ msgid "light"
 msgstr "Ljus"
 
 msgid "Choose color scheme for the circular calendar."
-msgstr "Välj färgschema..."
+msgstr "Välj färgschema för den cirkulära kalendern."
 
 msgid "How to Use"
 msgstr "Hur man använder"
 
 msgid "Shortcode"
-msgstr "Shortcode"
+msgstr "Kortkod"
 
 msgid "Use the following shortcode to display the circular calendar:"
-msgstr "Använd följande shortcode för att visa den cirkulära kalendern:"
+msgstr "Använd följande kortkod för att visa den cirkulära kalendern:"
 
 msgid "Parameters"
 msgstr "Parametrar"
@@ -244,10 +244,10 @@ msgid "Show specific fiscal year"
 msgstr "Visa specifikt verksamhetsår"
 
 msgid "Show only certain event types (by index)"
-msgstr "Visa endast vissa händelsetyper (index)"
+msgstr "Visa endast vissa händelsetyper (per index)"
 
 msgid "Unauthorized access"
-msgstr "Otillåten åtkomst"
+msgstr "Obehörig åtkomst"
 
 msgid "Security verification failed"
 msgstr "Säkerhetsverifiering misslyckades"

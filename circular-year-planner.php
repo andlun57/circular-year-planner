@@ -95,15 +95,16 @@ class Circular_Year_Planner {
     /**
      * Ladda översättningar
      *
-     * Språkpaketet från translate.wordpress.org laddas först och har företräde.
-     * De medföljande filerna fyller i strängar som ännu saknas i språkpaketet.
+     * De medföljande filerna laddas först och har företräde, så att pluginets
+     * terminologi (t.ex. "verksamhetsår") gäller. Språkpaketet från
+     * translate.wordpress.org fyller i övriga strängar och språk.
      */
     public function load_translations() {
         $domain = 'circular-year-planner';
         $locale = determine_locale();
         $directories = array(
-            WP_LANG_DIR . '/plugins/',
             CYPL_PLUGIN_DIR . 'languages/',
+            WP_LANG_DIR . '/plugins/',
         );
         
         foreach ($directories as $directory) {
