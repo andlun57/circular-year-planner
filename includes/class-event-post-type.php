@@ -29,6 +29,25 @@ class CYPL_Event_Post_Type {
         add_filter('disable_months_dropdown', array($this, 'disable_core_months_dropdown'), 10, 2);
         add_action('restrict_manage_posts', array($this, 'render_period_filter'), 5);
         add_action('pre_get_posts', array($this, 'handle_period_filter'));
+        add_filter('post_row_actions', array($this, 'filter_row_actions'), 10, 2);
+        add_filter('bulk_actions-edit-cypl_event', array($this, 'filter_bulk_actions'));
+    }
+    
+    /**
+     * Snabbredigering ändrar bara inläggsfält som händelser inte använder
+     */
+    public function filter_row_actions($actions, $post) {
+        if ('cypl_event' === $post->post_type) {
+            unset($actions['inline hide-if-no-js']);
+        }
+        
+        return $actions;
+    }
+    
+    public function filter_bulk_actions($actions) {
+        unset($actions['edit']);
+        
+        return $actions;
     }
     
     /**
@@ -295,7 +314,6 @@ class CYPL_Event_Post_Type {
         $new_columns['start_date'] = __('Start Date', 'circular-year-planner');
         $new_columns['end_date'] = __('End Date', 'circular-year-planner');
         $new_columns['recurrence'] = __('Repeats', 'circular-year-planner');
-        $new_columns['date'] = $columns['date'];
         
         return $new_columns;
     }
