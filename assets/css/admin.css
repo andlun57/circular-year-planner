@@ -168,6 +168,142 @@
     width: 120px;
 }
 
+.column-recurrence {
+    width: 200px;
+}
+
+/* Event form */
+.cypl-event-form .form-table th {
+    width: 160px;
+}
+
+.cypl-event-form .cypl-title-field {
+    width: 100%;
+    max-width: 480px;
+    font-size: 16px;
+    padding: 4px 8px;
+}
+
+.cypl-recurrence-panels {
+    max-width: 480px;
+}
+
+.cypl-recurrence-panel {
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: #f6f7f7;
+    border-left: 4px solid #2271b1;
+}
+
+.cypl-recurrence-panel[hidden] {
+    display: none;
+}
+
+.cypl-recurrence-panel > p:first-child {
+    margin-top: 0;
+}
+
+.cypl-recurrence-interval .cypl-interval {
+    width: 64px;
+    margin: 0 4px;
+}
+
+.cypl-choice-grid {
+    display: grid;
+    gap: 4px;
+    margin: 8px 0 12px;
+}
+
+.cypl-weekday-grid {
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.cypl-month-grid {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.cypl-choice {
+    position: relative;
+    display: block;
+}
+
+.cypl-choice input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.cypl-choice span {
+    display: block;
+    padding: 6px 2px;
+    text-align: center;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 3px;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.cypl-choice input:checked + span {
+    background: #2271b1;
+    border-color: #2271b1;
+    color: #fff;
+}
+
+.cypl-choice input:focus-visible + span {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px #2271b1;
+}
+
+.cypl-recurrence-option {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 8px 0;
+}
+
+.cypl-recurrence-option .cypl-mode-label {
+    min-width: 72px;
+}
+
+.cypl-recurrence-option select:disabled {
+    opacity: 0.5;
+}
+
+.cypl-series-status {
+    max-width: 480px;
+    margin-top: 12px;
+    padding: 8px 12px;
+    background: #fcf9e8;
+    border-left: 4px solid #dba617;
+}
+
+.cypl-series-status p {
+    margin: 0 0 6px;
+}
+
+.cypl-series-status label {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.cypl-event-form-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 660px;
+    margin-top: 20px;
+}
+
+.cypl-event-form-actions .cypl-trash-link {
+    margin-left: auto;
+    color: #b32d2e;
+}
+
 /* Calculated info styling */
 .cypl-calculated-info {
     background: #f0f6fc;
