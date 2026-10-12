@@ -153,6 +153,18 @@
     flex-wrap: wrap;
 }
 
+/* Samma höjd som färgväljarnas knappar */
+.cyp-event-type-row input.regular-text,
+.cyp-event-type-row .button.cyp-remove-type {
+    min-height: 32px;
+    height: 32px;
+}
+
+.cyp-event-type-row .button.cyp-remove-type {
+    line-height: 30px;
+    padding: 0 12px;
+}
+
 .cyp-type-in-use-notice {
     flex-basis: 100%;
     margin: 0;
