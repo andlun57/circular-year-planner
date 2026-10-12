@@ -117,6 +117,10 @@ class CYPL_Settings {
                             <div id="cyp-event-types">
                                 <?php if (empty($event_types)) : ?>
                                     <div class="cyp-event-type-row">
+                                        <div class="cyp-type-index">
+                                            <span class="cyp-color-label"><?php esc_html_e('Index', 'circular-year-planner'); ?></span>
+                                            <span class="cyp-type-index-value">0</span>
+                                        </div>
                                         <div class="regular-text-container">
                                             <label class="cyp-color-label"><?php esc_html_e('Name', 'circular-year-planner'); ?></label>
                                             <input type="text" name="cypl_event_types[0][name]" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">
@@ -134,6 +138,10 @@ class CYPL_Settings {
                                 <?php else : ?>
                                     <?php foreach ($event_types as $index => $type) : ?>
                                         <div class="cyp-event-type-row">
+                                            <div class="cyp-type-index">
+                                                <span class="cyp-color-label"><?php esc_html_e('Index', 'circular-year-planner'); ?></span>
+                                                <span class="cyp-type-index-value"><?php echo esc_html($index); ?></span>
+                                            </div>
                                             <div class="regular-text-container">
                                                 <label class="cyp-color-label"><?php esc_html_e('Name', 'circular-year-planner'); ?></label>
                                                 <input type="text" name="cypl_event_types[<?php echo esc_attr($index); ?>][name]" value="<?php echo esc_attr($type['name']); ?>" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">

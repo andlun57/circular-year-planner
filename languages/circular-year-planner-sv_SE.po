@@ -505,6 +505,9 @@ msgstr "Händelsen kunde inte raderas."
 msgid "A circular year planner to visualize fiscal years and events."
 msgstr "En cirkulär årsplanerare för att visualisera verksamhetsår och händelser."
 
+msgid "Index"
+msgstr "Index"
+
 msgid "Filter by date"
 msgstr "Filtrera efter datum"
 

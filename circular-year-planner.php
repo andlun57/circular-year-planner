@@ -257,6 +257,7 @@ class Circular_Year_Planner {
             // Skicka översättningar till JavaScript
             wp_localize_script('cypl-admin', 'cyplAdmin', array(
                 'i18n' => array(
+                    'index' => __('Index', 'circular-year-planner'),
                     'name' => __('Name', 'circular-year-planner'),
                     'eventTypeName' => __('Event type name', 'circular-year-planner'),
                     'background' => __('Background', 'circular-year-planner'),

@@ -528,3 +528,6 @@ msgstr ""
 #. translators: 1: Month name, 2: Year
 msgid "%1$s %2$s"
 msgstr ""
+
+msgid "Index"
+msgstr ""
