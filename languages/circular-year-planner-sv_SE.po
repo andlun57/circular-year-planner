@@ -505,6 +505,12 @@ msgstr "Händelsen kunde inte raderas."
 msgid "A circular year planner to visualize fiscal years and events."
 msgstr "En cirkulär årsplanerare för att visualisera verksamhetsår och händelser."
 
+msgid "Filter by event type"
+msgstr "Filtrera efter händelsetyp"
+
+msgid "All event types"
+msgstr "Alla händelsetyper"
+
 msgctxt "week number prefix"
 msgid "W"
 msgstr "v"

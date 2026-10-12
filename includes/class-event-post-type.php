@@ -24,6 +24,67 @@ class CYPL_Event_Post_Type {
         add_action('manage_cypl_event_posts_custom_column', array($this, 'custom_column_content'), 10, 2);
         add_filter('manage_edit-cypl_event_sortable_columns', array($this, 'set_sortable_columns'));
         add_action('pre_get_posts', array($this, 'handle_custom_column_sorting'));
+        add_action('restrict_manage_posts', array($this, 'render_event_type_filter'));
+        add_action('pre_get_posts', array($this, 'handle_event_type_filter'));
+    }
+    
+    /**
+     * Hämta valt händelsetypsfilter från URL:en, eller null om inget är valt
+     */
+    private function get_event_type_filter() {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Filtrering i listvy, ändrar inget.
+        if (!isset($_GET['cypl_event_type']) || '' === $_GET['cypl_event_type']) {
+            return null;
+        }
+        
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Filtrering i listvy, ändrar inget.
+        return absint(wp_unslash($_GET['cypl_event_type']));
+    }
+    
+    /**
+     * Visa filter för händelsetyp ovanför listan
+     */
+    public function render_event_type_filter($post_type) {
+        if ('cypl_event' !== $post_type) {
+            return;
+        }
+        
+        $event_types = get_option('cypl_event_types', array());
+        if (empty($event_types)) {
+            return;
+        }
+        
+        $selected = $this->get_event_type_filter();
+        ?>
+        <label for="cypl-filter-event-type" class="screen-reader-text"><?php esc_html_e('Filter by event type', 'circular-year-planner'); ?></label>
+        <select name="cypl_event_type" id="cypl-filter-event-type">
+            <option value=""><?php esc_html_e('All event types', 'circular-year-planner'); ?></option>
+            <?php foreach ($event_types as $index => $type) : ?>
+                <option value="<?php echo esc_attr($index); ?>" <?php selected($selected, (int) $index); ?>><?php echo esc_html($type['name']); ?></option>
+            <?php endforeach; ?>
+        </select>
+        <?php
+    }
+    
+    /**
+     * Filtrera adminlistan på händelsetyp
+     */
+    public function handle_event_type_filter($query) {
+        if (!is_admin() || !$query->is_main_query() || $query->get('post_type') !== 'cypl_event') {
+            return;
+        }
+        
+        $selected = $this->get_event_type_filter();
+        if (null === $selected) {
+            return;
+        }
+        
+        $meta_query = (array) $query->get('meta_query');
+        $meta_query[] = array(
+            'key' => '_cypl_event_type',
+            'value' => (string) $selected,
+        );
+        $query->set('meta_query', $meta_query);
     }
     
     /**

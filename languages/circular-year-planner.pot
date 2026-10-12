@@ -512,3 +512,9 @@ msgstr ""
 msgctxt "week number prefix"
 msgid "W"
 msgstr ""
+
+msgid "Filter by event type"
+msgstr ""
+
+msgid "All event types"
+msgstr ""
