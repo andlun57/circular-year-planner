@@ -12,6 +12,7 @@ jQuery(document).ready(function($) {
         
         // Get translations from localized data
         var i18n = (typeof cyplAdmin !== 'undefined' && cyplAdmin.i18n) ? cyplAdmin.i18n : {
+            name: 'Name',
             eventTypeName: 'Event type name',
             background: 'Background',
             text: 'Text',
@@ -21,7 +22,7 @@ jQuery(document).ready(function($) {
         
         var html = '<div class="cyp-event-type-row">' +
             '<div class="regular-text-container">' +
-            '<label class="cyp-color-label">' + 'Name' + '</label>' +
+            '<label class="cyp-color-label">' + i18n.name + '</label>' +
             '<input type="text" name="cypl_event_types[' + index + '][name]" placeholder="' + i18n.eventTypeName + '" class="regular-text">' +
             '</div>' +
             '<div class="cyp-color-picker-group">' +

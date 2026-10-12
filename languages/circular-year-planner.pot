@@ -505,3 +505,10 @@ msgstr ""
 
 msgid "The event could not be deleted."
 msgstr ""
+
+msgid "A circular year planner to visualize fiscal years and events."
+msgstr ""
+
+msgctxt "week number prefix"
+msgid "W"
+msgstr ""

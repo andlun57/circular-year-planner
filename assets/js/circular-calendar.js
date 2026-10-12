@@ -336,7 +336,8 @@
                         'text-anchor': 'middle',
                         'dominant-baseline': 'middle'
                     });
-                    text.text('v' + week.weekNumber);
+                    const weekPrefix = (cyplData.i18n && cyplData.i18n.weekPrefix) || 'W';
+                    text.text(weekPrefix + week.weekNumber);
                     g.append(text);
                 }
             });
