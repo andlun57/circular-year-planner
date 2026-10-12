@@ -61,17 +61,33 @@ class CYPL_Settings {
             return array();
         }
         
+        // Nyckeln är typens id och får aldrig numreras om; händelser och kortkoder pekar på den
         $sanitized = array();
-        foreach ($value as $type) {
-            if (!empty($type['name'])) {
-                $sanitized[] = array(
-                    'name' => sanitize_text_field($type['name']),
-                    'color' => sanitize_hex_color($type['color']),
-                    'text_color' => !empty($type['text_color']) ? sanitize_hex_color($type['text_color']) : '',
-                );
+        foreach ($value as $id => $type) {
+            if (is_int($id) && $id >= 0 && is_array($type) && !empty($type['name'])) {
+                $sanitized[$id] = self::sanitize_event_type($type);
             }
         }
         return $sanitized;
+    }
+    
+    private static function sanitize_event_type($type) {
+        return array(
+            'name' => sanitize_text_field($type['name']),
+            'color' => isset($type['color']) ? (string) sanitize_hex_color($type['color']) : '',
+            'text_color' => !empty($type['text_color']) ? (string) sanitize_hex_color($type['text_color']) : '',
+        );
+    }
+    
+    /**
+     * Nästa lediga id för en ny händelsetyp; borttagna id:n återanvänds aldrig
+     */
+    private static function next_event_type_id($event_types) {
+        $next = (int) get_option('cypl_event_types_next_id', 0);
+        if (!empty($event_types)) {
+            $next = max($next, max(array_keys($event_types)) + 1);
+        }
+        return $next;
     }
     
     /**
@@ -118,20 +134,20 @@ class CYPL_Settings {
                                 <?php if (empty($event_types)) : ?>
                                     <div class="cyp-event-type-row">
                                         <div class="cyp-type-index">
-                                            <span class="cyp-color-label"><?php esc_html_e('Index', 'circular-year-planner'); ?></span>
-                                            <span class="cyp-type-index-value">0</span>
+                                            <span class="cyp-color-label"><?php esc_html_e('ID', 'circular-year-planner'); ?></span>
+                                            <span class="cyp-type-index-value">–</span>
                                         </div>
                                         <div class="regular-text-container">
                                             <label class="cyp-color-label"><?php esc_html_e('Name', 'circular-year-planner'); ?></label>
-                                            <input type="text" name="cypl_event_types[0][name]" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">
+                                            <input type="text" name="cypl_event_types[new-0][name]" placeholder="<?php esc_attr_e('Event type name', 'circular-year-planner'); ?>" class="regular-text">
                                         </div>
                                         <div class="cyp-color-picker-group">
                                             <label class="cyp-color-label"><?php esc_html_e('Background', 'circular-year-planner'); ?></label>
-                                            <input type="text" name="cypl_event_types[0][color]" value="#4A90E2" class="cyp-color-picker">
+                                            <input type="text" name="cypl_event_types[new-0][color]" value="#4A90E2" class="cyp-color-picker">
                                         </div>
                                         <div class="cyp-color-picker-group">
                                             <label class="cyp-color-label"><?php esc_html_e('Text', 'circular-year-planner'); ?></label>
-                                            <input type="text" name="cypl_event_types[0][text_color]" value="" placeholder="<?php esc_attr_e('Auto', 'circular-year-planner'); ?>" class="cyp-color-picker cyp-text-color-picker">
+                                            <input type="text" name="cypl_event_types[new-0][text_color]" value="" placeholder="<?php esc_attr_e('Auto', 'circular-year-planner'); ?>" class="cyp-color-picker cyp-text-color-picker">
                                         </div>
                                         <button type="button" class="button cyp-remove-type"><?php esc_html_e('Remove', 'circular-year-planner'); ?></button>
                                     </div>
@@ -139,7 +155,7 @@ class CYPL_Settings {
                                     <?php foreach ($event_types as $index => $type) : ?>
                                         <div class="cyp-event-type-row">
                                             <div class="cyp-type-index">
-                                                <span class="cyp-color-label"><?php esc_html_e('Index', 'circular-year-planner'); ?></span>
+                                                <span class="cyp-color-label"><?php esc_html_e('ID', 'circular-year-planner'); ?></span>
                                                 <span class="cyp-type-index-value"><?php echo esc_html($index); ?></span>
                                             </div>
                                             <div class="regular-text-container">
@@ -217,7 +233,7 @@ class CYPL_Settings {
                 <h3><?php esc_html_e('Parameters', 'circular-year-planner'); ?></h3>
                 <ul>
                     <li><code>[planly year="2024/2025"]</code> - <?php esc_html_e('Show specific fiscal year', 'circular-year-planner'); ?></li>
-                    <li><code>[planly types="0,1"]</code> - <?php esc_html_e('Show only certain event types (by index)', 'circular-year-planner'); ?></li>
+                    <li><code>[planly types="0,1"]</code> - <?php esc_html_e('Show only certain event types (by ID)', 'circular-year-planner'); ?></li>
                 </ul>
             </div>
         </div>
@@ -238,21 +254,27 @@ class CYPL_Settings {
             wp_die(esc_html__('Security verification failed', 'circular-year-planner'));
         }
         
-        // Spara händelsetyper
-        if (isset($_POST['cypl_event_types'])) {
-            $event_types = array();
-            $raw_event_types = wp_unslash($_POST['cypl_event_types']); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-            foreach ($raw_event_types as $type) {
-                if (!empty($type['name'])) {
-                    $event_types[] = array(
-                        'name' => sanitize_text_field($type['name']),
-                        'color' => sanitize_hex_color($type['color']),
-                        'text_color' => !empty($type['text_color']) ? sanitize_hex_color($type['text_color']) : '',
-                    );
-                }
+        // Spara händelsetyper. Befintliga typer behåller sitt id, nya rader (nyckel "new-N") får nästa lediga.
+        $existing_types = get_option('cypl_event_types', array());
+        $next_id = self::next_event_type_id($existing_types);
+        $event_types = array();
+        $raw_event_types = isset($_POST['cypl_event_types']) && is_array($_POST['cypl_event_types'])
+            ? wp_unslash($_POST['cypl_event_types']) // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Saneras per fält i sanitize_event_type().
+            : array();
+        foreach ($raw_event_types as $key => $type) {
+            if (!is_array($type) || empty($type['name'])) {
+                continue;
             }
-            update_option('cypl_event_types', $event_types);
+            
+            if (is_int($key) && isset($existing_types[$key]) && !isset($event_types[$key])) {
+                $id = $key;
+            } else {
+                $id = $next_id++;
+            }
+            $event_types[$id] = self::sanitize_event_type($type);
         }
+        update_option('cypl_event_types', $event_types);
+        update_option('cypl_event_types_next_id', $next_id);
         
         // Spara verksamhetsår
         if (isset($_POST['cypl_fiscal_year_start'])) {

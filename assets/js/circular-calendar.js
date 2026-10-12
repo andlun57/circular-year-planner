@@ -373,7 +373,7 @@
                 
                 // Filtrera händelser för denna typ
                 const typeEvents = this.events.filter(event => {
-                    return parseInt(event.event_type) === index;
+                    return parseInt(event.event_type, 10) === type.id;
                 });
                 
                 // Gruppera händelser per vecka och stapla dem radiellt

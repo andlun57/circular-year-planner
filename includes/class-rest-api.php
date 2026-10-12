@@ -185,8 +185,14 @@ class CYPL_REST_API {
      * Hämta inställningar
      */
     public function get_settings($request) {
+        // Lista i visningsordning; id:n kan ha luckor efter att typer tagits bort
+        $event_types = array();
+        foreach (get_option('cypl_event_types', array()) as $id => $type) {
+            $event_types[] = array_merge(array('id' => (int) $id), $type);
+        }
+        
         $settings = array(
-            'event_types' => get_option('cypl_event_types', array()),
+            'event_types' => $event_types,
             'fiscal_year_start' => get_option('cypl_fiscal_year_start', '01-01'),
             'color_scheme' => get_option('cypl_color_scheme', 'default'),
         );

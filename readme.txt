@@ -34,7 +34,7 @@ Use shortcode in any page or post:
 **Parameters:**
 
 * `year` - Display specific fiscal year, e.g. `[planly year="2024/2025"]`
-* `types` - Display only certain event types (index), e.g. `[planly types="0,1"]`
+* `types` - Display only certain event types by ID, shown in the settings, e.g. `[planly types="0,1"]`
 * `width` and `height` - Customize size, e.g. `[planly width="1000" height="1000"]`
 
 = Technical Information =
@@ -86,6 +86,11 @@ Yes, you can use multiple shortcodes with different parameters on the same page.
 * Removed the description (post content) field from events
 * Fixed the overlay behind the event details panel
 * Escaped event data in the details panel
+* Event types have permanent IDs; removing a type no longer changes the type of other events
+* Event list: filter by event type, and by year or month in which events take place
+* Event list: removed Quick Edit, Bulk Edit, View and the publish date column
+* Events no longer have public pages, search results or sitemap entries
+* The interface follows the site language fully in English and Swedish
 * Updated tested up to WordPress 7.1
 
 = 1.1.1 - 2025-11-12 =
