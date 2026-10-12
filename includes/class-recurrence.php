@@ -197,14 +197,21 @@ class CYPL_Recurrence {
         $exdates = array_flip(self::get_exdates($post_id));
         $dates = array();
         
-        foreach (self::expand($rule, $start, $lo, $hi) as $date) {
+        // Startdatumet är alltid första förekomsten, även om det inte matchar regeln
+        $candidates = self::expand($rule, $start, $lo, $hi);
+        if ($start >= $lo) {
+            $candidates[] = $start;
+        }
+        
+        foreach ($candidates as $date) {
             $key = $date->format('Y-m-d');
             if (!isset($exdates[$key])) {
-                $dates[] = $key;
+                $dates[$key] = $key;
             }
         }
         
-        return $dates;
+        ksort($dates);
+        return array_values($dates);
     }
     
     public static function is_occurrence($post_id, $date) {
