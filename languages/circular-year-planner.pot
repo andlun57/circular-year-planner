@@ -518,3 +518,13 @@ msgstr ""
 
 msgid "All event types"
 msgstr ""
+
+msgid "Filter by date"
+msgstr ""
+
+msgid "All dates"
+msgstr ""
+
+#. translators: 1: Month name, 2: Year
+msgid "%1$s %2$s"
+msgstr ""
