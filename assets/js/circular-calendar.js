@@ -547,7 +547,7 @@
             
             // Rita händelsebåge
             const arc = this.createArc(innerRadius, outerRadius, startAngle, endAngle);
-            const pathId = 'event-path-' + event.id;
+            const pathId = 'event-path-' + this.getOccurrenceKey(event);
             
             const path = this.createSVGElement('path', {
                 d: arc,
@@ -591,7 +591,7 @@
                 textEndAngle = endAngle + 30;
             }
             
-            const textPathId = 'text-path-' + event.id;
+            const textPathId = 'text-path-' + this.getOccurrenceKey(event);
             const textArc = this.createTextArc(midRadius, textStartAngle, textEndAngle);
             
             // Skapa defs om det inte finns
@@ -703,9 +703,18 @@
             });
         }
         
+        getOccurrenceKey(event) {
+            return String(event.occurrence_id || event.id).replace(/[^a-zA-Z0-9-]/g, '-');
+        }
+        
+        escapeHtml(value) {
+            return $('<div>').text(value == null ? '' : String(value)).html();
+        }
+        
         showEventDetails(event) {
             const detailsPanel = this.container.find('.cyp-event-details');
             const content = detailsPanel.find('.cyp-event-content');
+            const esc = (value) => this.escapeHtml(value);
             
             // Get translated strings
             const i18n = cyplData.i18n || {};
@@ -713,63 +722,152 @@
             const isOneDay = event.start_date === event.end_date;
             const dateInfo = isOneDay 
                 ? `<div class="cypl-event-meta-item">
-                       <span class="cypl-event-meta-label">${i18n.date || 'Date'}:</span>
-                       <span>${this.formatDate(event.start_date)}</span>
+                       <span class="cypl-event-meta-label">${esc(i18n.date || 'Date')}:</span>
+                       <span>${esc(this.formatDate(event.start_date))}</span>
                    </div>
                    <div class="cypl-event-meta-item cypl-info-note">
-                       <span class="cypl-event-meta-label">${i18n.display || 'Display'}:</span>
-                       <span>${i18n.wholeWeek || 'Whole week (for visibility)'}</span>
+                       <span class="cypl-event-meta-label">${esc(i18n.display || 'Display')}:</span>
+                       <span>${esc(i18n.wholeWeek || 'Whole week (for visibility)')}</span>
                    </div>`
                 : `<div class="cypl-event-meta-item">
-                       <span class="cypl-event-meta-label">${i18n.startDate || 'Start Date'}:</span>
-                       <span>${this.formatDate(event.start_date)}</span>
+                       <span class="cypl-event-meta-label">${esc(i18n.startDate || 'Start Date')}:</span>
+                       <span>${esc(this.formatDate(event.start_date))}</span>
                    </div>
                    <div class="cypl-event-meta-item">
-                       <span class="cypl-event-meta-label">${i18n.endDate || 'End Date'}:</span>
-                       <span>${this.formatDate(event.end_date)}</span>
+                       <span class="cypl-event-meta-label">${esc(i18n.endDate || 'End Date')}:</span>
+                       <span>${esc(this.formatDate(event.end_date))}</span>
                    </div>`;
+            
+            const recurrenceInfo = event.is_recurring && event.recurrence_text
+                ? `<div class="cypl-event-meta-item">
+                       <span class="cypl-event-meta-label">${esc(i18n.repeats || 'Repeats')}:</span>
+                       <span>${esc(event.recurrence_text)}</span>
+                   </div>`
+                : '';
             
             // Använd custom text color om den finns, annars automatisk kontrastfärg
             const badgeTextColor = event.event_type_text_color || this.getContrastColor(event.event_type_color);
             
             const html = `
-                <h3>${event.title}</h3>
+                <h3>${esc(event.title)}</h3>
                 <div class="cypl-event-meta">
                     <div class="cypl-event-meta-item">
-                        <span class="cypl-event-meta-label">${i18n.type || 'Type'}:</span>
-                        <span class="cypl-event-type-badge" style="background-color: ${event.event_type_color}; color: ${badgeTextColor};">
-                            ${event.event_type_name}
+                        <span class="cypl-event-meta-label">${esc(i18n.type || 'Type')}:</span>
+                        <span class="cypl-event-type-badge" style="background-color: ${esc(event.event_type_color)}; color: ${esc(badgeTextColor)};">
+                            ${esc(event.event_type_name)}
                         </span>
                     </div>
                     ${dateInfo}
+                    ${recurrenceInfo}
                     <div class="cypl-event-meta-item">
-                        <span class="cypl-event-meta-label">${i18n.fiscalYear || 'Fiscal Year'}:</span>
-                        <span>${event.fiscal_year}</span>
+                        <span class="cypl-event-meta-label">${esc(i18n.fiscalYear || 'Fiscal Year')}:</span>
+                        <span>${esc(event.fiscal_year)}</span>
                     </div>
                 </div>
-                ${event.description ? `<div class="cypl-event-description"><strong>${i18n.description || 'Description'}:</strong><br>${event.description}</div>` : ''}
+                ${this.renderEventActions(event)}
             `;
             
             content.html(html);
+            this.selectedEvent = event;
             detailsPanel.addClass('active');
             
             // Lägg till overlay
-            if (!$('.cyp-overlay').length) {
+            if (!$('.cypl-overlay').length) {
                 $('body').append('<div class="cypl-overlay"></div>');
             }
-            $('.cyp-overlay').addClass('active');
+            $('.cypl-overlay').addClass('active');
+        }
+        
+        renderEventActions(event) {
+            if (!cyplData.canEdit) {
+                return '';
+            }
+            
+            const i18n = cyplData.i18n || {};
+            const esc = (value) => this.escapeHtml(value);
+            const editLink = cyplData.editUrl
+                ? `<a class="cypl-event-action" href="${esc(cyplData.editUrl + '&post=' + encodeURIComponent(event.id))}">${esc(i18n.edit || 'Edit')}</a>`
+                : '';
+            
+            const confirmButtons = event.is_recurring
+                ? `<button type="button" class="cypl-event-action cypl-event-action-danger" data-delete-mode="single">${esc(i18n.deleteThis || 'Only this occurrence')}</button>
+                   <button type="button" class="cypl-event-action cypl-event-action-danger" data-delete-mode="future">${esc(i18n.deleteFuture || 'All future occurrences')}</button>`
+                : `<button type="button" class="cypl-event-action cypl-event-action-danger" data-delete-mode="single">${esc(i18n.deleteEvent || 'Delete event')}</button>`;
+            
+            return `
+                <div class="cypl-event-actions">
+                    ${editLink}
+                    <button type="button" class="cypl-event-action cypl-delete-start">${esc(i18n.delete || 'Delete')}</button>
+                </div>
+                <div class="cypl-delete-confirm" hidden>
+                    <p>${esc(event.is_recurring ? (i18n.deleteRecurringConfirm || 'This is a repeating event. Do you want to delete only this occurrence or all future occurrences?') : (i18n.deleteEventConfirm || 'Do you want to delete this event?'))}</p>
+                    <div class="cypl-event-actions">
+                        ${confirmButtons}
+                        <button type="button" class="cypl-event-action cypl-delete-cancel">${esc(i18n.cancel || 'Cancel')}</button>
+                    </div>
+                    <p class="cypl-delete-error" role="alert" hidden></p>
+                </div>
+            `;
+        }
+        
+        async deleteSelectedEvent(mode) {
+            const event = this.selectedEvent;
+            if (!event) {
+                return;
+            }
+            
+            const panel = this.container.find('.cyp-event-details');
+            const errorEl = panel.find('.cypl-delete-error');
+            panel.find('.cypl-delete-confirm button').prop('disabled', true);
+            errorEl.prop('hidden', true);
+            
+            try {
+                const occurrenceId = event.occurrence_id || (event.id + ':' + event.start_date);
+                const url = cyplData.restUrl + 'occurrences?occurrence_id=' + encodeURIComponent(occurrenceId) + '&mode=' + encodeURIComponent(mode);
+                const response = await fetch(url, {
+                    method: 'DELETE',
+                    credentials: 'same-origin',
+                    headers: { 'X-WP-Nonce': cyplData.nonce }
+                });
+                
+                if (!response.ok) {
+                    const body = await response.json().catch(() => ({}));
+                    throw new Error(body.message || '');
+                }
+                
+                this.closeDetails();
+                this.loadEvents();
+            } catch (error) {
+                const i18n = cyplData.i18n || {};
+                errorEl.text(error.message || i18n.deleteFailed || 'The event could not be deleted.').prop('hidden', false);
+                panel.find('.cypl-delete-confirm button').prop('disabled', false);
+            }
+        }
+        
+        closeDetails() {
+            this.container.find('.cyp-event-details').removeClass('active');
+            $('.cypl-overlay').removeClass('active');
+            this.selectedEvent = null;
         }
         
         setupEventHandlers() {
             // Stäng detaljer
-            this.container.find('.cyp-close-details').on('click', () => {
-                this.container.find('.cyp-event-details').removeClass('active');
-                $('.cyp-overlay').removeClass('active');
-            });
+            this.container.find('.cyp-close-details').on('click', () => this.closeDetails());
             
-            $(document).on('click', '.cyp-overlay', () => {
-                this.container.find('.cyp-event-details').removeClass('active');
-                $('.cyp-overlay').removeClass('active');
+            $(document).on('click', '.cypl-overlay', () => this.closeDetails());
+            
+            // Radering
+            const details = this.container.find('.cyp-event-details');
+            details.on('click', '.cypl-delete-start', () => {
+                details.find('.cypl-event-actions').first().prop('hidden', true);
+                details.find('.cypl-delete-confirm').prop('hidden', false);
+            });
+            details.on('click', '.cypl-delete-cancel', () => {
+                details.find('.cypl-delete-confirm').prop('hidden', true);
+                details.find('.cypl-event-actions').first().prop('hidden', false);
+            });
+            details.on('click', '[data-delete-mode]', (e) => {
+                this.deleteSelectedEvent($(e.currentTarget).data('delete-mode'));
             });
             
             // Årsnavigering

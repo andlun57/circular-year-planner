@@ -20,8 +20,6 @@ class CYPL_Event_Post_Type {
     
     private function __construct() {
         add_action('init', array($this, 'register_post_type'));
-        add_action('add_meta_boxes', array($this, 'add_meta_boxes'));
-        add_action('save_post', array($this, 'save_meta_boxes'));
         add_filter('manage_cypl_event_posts_columns', array($this, 'set_custom_columns'));
         add_action('manage_cypl_event_posts_custom_column', array($this, 'custom_column_content'), 10, 2);
         add_filter('manage_edit-cypl_event_sortable_columns', array($this, 'set_sortable_columns'));
@@ -55,101 +53,12 @@ class CYPL_Event_Post_Type {
             'show_in_menu' => true,
             'show_in_rest' => true,
             'menu_icon' => 'dashicons-calendar-alt',
-            'supports' => array('title', 'editor'),
+            'supports' => array('title'),
             'capability_type' => 'post',
             'rewrite' => array('slug' => 'event'),
         );
         
         register_post_type('cypl_event', $args);
-    }
-    
-    /**
-     * Lägg till meta boxes
-     */
-    public function add_meta_boxes() {
-        add_meta_box(
-            'cypl_event_details',
-            __('Event Details', 'circular-year-planner'),
-            array($this, 'render_event_details_meta_box'),
-            'cypl_event',
-            'normal',
-            'high'
-        );
-    }
-    
-    /**
-     * Rendera meta box för händelsedetaljer
-     */
-    public function render_event_details_meta_box($post) {
-        wp_nonce_field('cypl_save_event_details', 'cypl_event_details_nonce');
-        
-        $start_date = get_post_meta($post->ID, '_cypl_start_date', true);
-        $end_date = get_post_meta($post->ID, '_cypl_end_date', true);
-        $event_type = get_post_meta($post->ID, '_cypl_event_type', true);
-        
-        $event_types = get_option('cypl_event_types', array());
-        
-        ?>
-        <div class="cyp-meta-box">
-            <p>
-                <label for="cypl_start_date"><strong><?php esc_html_e('Start Date', 'circular-year-planner'); ?>:</strong></label><br>
-                <input type="date" id="cypl_start_date" name="cypl_start_date" value="<?php echo esc_attr($start_date); ?>" class="widefat" required placeholder="yyyy-mm-dd">
-                <span class="description"><?php esc_html_e('Format: YYYY-MM-DD', 'circular-year-planner'); ?></span>
-            </p>
-            
-            <p>
-                <label for="cypl_end_date"><strong><?php esc_html_e('End Date', 'circular-year-planner'); ?>:</strong></label><br>
-                <input type="date" id="cypl_end_date" name="cypl_end_date" value="<?php echo esc_attr($end_date); ?>" class="widefat" required placeholder="yyyy-mm-dd">
-                <span class="description"><?php esc_html_e('Format: YYYY-MM-DD (automatically set to start date if left empty)', 'circular-year-planner'); ?></span>
-            </p>
-            
-            <p>
-                <label for="cypl_event_type"><strong><?php esc_html_e('Event Type', 'circular-year-planner'); ?>:</strong></label><br>
-                <select id="cypl_event_type" name="cypl_event_type" class="widefat">
-                    <option value=""><?php esc_html_e('Select event type', 'circular-year-planner'); ?></option>
-                    <?php foreach ($event_types as $index => $type) : ?>
-                        <option value="<?php echo esc_attr($index); ?>" <?php selected($event_type, $index); ?>>
-                            <?php echo esc_html($type['name']); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </p>
-            
-        </div>
-        <?php
-    }
-    
-    /**
-     * Spara meta box data
-     */
-    public function save_meta_boxes($post_id) {
-        // Kontrollera nonce
-        if (!isset($_POST['cypl_event_details_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['cypl_event_details_nonce'])), 'cypl_save_event_details')) {
-            return;
-        }
-        
-        // Kontrollera autosave
-        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-            return;
-        }
-        
-        // Kontrollera behörighet
-        if (!current_user_can('edit_post', $post_id)) {
-            return;
-        }
-        
-        // Spara fält
-        if (isset($_POST['cypl_start_date'])) {
-            update_post_meta($post_id, '_cypl_start_date', sanitize_text_field(wp_unslash($_POST['cypl_start_date'])));
-        }
-        
-        if (isset($_POST['cypl_end_date'])) {
-            update_post_meta($post_id, '_cypl_end_date', sanitize_text_field(wp_unslash($_POST['cypl_end_date'])));
-        }
-        
-        if (isset($_POST['cypl_event_type'])) {
-            update_post_meta($post_id, '_cypl_event_type', sanitize_text_field(wp_unslash($_POST['cypl_event_type'])));
-        }
     }
     
     /**
@@ -162,6 +71,7 @@ class CYPL_Event_Post_Type {
         $new_columns['event_type'] = __('Type', 'circular-year-planner');
         $new_columns['start_date'] = __('Start Date', 'circular-year-planner');
         $new_columns['end_date'] = __('End Date', 'circular-year-planner');
+        $new_columns['recurrence'] = __('Repeats', 'circular-year-planner');
         $new_columns['date'] = $columns['date'];
         
         return $new_columns;
@@ -200,6 +110,11 @@ class CYPL_Event_Post_Type {
                 } else {
                     echo '—';
                 }
+                break;
+                
+            case 'recurrence':
+                $description = CYPL_Recurrence::describe(CYPL_Recurrence::get_rule($post_id));
+                echo $description ? esc_html($description) : '—';
                 break;
         }
     }

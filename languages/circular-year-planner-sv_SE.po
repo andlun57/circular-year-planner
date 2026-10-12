@@ -290,3 +290,214 @@ msgstr "Nov"
 
 msgid "Dec"
 msgstr "Dec"
+
+msgid "Title"
+msgstr "Rubrik"
+
+msgid "Shown on the event in the calendar."
+msgstr "Visas på händelsen i kalendern."
+
+msgid "For single-day events, use the same date as the start date."
+msgstr "För endagshändelser anger du samma datum som startdatum."
+
+msgid "Repeat"
+msgstr "Upprepa"
+
+msgid "Never"
+msgstr "Aldrig"
+
+msgid "Daily"
+msgstr "Dagligen"
+
+msgid "Weekly"
+msgstr "Veckovis"
+
+msgid "Monthly"
+msgstr "Månadsvis"
+
+msgid "Yearly"
+msgstr "Årligen"
+
+msgid "Every %s day(s)"
+msgstr "Med intervall på %s dag"
+
+msgid "Every %s week(s) on:"
+msgstr "Med intervall på %s vecka på:"
+
+msgid "Every %s month(s)"
+msgstr "Med intervall på %s månad"
+
+msgid "Every %s year(s) in:"
+msgstr "Med intervall på %s år i:"
+
+msgid "Weekday"
+msgstr "Veckodag"
+
+msgid "Month"
+msgstr "Månad"
+
+msgid "Each"
+msgstr "Varje"
+
+msgid "On the"
+msgstr "Den"
+
+msgid "Day of month"
+msgstr "Dag i månaden"
+
+msgid "Position"
+msgstr "Position"
+
+msgid "Day"
+msgstr "Dag"
+
+msgid "first"
+msgstr "första"
+
+msgid "second"
+msgstr "andra"
+
+msgid "third"
+msgstr "tredje"
+
+msgid "fourth"
+msgstr "fjärde"
+
+msgid "fifth"
+msgstr "femte"
+
+msgid "second to last"
+msgstr "näst sista"
+
+msgid "last"
+msgstr "sista"
+
+msgid "day"
+msgstr "dag"
+
+msgid "weekday"
+msgstr "veckodag"
+
+msgid "weekend day"
+msgstr "veckoslutsdag"
+
+msgid "The series ends on %s because future occurrences have been deleted."
+msgstr "Serien slutar %s eftersom framtida förekomster har raderats."
+
+msgid "%d occurrence has been deleted from the series."
+msgid_plural "%d occurrences have been deleted from the series."
+msgstr[0] "%d förekomst har raderats ur serien."
+msgstr[1] "%d förekomster har raderats ur serien."
+
+msgid "Restore the series (remove the end date and all deleted occurrences)"
+msgstr "Återställ serien (ta bort slutdatumet och alla raderade förekomster)"
+
+msgid "Save Event"
+msgstr "Spara händelse"
+
+msgid "Move to Trash"
+msgstr "Flytta till papperskorgen"
+
+msgid "Event saved."
+msgstr "Händelsen har sparats."
+
+msgid "Please enter a title."
+msgstr "Ange en rubrik."
+
+msgid "Please enter a valid start date."
+msgstr "Ange ett giltigt startdatum."
+
+msgid "The end date cannot be before the start date."
+msgstr "Slutdatum kan inte vara före startdatum."
+
+msgid "Please select an event type."
+msgstr "Välj en händelsetyp."
+
+msgid "Event not found."
+msgstr "Händelsen hittades inte."
+
+msgid "Sorry, you are not allowed to edit this event."
+msgstr "Du har inte behörighet att redigera den här händelsen."
+
+msgid "Sorry, you are not allowed to delete this event."
+msgstr "Du har inte behörighet att radera den här händelsen."
+
+msgid "The occurrence does not exist."
+msgstr "Förekomsten finns inte."
+
+msgid "Repeats"
+msgstr "Upprepas"
+
+msgid "Every day"
+msgstr "Varje dag"
+
+msgid "Every %d day"
+msgid_plural "Every %d days"
+msgstr[0] "Med intervall på %d dag"
+msgstr[1] "Med intervall på %d dagar"
+
+msgid "Every week"
+msgstr "Varje vecka"
+
+msgid "Every %d week"
+msgid_plural "Every %d weeks"
+msgstr[0] "Med intervall på %d vecka"
+msgstr[1] "Med intervall på %d veckor"
+
+msgid "Every month"
+msgstr "Varje månad"
+
+msgid "Every %d month"
+msgid_plural "Every %d months"
+msgstr[0] "Med intervall på %d månad"
+msgstr[1] "Med intervall på %d månader"
+
+msgid "Every year"
+msgstr "Varje år"
+
+msgid "Every %d year"
+msgid_plural "Every %d years"
+msgstr[0] "Med intervall på %d år"
+msgstr[1] "Med intervall på %d år"
+
+msgid "%1$s on %2$s"
+msgstr "%1$s på %2$s"
+
+msgid "%1$s on day %2$d"
+msgstr "%1$s den %2$d"
+
+msgid "%1$s in %2$s on %3$s"
+msgstr "%1$s i %2$s på %3$s"
+
+msgid "%1$s in %2$s"
+msgstr "%1$s i %2$s"
+
+msgid "the %1$s %2$s"
+msgstr "den %1$s %2$sen"
+
+msgid "Delete"
+msgstr "Radera"
+
+msgid "Edit"
+msgstr "Redigera"
+
+msgid "Cancel"
+msgstr "Avbryt"
+
+msgid "Do you want to delete this event?"
+msgstr "Vill du radera den här händelsen?"
+
+msgid "Delete event"
+msgstr "Radera händelse"
+
+msgid "This is a repeating event. Do you want to delete only this occurrence or all future occurrences?"
+msgstr "Det här är en återkommande händelse. Vill du radera bara den här förekomsten eller alla framtida förekomster?"
+
+msgid "Only this occurrence"
+msgstr "Bara den här förekomsten"
+
+msgid "All future occurrences"
+msgstr "Alla framtida förekomster"
+
+msgid "The event could not be deleted."
+msgstr "Händelsen kunde inte raderas."
