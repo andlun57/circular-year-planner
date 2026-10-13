@@ -63,6 +63,7 @@ class Circular_Year_Planner {
         require_once CYPL_PLUGIN_DIR . 'includes/class-settings.php';
         require_once CYPL_PLUGIN_DIR . 'includes/class-rest-api.php';
         require_once CYPL_PLUGIN_DIR . 'includes/class-shortcode.php';
+        require_once CYPL_PLUGIN_DIR . 'includes/class-external-events.php';
     }
     
     /**

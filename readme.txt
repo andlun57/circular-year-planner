@@ -71,6 +71,10 @@ You can have unlimited event types. The plugin automatically scales the rings pr
 
 Yes, you can use multiple shortcodes with different parameters on the same page.
 
+= Can another plugin add events to Planly? =
+
+Yes. Plugins on the same site can create one-day events with `cypl_upsert_linked_event( $source, $external_id, array( 'title' => ..., 'date' => 'YYYY-MM-DD', 'event_type' => $type_id ) )` and remove them with `cypl_delete_linked_event()` or `cypl_delete_linked_events()`. `cypl_get_event_types()` returns the event types. These are PHP functions only, so the calling plugin must check the user's permissions.
+
 == Screenshots ==
 
 1. Circular calendar view with months, weeks and events

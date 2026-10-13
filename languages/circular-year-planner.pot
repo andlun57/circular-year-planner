@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-13T07:07:06+00:00\n"
+"POT-Creation-Date: 2026-10-13T19:14:38+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: circular-year-planner\n"
@@ -40,252 +40,252 @@ msgstr ""
 msgid "https://github.com/andlun57"
 msgstr ""
 
-#: circular-year-planner.php:156
+#: circular-year-planner.php:157
 msgid "Jan"
 msgstr ""
 
-#: circular-year-planner.php:157
+#: circular-year-planner.php:158
 msgid "Feb"
 msgstr ""
 
-#: circular-year-planner.php:158
+#: circular-year-planner.php:159
 msgid "Mar"
 msgstr ""
 
-#: circular-year-planner.php:159
+#: circular-year-planner.php:160
 msgid "Apr"
 msgstr ""
 
-#: circular-year-planner.php:160
-#: circular-year-planner.php:174
+#: circular-year-planner.php:161
+#: circular-year-planner.php:175
 #: includes/class-settings.php:252
 msgid "May"
 msgstr ""
 
-#: circular-year-planner.php:161
+#: circular-year-planner.php:162
 msgid "Jun"
 msgstr ""
 
-#: circular-year-planner.php:162
+#: circular-year-planner.php:163
 msgid "Jul"
 msgstr ""
 
-#: circular-year-planner.php:163
+#: circular-year-planner.php:164
 msgid "Aug"
 msgstr ""
 
-#: circular-year-planner.php:164
+#: circular-year-planner.php:165
 msgid "Sep"
 msgstr ""
 
-#: circular-year-planner.php:165
+#: circular-year-planner.php:166
 msgid "Oct"
 msgstr ""
 
-#: circular-year-planner.php:166
+#: circular-year-planner.php:167
 msgid "Nov"
 msgstr ""
 
-#: circular-year-planner.php:167
+#: circular-year-planner.php:168
 msgid "Dec"
 msgstr ""
 
-#: circular-year-planner.php:170
+#: circular-year-planner.php:171
 #: includes/class-settings.php:248
 msgid "January"
 msgstr ""
 
-#: circular-year-planner.php:171
+#: circular-year-planner.php:172
 #: includes/class-settings.php:249
 msgid "February"
 msgstr ""
 
-#: circular-year-planner.php:172
+#: circular-year-planner.php:173
 #: includes/class-settings.php:250
 msgid "March"
 msgstr ""
 
-#: circular-year-planner.php:173
+#: circular-year-planner.php:174
 #: includes/class-settings.php:251
 msgid "April"
 msgstr ""
 
-#: circular-year-planner.php:175
+#: circular-year-planner.php:176
 #: includes/class-settings.php:253
 msgid "June"
 msgstr ""
 
-#: circular-year-planner.php:176
+#: circular-year-planner.php:177
 #: includes/class-settings.php:254
 msgid "July"
 msgstr ""
 
-#: circular-year-planner.php:177
+#: circular-year-planner.php:178
 #: includes/class-settings.php:255
 msgid "August"
 msgstr ""
 
-#: circular-year-planner.php:178
+#: circular-year-planner.php:179
 #: includes/class-settings.php:256
 msgid "September"
 msgstr ""
 
-#: circular-year-planner.php:179
+#: circular-year-planner.php:180
 #: includes/class-settings.php:257
 msgid "October"
 msgstr ""
 
-#: circular-year-planner.php:180
+#: circular-year-planner.php:181
 #: includes/class-settings.php:258
 msgid "November"
 msgstr ""
 
-#: circular-year-planner.php:181
+#: circular-year-planner.php:182
 #: includes/class-settings.php:259
 msgid "December"
 msgstr ""
 
-#: circular-year-planner.php:184
+#: circular-year-planner.php:185
 msgid "Date"
 msgstr ""
 
-#: circular-year-planner.php:185
+#: circular-year-planner.php:186
 #: includes/class-event-form.php:171
 #: includes/class-event-post-type.php:314
 msgid "Start Date"
 msgstr ""
 
-#: circular-year-planner.php:186
+#: circular-year-planner.php:187
 #: includes/class-event-form.php:177
 #: includes/class-event-post-type.php:315
 msgid "End Date"
 msgstr ""
 
-#: circular-year-planner.php:187
+#: circular-year-planner.php:188
 #: includes/class-event-post-type.php:313
 msgid "Type"
 msgstr ""
 
-#: circular-year-planner.php:188
+#: circular-year-planner.php:189
 msgid "Fiscal Year"
 msgstr ""
 
-#: circular-year-planner.php:189
+#: circular-year-planner.php:190
 msgid "Display"
 msgstr ""
 
-#: circular-year-planner.php:190
+#: circular-year-planner.php:191
 msgid "Whole week (for visibility)"
 msgstr ""
 
 #. translators: Prefix for week numbers in the calendar, e.g. "W12"
-#: circular-year-planner.php:192
+#: circular-year-planner.php:193
 msgctxt "week number prefix"
 msgid "W"
 msgstr ""
 
-#: circular-year-planner.php:193
+#: circular-year-planner.php:194
 #: includes/class-event-post-type.php:316
 msgid "Repeats"
 msgstr ""
 
-#: circular-year-planner.php:194
+#: circular-year-planner.php:195
 msgid "Delete"
 msgstr ""
 
-#: circular-year-planner.php:195
+#: circular-year-planner.php:196
 msgid "Edit"
 msgstr ""
 
-#: circular-year-planner.php:196
+#: circular-year-planner.php:197
 msgid "Cancel"
 msgstr ""
 
-#: circular-year-planner.php:197
+#: circular-year-planner.php:198
 msgid "Do you want to delete this event?"
 msgstr ""
 
-#: circular-year-planner.php:198
+#: circular-year-planner.php:199
 msgid "Delete event"
 msgstr ""
 
-#: circular-year-planner.php:199
+#: circular-year-planner.php:200
 msgid "This is a repeating event. Do you want to delete only this occurrence or all future occurrences?"
 msgstr ""
 
-#: circular-year-planner.php:200
+#: circular-year-planner.php:201
 msgid "Only this occurrence"
 msgstr ""
 
-#: circular-year-planner.php:201
+#: circular-year-planner.php:202
 msgid "All future occurrences"
 msgstr ""
 
-#: circular-year-planner.php:202
+#: circular-year-planner.php:203
 #: includes/class-rest-api.php:176
 msgid "The event could not be deleted."
 msgstr ""
 
-#: circular-year-planner.php:232
+#: circular-year-planner.php:233
 #: includes/class-event-form.php:267
 msgid "The end date cannot be before the start date."
 msgstr ""
 
-#: circular-year-planner.php:260
+#: circular-year-planner.php:261
 #: includes/class-settings.php:183
 #: includes/class-settings.php:205
 msgid "ID"
 msgstr ""
 
-#: circular-year-planner.php:261
+#: circular-year-planner.php:262
 #: includes/class-settings.php:187
 #: includes/class-settings.php:209
 msgid "Name"
 msgstr ""
 
-#: circular-year-planner.php:262
+#: circular-year-planner.php:263
 #: includes/class-settings.php:188
 #: includes/class-settings.php:210
 msgid "Event type name"
 msgstr ""
 
-#: circular-year-planner.php:263
+#: circular-year-planner.php:264
 #: includes/class-settings.php:191
 #: includes/class-settings.php:213
 msgid "Background"
 msgstr ""
 
-#: circular-year-planner.php:264
+#: circular-year-planner.php:265
 #: includes/class-settings.php:195
 #: includes/class-settings.php:217
 msgid "Text"
 msgstr ""
 
-#: circular-year-planner.php:265
+#: circular-year-planner.php:266
 #: includes/class-settings.php:196
 #: includes/class-settings.php:218
 msgid "Auto"
 msgstr ""
 
-#: circular-year-planner.php:266
+#: circular-year-planner.php:267
 #: includes/class-settings.php:198
 #: includes/class-settings.php:220
 msgid "Remove"
 msgstr ""
 
-#: circular-year-planner.php:285
+#: circular-year-planner.php:286
 msgid "Program"
 msgstr ""
 
-#: circular-year-planner.php:286
+#: circular-year-planner.php:287
 msgid "Campaign"
 msgstr ""
 
-#: circular-year-planner.php:287
+#: circular-year-planner.php:288
 msgid "Training"
 msgstr ""
 
-#: circular-year-planner.php:288
+#: circular-year-planner.php:289
 msgid "Meeting"
 msgstr ""
 
@@ -517,6 +517,22 @@ msgstr ""
 
 #: includes/class-event-post-type.php:282
 msgid "No events found in trash"
+msgstr ""
+
+#: includes/class-external-events.php:47
+msgid "A source and an external ID are required."
+msgstr ""
+
+#: includes/class-external-events.php:50
+msgid "The event needs a title."
+msgstr ""
+
+#: includes/class-external-events.php:53
+msgid "The date must be in the format YYYY-MM-DD."
+msgstr ""
+
+#: includes/class-external-events.php:56
+msgid "The event type does not exist."
 msgstr ""
 
 #: includes/class-recurrence.php:254
