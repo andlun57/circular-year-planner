@@ -3,7 +3,7 @@ Contributors: andlun57
 Tags: calendar, planning, visualization, circular, year-planner
 Requires at least: 5.8
 Tested up to: 7.1
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -78,6 +78,9 @@ Yes, you can use multiple shortcodes with different parameters on the same page.
 3. Event form with dates, type and repeat options
 
 == Changelog ==
+
+= 2.0.1 - 2026-10-13 =
+* Fixed misaligned fields in the event type list when other plugins restyle admin buttons and inputs
 
 = 2.0.0 - 2026-10-12 =
 * New event form replacing the post editor, with clearly labelled fields

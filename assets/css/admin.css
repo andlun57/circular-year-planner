@@ -153,16 +153,31 @@
     flex-wrap: wrap;
 }
 
-/* Samma höjd som färgväljarnas knappar */
-.cyp-event-type-row input.regular-text,
-.cyp-event-type-row .button.cyp-remove-type {
-    min-height: 32px;
-    height: 32px;
+/*
+ * Alla kontroller i raden är 32px höga. !important behövs eftersom andra plugin
+ * kan ladda globala knapp- och fältregler med !important på alla adminsidor.
+ */
+#cyp-event-types .cyp-event-type-row input.regular-text,
+#cyp-event-types .cyp-event-type-row .button.cyp-remove-type,
+#cyp-event-types .cyp-event-type-row .button.wp-color-result {
+    box-sizing: border-box !important;
+    min-height: 32px !important;
+    height: 32px !important;
 }
 
-.cyp-event-type-row .button.cyp-remove-type {
-    line-height: 30px;
-    padding: 0 12px;
+#cyp-event-types .cyp-event-type-row input.regular-text {
+    padding: 0 8px !important;
+    line-height: 30px !important;
+}
+
+#cyp-event-types .cyp-event-type-row .button.cyp-remove-type {
+    padding: 0 12px !important;
+    line-height: 30px !important;
+}
+
+#cyp-event-types .cyp-event-type-row .button.wp-color-result {
+    padding: 0 0 0 30px !important;
+    line-height: 30px !important;
 }
 
 .cyp-type-in-use-notice {

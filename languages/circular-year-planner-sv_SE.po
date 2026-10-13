@@ -3,7 +3,7 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Planly 2.0.0\n"
+"Project-Id-Version: Planly 2.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/circular-year-planner\n"
 "POT-Creation-Date: 2026-10-12T19:55:12+00:00\n"
 "PO-Revision-Date: 2025-10-17 10:46+0000\n"
